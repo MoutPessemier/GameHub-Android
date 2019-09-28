@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009874</color>
+    <color name="colorPrimaryDark">#007C5F</color>
+    <color name="colorAccent">#313E50</color>
+    <color name="ruby_red">#96161F</color>
+    <color name="sapphire_blue">#146182</color>
+    <color name="red_yellow">#EDAE49</color>
+    <color name="flour_white">#f9fbf2</color>
+</resources>
