@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_height">500dp</dimen>
+    <dimen name="card_width">300dp</dimen>
+    <dimen name="card_spacing">8dp</dimen>
+    <dimen name="card_border_radius">20dp</dimen>
+    <dimen name="card_margin_top">75dp</dimen>
+
+    <dimen name="card_button_bar_width">90dp</dimen>
+    <dimen name="card_title_height">55dp</dimen>
+    <dimen name="card_title_text_size">30sp</dimen>
+    <dimen name="card_description_height">100dp</dimen>
+    <dimen name="card_description_text_size">20sp</dimen>
+</resources>
