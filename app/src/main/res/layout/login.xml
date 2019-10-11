@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/txt_user_name"
+            android:layout_width="@dimen/textfield_width"
+            android:layout_height="@dimen/textfield_height"
+            android:layout_marginTop="50dp"
+            android:autofillHints="@string/hint_user_name"
+            android:ems="10"
+            android:hint="@string/login_hint"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/txt_user_password"
+            android:layout_width="@dimen/textfield_width"
+            android:layout_height="@dimen/textfield_height"
+            android:layout_marginTop="25dp"
+            android:autofillHints="@string/hint_password"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_user_name" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="@dimen/button_width_large"
+            android:layout_height="@dimen/button_height_large"
+            android:layout_marginTop="75dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/login"
+            android:textColor="@color/snow_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_user_password" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="@dimen/button_width_large"
+            android:layout_height="@dimen/button_height_large"
+            android:layout_marginTop="25dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/register"
+            android:textColor="@color/snow_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="118dp"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@string/logo_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars[12]" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
