@@ -11,4 +11,7 @@
     <string name="hint_user_phone">Telephone</string>
     <string name="logout">Logout</string>
     <string name="remove_account">Delete account</string>
+    <string name="create_game">Add new game</string>
+    <string name="join_party">Join</string>
+    <string name="create_game_party">Create Game Party</string>
 </resources>
