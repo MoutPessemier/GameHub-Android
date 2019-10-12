@@ -13,7 +13,6 @@
     <string name="remove_account">Delete account</string>
     <string name="create_game">Add new game</string>
     <string name="join_party">Join</string>
-    <string name="create_game_party">Create Game Party</string>
     <string name="max_distance">Max distance</string>
     <string name="add_new_game">Add a new Game</string>
     <string name="game_name">Name of the Game</string>
@@ -21,4 +20,9 @@
     <string name="game_rules">Game Rules</string>
     <string name="game_requirements">Game Requirements</string>
     <string name="game_type">Game Type</string>
+    <string name="create_game_party">Create a Game Party</string>
+    <string name="party_name">Party Name</string>
+    <string name="select_game">Select a Game</string>
+    <string name="party_when">When</string>
+    <string name="party_where">Where</string>
 </resources>

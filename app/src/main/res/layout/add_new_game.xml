@@ -98,8 +98,7 @@
 
         <Spinner
             android:id="@+id/spr_game_type"
-            android:layout_width="@dimen/spinner_width"
-            android:layout_height="@dimen/spinner_height"
+            style="@style/custom_spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_game_type_label" />
