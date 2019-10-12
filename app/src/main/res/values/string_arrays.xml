@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="game_type">
+        <item>Card Game</item>
+        <item>Video Game</item>
+        <item>DnD</item>
+        <item>Party Game</item>
+        <item>Board Game</item>
+        <item>Family Game</item>
+    </string-array>
+</resources>

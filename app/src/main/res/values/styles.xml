@@ -26,11 +26,21 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginBottom">@dimen/label_space</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_general</item>
     </style>
 
     <style name="txt_validation" parent="txt_label">
         <item name="android:layout_marginTop">@dimen/label_space</item>
         <item name="android:textColor">@color/ruby_red</item>
+    </style>
+
+    <style name="txt_title" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_width">@dimen/title_width</item>
+        <item name="android:layout_height">@dimen/title_height</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_title</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
 </resources>

@@ -15,4 +15,10 @@
     <string name="join_party">Join</string>
     <string name="create_game_party">Create Game Party</string>
     <string name="max_distance">Max distance</string>
+    <string name="add_new_game">Add a new Game</string>
+    <string name="game_name">Name of the Game</string>
+    <string name="game_description">Game Description</string>
+    <string name="game_rules">Game Rules</string>
+    <string name="game_requirements">Game Requirements</string>
+    <string name="game_type">Game Type</string>
 </resources>

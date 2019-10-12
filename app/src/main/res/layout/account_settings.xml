@@ -15,7 +15,6 @@
 
             <TextView
                 style="@style/txt_label"
-                android:layout_marginTop="@dimen/margin_top_general"
                 android:text="@string/hint_user_name" />
 
             <EditText
@@ -27,7 +26,6 @@
 
             <TextView
                 style="@style/txt_label"
-                android:layout_marginTop="@dimen/margin_top_general"
                 android:text="@string/hint_user_email" />
 
             <EditText
@@ -39,7 +37,6 @@
 
             <TextView
                 style="@style/txt_label"
-                android:layout_marginTop="@dimen/margin_top_general"
                 android:text="@string/hint_user_phone" />
 
             <EditText
@@ -51,7 +48,6 @@
 
             <TextView
                 style="@style/txt_label"
-                android:layout_marginTop="@dimen/margin_top_general"
                 android:text="@string/max_distance" />
 
             <SeekBar

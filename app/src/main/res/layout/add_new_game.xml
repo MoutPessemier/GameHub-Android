@@ -7,6 +7,103 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView"
+            style="@style/txt_title"
+            android:text="@string/add_new_game"
+            android:textSize="@dimen/title_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_game_name_label"
+            style="@style/txt_label"
+            android:text="@string/game_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/txt_game_name"
+            style="@style/txt_field"
+            android:autofillHints="@string/game_name"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_name_label" />
+
+        <TextView
+            android:id="@+id/txt_game_description_label"
+            style="@style/txt_label"
+            android:text="@string/game_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_name" />
+
+        <EditText
+            android:id="@+id/txt_game_description"
+            style="@style/txt_field"
+            android:autofillHints="@string/game_description"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_description_label" />
+
+        <TextView
+            android:id="@+id/txt_game_rules_label"
+            style="@style/txt_label"
+            android:text="@string/game_rules"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_description" />
+
+        <EditText
+            android:id="@+id/txt_game_rules"
+            style="@style/txt_field"
+            android:autofillHints="@string/game_rules"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_rules_label" />
+
+        <TextView
+            android:id="@+id/txt_game_requirement_label"
+            style="@style/txt_label"
+            android:text="@string/game_requirements"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_rules" />
+
+        <EditText
+            android:id="@+id/txt_game_requirement"
+            style="@style/txt_field"
+            android:autofillHints="@string/game_requirements"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_requirement_label" />
+
+        <TextView
+            android:id="@+id/txt_game_type_label"
+            style="@style/txt_label"
+            android:text="@string/game_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_requirement" />
+
+        <Spinner
+            android:id="@+id/spr_game_type"
+            android:layout_width="@dimen/spinner_width"
+            android:layout_height="@dimen/spinner_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_type_label" />
+
         <Button
             android:id="@+id/btn_create_game"
             style="@style/btn_large_primary"
@@ -15,5 +112,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
