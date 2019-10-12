@@ -4,7 +4,8 @@
     <string name="logo_description">GameHub Logo</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="login_hint">User Name</string>
-    <string name="hint_password">Password</string>
+    <string name="already_account">Sign in</string>
+    <string name="hint_user_password">Password</string>
     <string name="hint_user_name">User Name</string>
+    <string name="hint_user_email">Email</string>
 </resources>
