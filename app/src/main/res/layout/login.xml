@@ -9,8 +9,7 @@
 
         <EditText
             android:id="@+id/txt_user_name"
-            android:layout_width="@dimen/textfield_width"
-            android:layout_height="@dimen/textfield_height"
+            style="@style/txt_field"
             android:layout_marginTop="50dp"
             android:autofillHints="@string/hint_user_name"
             android:ems="10"
@@ -22,9 +21,9 @@
 
         <EditText
             android:id="@+id/txt_user_password"
-            android:layout_width="@dimen/textfield_width"
-            android:layout_height="@dimen/textfield_height"
+            style="@style/txt_field"
             android:layout_marginTop="25dp"
+            android:hint="@string/hint_user_password"
             android:autofillHints="@string/hint_user_password"
             android:ems="10"
             android:inputType="textPassword"
@@ -34,12 +33,9 @@
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="@dimen/button_width_large"
-            android:layout_height="@dimen/button_height_large"
+            style="@style/btn_large_primary"
             android:layout_marginTop="75dp"
-            android:background="@color/colorPrimary"
             android:text="@string/login"
-            android:textColor="@color/snow_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,12 +43,9 @@
 
         <Button
             android:id="@+id/btn_register"
-            android:layout_width="@dimen/button_width_large"
-            android:layout_height="@dimen/button_height_large"
+            style="@style/btn_large_primary"
             android:layout_marginTop="25dp"
-            android:background="@color/colorPrimary"
             android:text="@string/register"
-            android:textColor="@color/snow_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

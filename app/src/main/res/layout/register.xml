@@ -26,68 +26,67 @@
 
             <EditText
                 android:id="@+id/txt_user_name"
-                android:layout_width="@dimen/textfield_width"
-                android:layout_height="@dimen/textfield_height"
+                style="@style/txt_field"
                 android:layout_marginTop="24dp"
                 android:autofillHints="@string/hint_user_name"
                 android:ems="10"
                 android:hint="@string/hint_user_name"
                 android:inputType="textPersonName"
-                android:textSize="@dimen/textfield_textsize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/txt_user_email"
-                android:layout_width="@dimen/textfield_width"
-                android:layout_height="@dimen/textfield_height"
+                style="@style/txt_field"
                 android:layout_marginTop="24dp"
                 android:autofillHints="@string/hint_user_email"
                 android:ems="10"
                 android:hint="@string/hint_user_email"
                 android:inputType="textEmailAddress"
-                android:textSize="@dimen/textfield_textsize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_user_name" />
 
             <EditText
+                android:id="@+id/editText"
+                style="@style/txt_field"
+                android:layout_marginTop="24dp"
+                android:autofillHints="@string/hint_user_phone"
+                android:ems="10"
+                android:hint="@string/hint_user_phone"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_user_email" />
+
+            <EditText
                 android:id="@+id/txt_user_password"
-                android:layout_width="@dimen/textfield_width"
-                android:layout_height="@dimen/textfield_height"
+                style="@style/txt_field"
                 android:layout_marginTop="24dp"
                 android:autofillHints="@string/hint_user_password"
                 android:ems="10"
                 android:hint="@string/hint_user_password"
                 android:inputType="textPassword"
-                android:textSize="@dimen/textfield_textsize"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_user_email" />
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
 
             <Button
                 android:id="@+id/btn_register"
-                android:layout_width="@dimen/button_width_large"
-                android:layout_height="@dimen/button_height_large"
-                android:layout_marginStart="161dp"
+                style="@style/btn_large_primary"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="162dp"
-                android:background="@color/colorPrimary"
                 android:text="@string/register"
-                android:textColor="@color/snow_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_user_password" />
 
             <Button
                 android:id="@+id/btn_to_login"
-                android:layout_width="@dimen/button_width_large"
-                android:layout_height="@dimen/button_height_large"
+                style="@style/btn_large_primary"
                 android:layout_marginTop="24dp"
-                android:background="@color/colorPrimary"
                 android:text="@string/already_account"
-                android:textColor="@color/snow_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_register" />

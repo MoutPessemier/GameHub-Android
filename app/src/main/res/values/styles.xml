@@ -8,4 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="txt_field" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:layout_width">@dimen/textfield_width</item>
+        <item name="android:layout_height">@dimen/textfield_height</item>
+        <item name="android:textSize">@dimen/textfield_textsize</item>
+    </style>
+
+    <style name="btn_large_primary" parent="@style/Widget.AppCompat.Button">
+        <item name="android:layout_width">@dimen/button_width_large</item>
+        <item name="android:layout_height">@dimen/button_height_large</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/snow_white</item>
+    </style>
+
 </resources>
