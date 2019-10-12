@@ -10,4 +10,12 @@
         android:name="digitized.gamehub.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="digitized.gamehub.LoginActivity"
+        android:label="LoginActivity" />
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="digitized.gamehub.RegisterActivity"
+        android:label="RegisterActivity" />
 </navigation>

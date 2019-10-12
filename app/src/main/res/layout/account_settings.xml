@@ -13,6 +13,54 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                style="@style/txt_label"
+                android:layout_marginTop="@dimen/margin_top_general"
+                android:text="@string/hint_user_name" />
+
+            <EditText
+                android:id="@+id/txt_user_name"
+                style="@style/txt_field"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/hint_user_name"
+                android:inputType="text" />
+
+            <TextView
+                style="@style/txt_label"
+                android:layout_marginTop="@dimen/margin_top_general"
+                android:text="@string/hint_user_email" />
+
+            <EditText
+                android:id="@+id/txt_user_email"
+                style="@style/txt_field"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/hint_user_email"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                style="@style/txt_label"
+                android:layout_marginTop="@dimen/margin_top_general"
+                android:text="@string/hint_user_phone" />
+
+            <EditText
+                android:id="@+id/txt_user_phone"
+                style="@style/txt_field"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/hint_user_phone"
+                android:inputType="phone" />
+
+            <TextView
+                style="@style/txt_label"
+                android:layout_marginTop="@dimen/margin_top_general"
+                android:text="@string/max_distance" />
+
+            <SeekBar
+                android:id="@+id/maxDistance"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp" />
+
             <Button
                 android:id="@+id/btn_logout"
                 style="@style/btn_large_primary"

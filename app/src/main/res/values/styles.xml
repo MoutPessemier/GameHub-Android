@@ -21,4 +21,16 @@
         <item name="android:textColor">@color/snow_white</item>
     </style>
 
+    <style name="txt_label" parent="@style/Widget.AppCompat.TextView" >
+        <item name="android:layout_width">@dimen/textfield_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/label_space</item>
+    </style>
+
+    <style name="txt_validation" parent="txt_label">
+        <item name="android:layout_marginTop">@dimen/label_space</item>
+        <item name="android:textColor">@color/ruby_red</item>
+    </style>
+
 </resources>

@@ -21,4 +21,5 @@
 
     <dimen name="margin_top_general">15dp</dimen>
     <dimen name="margin_bottom_general">20dp</dimen>
+    <dimen name="label_space">5dp</dimen>
 </resources>

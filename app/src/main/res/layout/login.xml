@@ -19,6 +19,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+        <TextView
+            android:id="@+id/txt_user_name_validation"
+            style="@style/txt_validation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_user_name" />
+
         <EditText
             android:id="@+id/txt_user_password"
             style="@style/txt_field"
@@ -29,7 +36,14 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_user_name" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_user_name_validation" />
+
+        <TextView
+            android:id="@+id/txt_user_password_validation"
+            style="@style/txt_validation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_user_password" />
 
         <Button
             android:id="@+id/btn_login"
@@ -39,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_user_password" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_user_password_validation" />
 
         <Button
             android:id="@+id/btn_register"

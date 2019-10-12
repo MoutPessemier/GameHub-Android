@@ -14,4 +14,5 @@
     <string name="create_game">Add new game</string>
     <string name="join_party">Join</string>
     <string name="create_game_party">Create Game Party</string>
+    <string name="max_distance">Max distance</string>
 </resources>

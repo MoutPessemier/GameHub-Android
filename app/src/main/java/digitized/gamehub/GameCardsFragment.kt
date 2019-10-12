@@ -7,20 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import digitized.gamehub.databinding.ActivityGameCardsBinding
+import digitized.gamehub.databinding.GameCardsBinding
 
 
-/**
- * A simple [Fragment] subclass.
- */
-class GameCards : Fragment() {
+class GameCardsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: ActivityGameCardsBinding = DataBindingUtil.inflate(inflater, R.layout.activity_game_cards, container, false)
-        return binding.root
+        val binding: GameCardsBinding = DataBindingUtil.inflate(inflater, R.layout.game_cards, container, false)
+        //return binding.root
+        return null
     }
 
 
