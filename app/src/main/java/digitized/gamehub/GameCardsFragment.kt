@@ -16,9 +16,9 @@ class GameCardsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: GameCardsBinding = DataBindingUtil.inflate(inflater, R.layout.game_cards, container, false)
-        //return binding.root
-        return null
+        val binding: GameCardsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.game_cards, container, false)
+        return binding.root
     }
 
 
