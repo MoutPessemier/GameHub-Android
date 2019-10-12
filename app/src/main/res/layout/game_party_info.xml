@@ -7,6 +7,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/txt_party_name"
+            style="@style/txt_title"
+            android:layout_marginTop="@dimen/margin_top_general"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_party_game_name"
+            style="@style/txt_subtitle"
+            app:layout_constraintEnd_toStartOf="@+id/txt_game_type"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_party_name" />
+
+        <TextView
+            android:id="@+id/txt_game_type"
+            style="@style/txt_subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_party_game_name"
+            app:layout_constraintTop_toBottomOf="@+id/txt_party_name" />
+
+        <ImageView
+            android:id="@+id/img_game_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/img_game_type_desc"
+            android:layout_marginTop="@dimen/margin_top_general"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_type"
+            tools:srcCompat="@tools:sample/avatars[14]" />
+
+        <TextView
+            android:id="@+id/txt_game_description"
+            style="@style/txt_field"
+            android:layout_marginTop="@dimen/margin_top_general"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_game_type" />
+
+        <TextView
+            android:id="@+id/txt_game_rules"
+            style="@style/txt_field"
+            android:layout_marginTop="@dimen/margin_top_general"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_description" />
+
+        <TextView
+            android:id="@+id/txt_game_requirement"
+            style="@style/txt_field"
+            android:layout_marginTop="@dimen/margin_top_general"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_rules" />
+
+        <TextView
+            android:id="@+id/txt_party_date"
+            style="@style/txt_field"
+            android:layout_marginTop="@dimen/margin_top_general"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_requirement" />
+
+        <TextView
+            android:id="@+id/txt_party_where"
+            style="@style/txt_field"
+            android:layout_marginTop="@dimen/margin_top_general"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_party_date" />
+
         <Button
             android:id="@+id/btn_join_party"
             style="@style/btn_large_primary"
