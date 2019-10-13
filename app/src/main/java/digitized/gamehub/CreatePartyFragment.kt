@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import digitized.gamehub.databinding.CreateGamePartyBinding
 
 class CreatePartyFragment : Fragment() {
@@ -17,6 +18,9 @@ class CreatePartyFragment : Fragment() {
     ): View? {
         val binding: CreateGamePartyBinding =
             DataBindingUtil.inflate(inflater, R.layout.create_game_party, container, false)
+        binding.btnCreateGamParty.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_createPartyFragment_to_gameCardsFragment)
+        }
         return binding.root
     }
 }

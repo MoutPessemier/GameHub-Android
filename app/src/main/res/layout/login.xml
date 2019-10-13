@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_user_password_validation" />
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/btn_to_register"
             style="@style/btn_large_primary"
             android:layout_marginTop="25dp"
             android:text="@string/register"

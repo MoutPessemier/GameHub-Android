@@ -18,7 +18,9 @@ class AccountSettingsFragment : Fragment() {
     ): View? {
         val binding: AccountSettingsBinding =
             DataBindingUtil.inflate(inflater, R.layout.account_settings, container, false)
-        binding.btnLogout.setOnClickListener { view: View -> view } // to login activity
+        binding.btnLogout.setOnClickListener { view: View ->
+            view.findNavController().navigate(R.id.action_accountSettingsFragment2_to_loginFragment)
+        }
         return binding.root
     }
 }
