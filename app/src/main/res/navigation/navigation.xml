@@ -18,4 +18,67 @@
         android:id="@+id/registerActivity"
         android:name="digitized.gamehub.RegisterActivity"
         android:label="RegisterActivity" />
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:name="digitized.gamehub.AccountSettingsFragment"
+        android:label="AccountSettingsFragment" >
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_gameCardsFragment"
+            app:destination="@id/gameCardsFragment"
+            app:popUpTo="@+id/gameCardsFragment" />
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/createGameFragment"
+        android:name="digitized.gamehub.CreateGameFragment"
+        android:label="CreateGameFragment" >
+        <action
+            android:id="@+id/action_createGameFragment_to_gameCardsFragment"
+            app:destination="@id/gameCardsFragment"
+            app:popUpTo="@+id/gameCardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPartyFragment"
+        android:name="digitized.gamehub.CreatePartyFragment"
+        android:label="CreatePartyFragment" >
+        <action
+            android:id="@+id/action_createPartyFragment_to_gameCardsFragment"
+            app:destination="@id/gameCardsFragment"
+            app:popUpTo="@+id/gameCardsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameCardsFragment"
+        android:name="digitized.gamehub.GameCardsFragment"
+        android:label="GameCardsFragment" >
+        <action
+            android:id="@+id/action_gameCardsFragment_to_gamePartyInfoFragment"
+            app:destination="@id/gamePartyInfoFragment" />
+        <action
+            android:id="@+id/action_gameCardsFragment_to_createGameFragment"
+            app:destination="@id/createGameFragment" />
+        <action
+            android:id="@+id/action_gameCardsFragment_to_createPartyFragment"
+            app:destination="@id/createPartyFragment" />
+        <action
+            android:id="@+id/action_gameCardsFragment_to_accountSettingsFragment"
+            app:destination="@id/accountSettingsFragment" />
+        <action
+            android:id="@+id/action_gameCardsFragment_to_mapActivity"
+            app:destination="@id/mapActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/gamePartyInfoFragment"
+        android:name="digitized.gamehub.GamePartyInfoFragment"
+        android:label="GamePartyInfoFragment" >
+        <action
+            android:id="@+id/action_gamePartyInfoFragment_to_gameCardsFragment"
+            app:destination="@id/gameCardsFragment"
+            app:popUpTo="@+id/gameCardsFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/mapActivity"
+        android:name="digitized.gamehub.MapActivity"
+        android:label="MapActivity" />
 </navigation>

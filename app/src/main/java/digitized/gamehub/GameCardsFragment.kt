@@ -18,6 +18,7 @@ class GameCardsFragment : Fragment() {
     ): View? {
         val binding: GameCardsBinding =
             DataBindingUtil.inflate(inflater, R.layout.game_cards, container, false)
+        binding.btnInfo.setOnClickListener { view:View -> view } // to GamePartyInfo screen
         return binding.root
     }
 

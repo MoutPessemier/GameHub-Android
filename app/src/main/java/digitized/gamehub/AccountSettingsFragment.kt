@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import digitized.gamehub.databinding.AccountSettingsBinding
 
 class AccountSettingsFragment : Fragment() {
@@ -17,6 +18,7 @@ class AccountSettingsFragment : Fragment() {
     ): View? {
         val binding: AccountSettingsBinding =
             DataBindingUtil.inflate(inflater, R.layout.account_settings, container, false)
+        binding.btnLogout.setOnClickListener { view: View -> view } // to login activity
         return binding.root
     }
 }
