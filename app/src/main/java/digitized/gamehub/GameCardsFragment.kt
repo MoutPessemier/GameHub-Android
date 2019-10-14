@@ -21,7 +21,7 @@ class GameCardsFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.game_cards, container, false)
         binding.btnInfo.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(R.id.action_gameCardsFragment_to_gamePartyInfoFragment)
+                .navigate(GameCardsFragmentDirections.actionGameCardsFragmentToGamePartyInfoFragment())
         }
         return binding.root
     }

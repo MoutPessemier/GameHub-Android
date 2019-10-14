@@ -20,7 +20,7 @@ class GamePartyInfoFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.game_party_info, container, false)
         binding.btnJoinParty.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(R.id.action_gamePartyInfoFragment_to_gameCardsFragment)
+                .navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragment())
         }
         return binding.root
     }

@@ -19,10 +19,10 @@ class RegisterFragment : Fragment() {
         val binding: RegisterBinding =
             DataBindingUtil.inflate(inflater, R.layout.register, container, false)
         binding.btnToLogin.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            view.findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
         }
         binding.btnRegister.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_registerFragment_to_gameCardsFragment2)
+            view.findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToGameCardsFragment2())
         }
         return binding.root
     }

@@ -19,7 +19,7 @@ class AccountSettingsFragment : Fragment() {
         val binding: AccountSettingsBinding =
             DataBindingUtil.inflate(inflater, R.layout.account_settings, container, false)
         binding.btnLogout.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_accountSettingsFragment2_to_loginFragment)
+            view.findNavController().navigate(AccountSettingsFragmentDirections.actionAccountSettingsFragment2ToLoginFragment())
         }
         return binding.root
     }

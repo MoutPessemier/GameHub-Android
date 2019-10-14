@@ -19,7 +19,7 @@ class CreateGameFragment : Fragment() {
         val binding: AddNewGameBinding =
             DataBindingUtil.inflate(inflater, R.layout.add_new_game, container, false)
         binding.btnCreateGame.setOnClickListener { view: View ->
-            view.findNavController().navigate(R.id.action_createGameFragment_to_gameCardsFragment)
+            view.findNavController().navigate(CreateGameFragmentDirections.actionCreateGameFragmentToGameCardsFragment())
         }
         return binding.root
     }
