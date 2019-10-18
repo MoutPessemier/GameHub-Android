@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import digitized.gamehub.databinding.GameCardsBinding
 
 
 class GameCardsFragment : Fragment() {
+
+    private lateinit var viewModel: GameCardsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +26,9 @@ class GameCardsFragment : Fragment() {
             view.findNavController()
                 .navigate(GameCardsFragmentDirections.actionGameCardsFragmentToGamePartyInfoFragment())
         }
+
+        viewModel = ViewModelProviders.of(this).get(GameCardsViewModel::class.java)
+
         return binding.root
     }
 

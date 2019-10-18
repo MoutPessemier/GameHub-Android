@@ -25,4 +25,8 @@
     <string name="select_game">Select a Game</string>
     <string name="party_when">When</string>
     <string name="party_where">Where</string>
+    <string name="gamehub_logo">GameHub Logo</string>
+    <string name="new_game">Add a new Game</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="to_map">Go to the Map</string>
 </resources>

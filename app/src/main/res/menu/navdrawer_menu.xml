@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/MapActivity"
+        android:title="@string/to_map" />
+    <item
+        android:id="@+id/CreatePartyFragment"
+        android:title="@string/create_game_party" />
+    <item android:id="@+id/CreateGameFragment" android:title="@string/new_game" />
+    <item
+        android:id="@+id/AccountSettingsFragment"
+        android:title="@string/account_settings" />
+</menu>

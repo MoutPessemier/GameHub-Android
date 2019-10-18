@@ -87,10 +87,12 @@
     <Button
         android:id="@+id/btn_create_gam_party"
         style="@style/btn_large_primary"
+        android:layout_marginTop="228dp"
         android:layout_marginBottom="32dp"
         android:text="@string/create_game_party"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_party_where" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

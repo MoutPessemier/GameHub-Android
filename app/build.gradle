@@ -37,15 +37,20 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$version_appcompat"
     implementation "androidx.core:core-ktx:$version_core"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
+    //material
     implementation "com.google.android.material:material:$version_material"
     implementation "com.jakewharton.timber:timber:$version_timber"
 
+    // navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
 
-    // implementation "androidx.main_navigation:main_navigation-fragment-ktx:$version_navigation"
-    // implementation "androidx.main_navigation:main_navigation-ui-ktx:$version_navigation"
+    // implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
+    // implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    // lifecyle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

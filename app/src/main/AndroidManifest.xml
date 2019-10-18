@@ -17,6 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.AIzaSyCnoh3RvN9eRT-G7XV6ORB97b34dzTfLD8"
+            android:value="AIzaSyCnoh3RvN9eRT-G7XV6ORB97b34dzTfLD8"/>
     </application>
 
 </manifest>
