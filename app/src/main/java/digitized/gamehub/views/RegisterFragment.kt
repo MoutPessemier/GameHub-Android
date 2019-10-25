@@ -1,4 +1,4 @@
-package digitized.gamehub
+package digitized.gamehub.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import digitized.gamehub.R
+import digitized.gamehub.viewmodels.RegisterViewModel
 import digitized.gamehub.databinding.RegisterBinding
 
 class RegisterFragment : Fragment() {

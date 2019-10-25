@@ -1,4 +1,4 @@
-package digitized.gamehub
+package digitized.gamehub.models
 
 import java.util.*
 

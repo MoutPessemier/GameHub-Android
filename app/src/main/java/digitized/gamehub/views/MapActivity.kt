@@ -1,8 +1,9 @@
-package digitized.gamehub
+package digitized.gamehub.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import digitized.gamehub.R
 import digitized.gamehub.databinding.MapBinding
 
 class MapActivity : AppCompatActivity() {

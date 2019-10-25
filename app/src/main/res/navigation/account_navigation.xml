@@ -4,7 +4,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="digitized.gamehub.LoginFragment"
+        android:name="digitized.gamehub.views.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountSettingsFragment2"
-        android:name="digitized.gamehub.AccountSettingsFragment"
+        android:name="digitized.gamehub.views.AccountSettingsFragment"
         android:label="AccountSettingsFragment" >
         <action
             android:id="@+id/action_accountSettingsFragment2_to_loginFragment"
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="digitized.gamehub.RegisterFragment"
+        android:name="digitized.gamehub.views.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
@@ -34,6 +34,6 @@
     </fragment>
     <fragment
         android:id="@+id/gameCardsFragment2"
-        android:name="digitized.gamehub.GameCardsFragment"
+        android:name="digitized.gamehub.views.GameCardsFragment"
         android:label="GameCardsFragment" />
 </navigation>

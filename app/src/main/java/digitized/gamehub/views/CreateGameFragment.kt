@@ -1,4 +1,4 @@
-package digitized.gamehub
+package digitized.gamehub.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import digitized.gamehub.viewmodels.CreateGameViewModel
+import digitized.gamehub.R
 import digitized.gamehub.databinding.AddNewGameBinding
 
 class CreateGameFragment : Fragment() {
@@ -20,7 +22,8 @@ class CreateGameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: AddNewGameBinding =
-            DataBindingUtil.inflate(inflater, R.layout.add_new_game, container, false)
+            DataBindingUtil.inflate(inflater,
+                R.layout.add_new_game, container, false)
         binding.btnCreateGame.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(CreateGameFragmentDirections.actionCreateGameFragmentToGameCardsFragment())

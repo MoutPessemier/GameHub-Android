@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="digitized.gamehub" >
-
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:name=".GameHubApplication"
         android:allowBackup="true"
@@ -23,6 +23,7 @@
         <meta-data
             android:name="com.google.android.geo.AIzaSyCnoh3RvN9eRT-G7XV6ORB97b34dzTfLD8"
             android:value="AIzaSyCnoh3RvN9eRT-G7XV6ORB97b34dzTfLD8"/>
+
     </application>
 
 </manifest>
