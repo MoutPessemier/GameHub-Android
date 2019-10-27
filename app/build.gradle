@@ -33,32 +33,55 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
-    implementation "androidx.appcompat:appcompat:$version_appcompat"
-    implementation "androidx.core:core-ktx:$version_core"
+
+    // Constraint layout
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
-    //material
+
+    // Material
     implementation "com.google.android.material:material:$version_material"
+
+    // Timber
     implementation "com.jakewharton.timber:timber:$version_timber"
 
-    // navigation
-    implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
-    implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
-    // implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
-    // implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    // Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
 
-    // lifecyle
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    // Map service
+    implementation "com.google.android.gms:play-services-maps:$version_map"
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    // Testing
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
     androidTestImplementation "androidx.test:runner:$version_testrunner"
     androidTestImplementation "androidx.test:rules:$version_testrules"
     androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"
+
+    // Misc
+    implementation "androidx.appcompat:appcompat:$version_appcompat"
+    implementation "androidx.core:core-ktx:$version_core"
+    implementation "androidx.legacy:legacy-support-v4:$version_legacy"
+
+
 
 
 }

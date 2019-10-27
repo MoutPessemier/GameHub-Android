@@ -1,4 +1,4 @@
-package digitized.gamehub.models
+package digitized.gamehub.domain
 
 enum class GameType {
     BOARD_GAME,

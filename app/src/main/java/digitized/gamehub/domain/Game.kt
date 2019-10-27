@@ -1,4 +1,4 @@
-package digitized.gamehub.models
+package digitized.gamehub.domain
 
 class Game {
 
