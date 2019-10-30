@@ -19,7 +19,7 @@ class LoginViewModel(application: Application) : ViewModel() {
     private val sharedPreferences: SharedPreferences =
         application.applicationContext.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
 
-    private var viewModelJob = Job()
+    private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _status = MutableLiveData<ApiStatus>()
@@ -32,7 +32,7 @@ class LoginViewModel(application: Application) : ViewModel() {
 
     fun login(email: String, password: String) {
         coroutineScope.launch {
-            var user = GameHubAPI.service.login(email, password)
+            val user = GameHubAPI.service.login(email, password)
             try {
                 _status.value = ApiStatus.LOADING
                 val result = user.await()

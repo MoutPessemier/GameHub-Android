@@ -15,7 +15,7 @@ import java.lang.Exception
 
 class CreateGameViewModel : ViewModel() {
 
-    private var viewModelJob = Job()
+    private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _status = MutableLiveData<ApiStatus>()
@@ -75,7 +75,7 @@ class CreateGameViewModel : ViewModel() {
             val deletedGame = GameHubAPI.service.deleteGame(id)
             try {
                 _status.value = ApiStatus.LOADING
-                var result = deletedGame.await()
+                val result = deletedGame.await()
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR

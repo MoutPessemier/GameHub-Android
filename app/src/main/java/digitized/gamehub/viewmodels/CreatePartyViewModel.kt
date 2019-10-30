@@ -17,7 +17,7 @@ import kotlin.collections.ArrayList
 
 class CreatePartyViewModel : ViewModel() {
 
-    private var viewModelJob = Job()
+    private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _status = MutableLiveData<ApiStatus>()

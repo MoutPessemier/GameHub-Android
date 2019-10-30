@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class GameCardsViewModel() : ViewModel() {
 
-    private var viewModelJob = Job()
+    private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _status = MutableLiveData<ApiStatus>()
@@ -24,13 +24,15 @@ class GameCardsViewModel() : ViewModel() {
     val partiesNearYou: LiveData<List<GameParty>>
         get() = _parties
 
+    var party: GameParty? = null
+
     init {
         // getPartiesNearYou(,)
     }
 
     private fun getPartiesNearYou(distance: Int, coordinates: Array<Double>) {
         coroutineScope.launch {
-            var parties = GameHubAPI.service.getPatiesNearYou(distance, coordinates)
+            val parties = GameHubAPI.service.getPatiesNearYou(distance, coordinates)
             try {
                 _status.value = ApiStatus.LOADING
                 val resultList = parties.await()
@@ -39,6 +41,21 @@ class GameCardsViewModel() : ViewModel() {
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
                 _parties.value = ArrayList()
+            }
+        }
+    }
+
+    fun joinParty(partyId: String, userId: String){
+        coroutineScope.launch {
+            val partyToJoin = GameHubAPI.service.joinParty(partyId, userId)
+            try {
+                _status.value = ApiStatus.LOADING
+                val result = partyToJoin.await()
+                _status.value = ApiStatus.DONE
+                party = result
+            } catch (e: Exception) {
+                _status.value = ApiStatus.ERROR
+                party = null
             }
         }
     }
