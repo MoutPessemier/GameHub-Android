@@ -18,6 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //multiDexEnabled true
     }
     buildTypes {
         release {
@@ -25,7 +26,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    androidExtensions {
+        experimental = true
+    }
     dataBinding {
         enabled = true
     }
@@ -69,6 +72,12 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
 
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+
+    // Workers
+    // implementation "android.arch.work:work-runtime-ktx:$version_work"
+
     // Testing
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
@@ -80,8 +89,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$version_appcompat"
     implementation "androidx.core:core-ktx:$version_core"
     implementation "androidx.legacy:legacy-support-v4:$version_legacy"
-
-
 
 
 }

@@ -1,18 +1,17 @@
 package digitized.gamehub.domain
 
+import android.os.Parcelable
+import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
-class GameParty {
-
-    private var name: String
-    private var date: Date
-    private var maxSize: Int
-    private var participants: Array<User>
-
-    constructor(name: String, date: Date, maxSize: Int, participants: Array<User>) {
-        this.name = name
-        this.date = date
-        this.maxSize = maxSize
-        this.participants = participants
-    }
-}
+@Parcelize
+data class GameParty(
+    @Json(name = "_id") val id: String,
+    val name: String,
+    val date: Date,
+    val maxSize: Int,
+    val participants: Array<User>,
+    val game: String
+    // @Json("location.coordinates") val coordinates: Array<Double>
+) : Parcelable {}
