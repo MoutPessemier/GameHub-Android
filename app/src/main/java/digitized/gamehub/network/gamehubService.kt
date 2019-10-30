@@ -93,8 +93,8 @@ interface GameHubAPIService {
         lastName: String,
         telephone: String,
         email: String,
-        birthDate: String,
-        userRoles: UserRoles,
+        birthDate: Date,
+        userRole: UserRole,
         password: String,
         maxDistance: Int
     ): Deferred<User>
@@ -106,8 +106,8 @@ interface GameHubAPIService {
         lastName: String,
         telephone: String,
         email: String,
-        birthDate: String,
-        userRoles: UserRoles,
+        birthDate: Date,
+        userRole: UserRole,
         password: String,
         maxDistance: Int
     ): Deferred<User>

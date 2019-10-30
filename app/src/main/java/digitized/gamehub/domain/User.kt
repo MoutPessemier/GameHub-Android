@@ -13,7 +13,7 @@ class User(
     val telephone: String,
     val email: String,
     val birthDate: Date,
-    val userRole: UserRoles,
+    val userRole: UserRole,
     val password: String,
     val maxDistance: Int
 ) : Parcelable {}

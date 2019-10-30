@@ -1,6 +1,6 @@
 package digitized.gamehub.domain
 
-enum class UserRoles {
+enum class UserRole {
     OWNER,
     ADMIN,
     USER
