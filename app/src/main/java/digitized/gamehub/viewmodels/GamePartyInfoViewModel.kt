@@ -13,4 +13,9 @@ class GamePartyInfoViewModel : ViewModel() {
     init {
 
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }

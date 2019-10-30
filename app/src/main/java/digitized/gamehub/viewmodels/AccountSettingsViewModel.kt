@@ -90,4 +90,9 @@ class AccountSettingsViewModel(application: Application) : ViewModel() {
             }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }

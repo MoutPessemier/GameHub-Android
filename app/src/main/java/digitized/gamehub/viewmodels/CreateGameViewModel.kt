@@ -37,8 +37,9 @@ class CreateGameViewModel : ViewModel() {
                 GameHubAPI.service.createGame(name, description, rules, requirements, type)
             try {
                 _status.value = ApiStatus.LOADING
-                game = createdGame.await()
+                val result = createdGame.await()
                 _status.value = ApiStatus.DONE
+                game = result
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
                 game = null
@@ -59,8 +60,9 @@ class CreateGameViewModel : ViewModel() {
                 GameHubAPI.service.updateGame(id, name, description, rules, requirements, type)
             try {
                 _status.value = ApiStatus.LOADING
-                game = updatedGame.await()
+                val result = updatedGame.await()
                 _status.value = ApiStatus.DONE
+                game = result
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
                 game = null
@@ -79,5 +81,10 @@ class CreateGameViewModel : ViewModel() {
                 _status.value = ApiStatus.ERROR
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }

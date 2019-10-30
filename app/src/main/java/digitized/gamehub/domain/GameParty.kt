@@ -11,7 +11,7 @@ data class GameParty(
     val name: String,
     val date: Date,
     val maxSize: Int,
-    val participants: Array<User>,
+    val participants: Array<String>,
     val game: String
     // @Json("location.coordinates") val coordinates: Array<Double>
 ) : Parcelable {}
