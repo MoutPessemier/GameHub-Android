@@ -31,7 +31,7 @@ interface GameHubAPIService {
     fun getAllGames(): Deferred<List<Game>>
 
     @POST("createGame")
-    fun crateGame(
+    fun createGame(
         name: String,
         description: String,
         rules: String,
