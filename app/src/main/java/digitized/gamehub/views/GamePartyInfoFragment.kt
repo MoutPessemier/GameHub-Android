@@ -14,7 +14,7 @@ import digitized.gamehub.databinding.GamePartyInfoBinding
 
 class GamePartyInfoFragment : Fragment() {
 
-    private lateinit var viewModel: GamePartyInfoViewModel
+//    private lateinit var viewModel: GamePartyInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,12 +24,12 @@ class GamePartyInfoFragment : Fragment() {
         val binding: GamePartyInfoBinding =
             DataBindingUtil.inflate(inflater,
                 R.layout.game_party_info, container, false)
-        binding.btnJoinParty.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragment())
-        }
-
-        viewModel = ViewModelProviders.of(this).get(GamePartyInfoViewModel::class.java)
+//        binding.btnJoinParty.setOnClickListener { view: View ->
+//            view.findNavController()
+//                .navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragment())
+//        }
+//
+//        viewModel = ViewModelProviders.of(this).get(GamePartyInfoViewModel::class.java)
 
         return binding.root
     }

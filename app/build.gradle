@@ -8,6 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -18,7 +20,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        //multiDexEnabled true
     }
     buildTypes {
         release {
@@ -71,6 +72,7 @@ dependencies {
     // Moshi
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+    implementation "com.squareup.moshi:moshi-adapters:$version_date_json_adapter"
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
@@ -78,9 +80,13 @@ dependencies {
     // Workers
     // implementation "android.arch.work:work-runtime-ktx:$version_work"
 
+    // Auth0
+    // implementation "com.auth0.android:auth0:$version_auth0"
+
     // Testing
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$version_espresso"
     androidTestImplementation "androidx.test:runner:$version_testrunner"
     androidTestImplementation "androidx.test:rules:$version_testrules"
     androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"

@@ -4,16 +4,16 @@
     <!--        android:icon=""-->
 
     <item
-        android:id="@+id/MapActivity"
+        android:id="@+id/nav_map_view"
         android:title="@string/to_map" />
 
     <item
-        android:id="@+id/CreatePartyFragment"
+        android:id="@+id/nav_create_party_view"
         android:title="@string/create_game_party" />
     <item
-        android:id="@+id/CreateGameFragment"
+        android:id="@+id/nav_create_game_view"
         android:title="@string/new_game" />
     <item
-        android:id="@+id/AccountSettingsFragment"
+        android:id="@+id/nav_account_view"
         android:title="@string/account_settings" />
 </menu>

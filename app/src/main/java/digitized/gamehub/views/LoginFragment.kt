@@ -14,7 +14,7 @@ import digitized.gamehub.databinding.LoginBinding
 
 class LoginFragment : Fragment() {
 
-    private lateinit var viewModel: LoginViewModel
+//    private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,16 +23,16 @@ class LoginFragment : Fragment() {
     ): View? {
         val binding: LoginBinding =
             DataBindingUtil.inflate(inflater, R.layout.login, container, false)
-        binding.btnToRegister.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-        }
-        binding.btnLogin.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(LoginFragmentDirections.actionLoginFragmentToGameCardsFragment2())
-        }
-
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+//        binding.btnToRegister.setOnClickListener { view: View ->
+//            view.findNavController()
+//                .navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+//        }
+//        binding.btnLogin.setOnClickListener { view: View ->
+//            view.findNavController()
+//                .navigate(LoginFragmentDirections.actionLoginFragmentToGameCardsFragment2())
+//        }
+//
+//        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
         return binding.root
     }

@@ -14,7 +14,7 @@ import digitized.gamehub.databinding.AccountSettingsBinding
 
 class AccountSettingsFragment : Fragment() {
 
-    private lateinit var viewModel: AccountSettingsViewModel
+    //private lateinit var viewModel: AccountSettingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,12 +24,12 @@ class AccountSettingsFragment : Fragment() {
         val binding: AccountSettingsBinding =
             DataBindingUtil.inflate(inflater,
                 R.layout.account_settings, container, false)
-        binding.btnLogout.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(AccountSettingsFragmentDirections.actionAccountSettingsFragment2ToLoginFragment())
-        }
-
-        viewModel = ViewModelProviders.of(this).get(AccountSettingsViewModel::class.java)
+//        binding.btnLogout.setOnClickListener { view: View ->
+//            view.findNavController()
+//                .navigate(AccountSettingsFragmentDirections.actionNavAccountViewToLoginFragment())
+//        }
+//
+//        viewModel = ViewModelProviders.of(this).get(AccountSettingsViewModel::class.java)
 
         return binding.root
     }

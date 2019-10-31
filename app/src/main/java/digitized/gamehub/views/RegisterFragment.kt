@@ -14,7 +14,7 @@ import digitized.gamehub.databinding.RegisterBinding
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var viewModel: RegisterViewModel
+//    private lateinit var viewModel: RegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,16 +23,16 @@ class RegisterFragment : Fragment() {
     ): View? {
         val binding: RegisterBinding =
             DataBindingUtil.inflate(inflater, R.layout.register, container, false)
-        binding.btnToLogin.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
-        }
-        binding.btnRegister.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(RegisterFragmentDirections.actionRegisterFragmentToGameCardsFragment2())
-        }
-
-        viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
+//        binding.btnToLogin.setOnClickListener { view: View ->
+//            view.findNavController()
+//                .navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+//        }
+//        binding.btnRegister.setOnClickListener { view: View ->
+//            view.findNavController()
+//                .navigate(RegisterFragmentDirections.actionRegisterFragmentToGameCardsFragment2())
+//        }
+//
+//        viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
 
         return binding.root
     }

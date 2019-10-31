@@ -29,4 +29,7 @@
     <string name="new_game">Add a new Game</string>
     <string name="account_settings">Account Settings</string>
     <string name="to_map">Go to the Map</string>
+
+    <string name="com_auth0_client_id">sYzG0ngpUGEKKEAeNqh9AaC8hX6uVBWr</string>
+    <string name="com_auth0_domain">gamehub.eu.auth0.com</string>
 </resources>
