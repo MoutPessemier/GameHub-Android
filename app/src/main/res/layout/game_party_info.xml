@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="digitized.gamehub.partyInfo.GamePartyInfoViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_party_info"
         android:layout_width="match_parent"
@@ -12,31 +19,37 @@
             android:id="@+id/txt_party_name"
             style="@style/txt_title"
             android:layout_marginTop="@dimen/margin_top_general"
+            android:text="@{viewModel.selectedParty.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Default" />
 
         <TextView
             android:id="@+id/txt_party_game_name"
             style="@style/txt_subtitle"
+            android:text="@{viewModel.partyGame.name}"
             app:layout_constraintEnd_toStartOf="@+id/txt_game_type"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_party_name" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_party_name"
+            tools:text="Default" />
 
         <TextView
             android:id="@+id/txt_game_type"
             style="@style/txt_subtitle"
+            app:gameType="@{viewModel.partyGame.type}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txt_party_game_name"
-            app:layout_constraintTop_toBottomOf="@+id/txt_party_name" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_party_name"
+            tools:text="Default" />
 
         <ImageView
             android:id="@+id/img_game_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/img_game_type_desc"
             android:layout_marginTop="@dimen/margin_top_general"
+            android:contentDescription="@string/img_game_type_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_game_type"
@@ -46,25 +59,31 @@
             android:id="@+id/txt_game_description"
             style="@style/txt_field"
             android:layout_marginTop="@dimen/margin_top_general"
+            android:text="@{viewModel.partyGame.description}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_game_type" />
+            app:layout_constraintTop_toBottomOf="@+id/img_game_type"
+            tools:text="Default" />
 
         <TextView
             android:id="@+id/txt_game_rules"
             style="@style/txt_field"
             android:layout_marginTop="@dimen/margin_top_general"
+            android:text="@{viewModel.partyGame.rules}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_game_description" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_description"
+            tools:text="Default" />
 
         <TextView
             android:id="@+id/txt_game_requirement"
             style="@style/txt_field"
             android:layout_marginTop="@dimen/margin_top_general"
+            android:text="@{viewModel.partyGame.requirements}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_game_rules" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_rules"
+            tools:text="Default" />
 
         <TextView
             android:id="@+id/txt_party_date"
@@ -72,7 +91,9 @@
             android:layout_marginTop="@dimen/margin_top_general"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_game_requirement" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_requirement"
+            app:partyDate="@{viewModel.party.date}"
+            tools:text="Default" />
 
         <TextView
             android:id="@+id/txt_party_where"
@@ -81,16 +102,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_party_date" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_party_date"
+            tools:text="Default" />
 
         <Button
             android:id="@+id/btn_join_party"
             style="@style/btn_large_primary"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="@dimen/button_width_medium"
+            android:layout_marginTop="32dp"
+            android:onClick="@{() -> viewModel.joinParty(viewModel.selectedParty.id, viewModel.partyGame.id)}"
             android:text="@string/join_party"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_decline_party"
+            app:layout_constraintTop_toBottomOf="@+id/txt_party_where" />
+
+        <Button
+            android:id="@+id/btn_decline_party"
+            style="@style/btn_large_primary"
+            android:layout_width="@dimen/button_width_medium"
+            android:layout_marginTop="32dp"
+            android:text="@string/decline"
+            app:layout_constraintEnd_toStartOf="@+id/btn_join_party"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_party_where" />
     </androidx.constraintlayout.widget.ConstraintLayout>

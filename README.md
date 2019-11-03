@@ -12,7 +12,7 @@ This app is made for those who like to play (board)games but need others to play
 ## Usage:
 
 1. Have a **virtual machine** installed / **physical device** on which you can install the apk
-2. Clone this project
+2. Clone this project using a cloning tool like git
 3. Run
 
 ## Links:

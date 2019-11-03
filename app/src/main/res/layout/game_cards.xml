@@ -62,7 +62,8 @@
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="@dimen/card_button_bar_width"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/card_spacing" />
+                        android:layout_marginStart="@dimen/card_spacing"
+                        android:background="@drawable/ic_clear_black_32dp" />
 
                     <Button
                         android:id="@+id/btn_info"
@@ -70,14 +71,16 @@
                         android:layout_width="@dimen/card_button_bar_width"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/card_spacing"
-                        android:layout_marginRight="@dimen/card_spacing" />
+                        android:layout_marginRight="@dimen/card_spacing"
+                        android:background="@drawable/ic_info_outline_black_32dp" />
 
                     <Button
                         android:id="@+id/btn_accept"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="@dimen/card_button_bar_width"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/card_spacing" />
+                        android:layout_marginEnd="@dimen/card_spacing"
+                        android:background="@drawable/ic_done_black_32dp" />
                 </LinearLayout>
 
             </LinearLayout>

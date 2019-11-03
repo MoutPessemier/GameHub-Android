@@ -24,10 +24,12 @@
 
     <dimen name="textfield_width">300dp</dimen>
     <dimen name="textfield_height">45dp</dimen>
-    <dimen name="textfield_textsize">24sp</dimen>
+    <dimen name="textfield_textsize">22sp</dimen>
 
     <dimen name="button_width_large">200dp</dimen>
     <dimen name="button_height_large">45dp</dimen>
+    <dimen name="button_width_medium">150dp</dimen>
+    <dimen name="button_width_small">100dp</dimen>
 
     <dimen name="margin_top_general">15dp</dimen>
     <dimen name="margin_top_title">35dp</dimen>
