@@ -20,4 +20,4 @@ This app is made for those who like to play (board)games but need others to play
 - [IOS Frontend](https://github.com/MoutPessemier/GameHub-IOS)
 - [Backend](https://github.com/MoutPessemier/GameHub-Backend)
 - [Twitter](https://twitter.com/MoutPessemier)
-- [LinkedIn](https://www.linkedin.com/in/mout-pessemier-9954a9163/)
+- [LinkedIn](https://www.linkedin.com/in/moutpessemier/)
