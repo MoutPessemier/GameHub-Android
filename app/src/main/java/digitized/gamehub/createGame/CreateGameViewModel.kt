@@ -1,4 +1,4 @@
-package digitized.gamehub.viewmodels
+package digitized.gamehub.createGame
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import kotlin.reflect.typeOf
 
 class CreateGameViewModel : ViewModel() {
 
@@ -26,15 +27,11 @@ class CreateGameViewModel : ViewModel() {
         private set
 
     fun createGame(
-        name: String,
-        description: String,
-        rules: String,
-        requirements: String,
-        type: GameType
+        g: Game
     ) {
         coroutineScope.launch {
             val createdGame =
-                GameHubAPI.service.createGame(name, description, rules, requirements, type)
+                GameHubAPI.service.createGame(g)
             try {
                 _status.value = ApiStatus.LOADING
                 val result = createdGame.await()
@@ -86,5 +83,17 @@ class CreateGameViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun convertToType(spinnerType: String): GameType {
+        return when (spinnerType) {
+            "Card Game" -> GameType.CARD_GAME
+            "Video Game" -> GameType.VIDEO_GAME
+            "DnD" -> GameType.DnD
+            "Party Game" -> GameType.PARTY_GAME
+            "Board Game" -> GameType.BOARD_GAME
+            "Family Game" -> GameType.FAMILY_GAME
+            else -> GameType.UNKNOWN
+        }
     }
 }

@@ -7,10 +7,7 @@ import digitized.gamehub.domain.*
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 import java.util.*
 
 private const val BASE_URL = "https://game-hub-backend.herokuapp.com/"
@@ -30,13 +27,12 @@ interface GameHubAPIService {
     @GET("games")
     fun getAllGames(): Deferred<List<Game>>
 
+    @GET("gameById")
+    fun getGameById(@Query("id") id: String): Deferred<Game>
+
     @POST("createGame")
     fun createGame(
-        name: String,
-        description: String,
-        rules: String,
-        requirements: String,
-        type: GameType
+        @Body game: Game
     ): Deferred<Game>
 
     @PUT("updateGame")
@@ -54,15 +50,16 @@ interface GameHubAPIService {
 
     // Party
     @GET("getPartiesNearYou")
-    fun getPatiesNearYou(distance: Int, coordinates: Array<Double>): Deferred<List<GameParty>>
+    fun getPatiesNearYou(@Query("distance") distance: Int, @Query("lat") lat: Double, @Query("long") long: Double): Deferred<List<GameParty>>
 
     @POST("createParty")
     fun createParty(
+
         name: String,
         date: Date,
         maxSize: Int,
         participants: Array<String>,
-        coordinates: Array<Double>,
+        coordinates: DoubleArray,
         game: String
     ): Deferred<GameParty>
 
@@ -73,7 +70,7 @@ interface GameHubAPIService {
         date: Date,
         maxSize: Int,
         participants: Array<String>,
-        coordinates: Array<Double>,
+        coordinates: DoubleArray,
         game: String
     ): Deferred<GameParty>
 

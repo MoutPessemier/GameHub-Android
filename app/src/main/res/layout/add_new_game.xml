@@ -99,6 +99,7 @@
         <Spinner
             android:id="@+id/spr_game_type"
             style="@style/custom_spinner"
+            android:entries="@array/game_type"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_game_type_label" />
@@ -106,10 +107,8 @@
         <Button
             android:id="@+id/btn_create_game"
             style="@style/btn_large_primary"
-            android:layout_marginTop="150dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="32dp"
             android:text="@string/create_game"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
