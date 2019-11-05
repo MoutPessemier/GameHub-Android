@@ -24,7 +24,7 @@
 
     <dimen name="textfield_width">300dp</dimen>
     <dimen name="textfield_height">45dp</dimen>
-    <dimen name="textfield_textsize">22sp</dimen>
+    <dimen name="textfield_textsize">20sp</dimen>
 
     <dimen name="button_width_large">200dp</dimen>
     <dimen name="button_height_large">45dp</dimen>

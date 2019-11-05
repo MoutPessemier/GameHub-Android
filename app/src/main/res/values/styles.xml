@@ -13,6 +13,7 @@
         <item name="android:layout_height">@dimen/textfield_height</item>
         <item name="android:textSize">@dimen/textfield_textsize</item>
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="btn_large_primary" parent="@style/Widget.AppCompat.Button">

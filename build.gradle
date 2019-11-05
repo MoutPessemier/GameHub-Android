@@ -16,14 +16,17 @@ buildscript {
         version_moshi = "1.8.0"
         version_date_json_adapter = "1.6.0"
         version_glide = "4.8.0"
-        version_auth0 = "1.19.0"
-        // version_work = "1.0.1"
+        version_work = "1.0.1"
+        // version_auth0 = "1.19.0"
+        version_vector_drawable = "1.1.0"
+        version_multidex = "1.0.3"
 
         version_espresso = "3.2.0"
         version_junit = "4.12"
         version_testrunner = "1.2.0"
         version_testrules = "1.2.0"
         version_androidx_junit = "1.1.1"
+        version_mockk = "1.9.3"
 
         version_legacy = "1.0.0"
         version_appcompat = "1.1.0"
@@ -38,7 +41,7 @@ buildscript {
 
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$version_gradle"
+        classpath "com.android.tools.build:gradle:${version_gradle}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
     }

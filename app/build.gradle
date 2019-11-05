@@ -1,13 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'androidx.navigation.safeargs'
-
 apply plugin: 'com.android.application'
 
 android {
@@ -20,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,6 +30,7 @@ android {
         enabled = true
     }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -78,10 +75,16 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$version_glide"
 
     // Workers
-    // implementation "android.arch.work:work-runtime-ktx:$version_work"
+    // implementation "android.arch.work:work-runtime-ktx:$version_work" // doesn't work with multidex
 
     // Auth0
     // implementation "com.auth0.android:auth0:$version_auth0"
+
+    // Vector drawable
+    implementation "androidx.vectordrawable:vectordrawable:$version_vector_drawable"
+
+    // Multidex
+    implementation "com.android.support:multidex:$version_multidex"
 
     // Testing
     testImplementation "junit:junit:$version_junit"
@@ -90,11 +93,12 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$version_testrunner"
     androidTestImplementation "androidx.test:rules:$version_testrules"
     androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
+    testImplementation "androidx.arch.core:core-testing:$version_lifecycle_extensions"
+    testImplementation "io.mockk:mockk:$version_mockk"
 
     // Misc
     implementation "androidx.appcompat:appcompat:$version_appcompat"
     implementation "androidx.core:core-ktx:$version_core"
     implementation "androidx.legacy:legacy-support-v4:$version_legacy"
-
-
 }

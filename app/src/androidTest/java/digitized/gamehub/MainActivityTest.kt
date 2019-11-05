@@ -41,7 +41,7 @@ class MainActivityTest {
             .check(ViewAssertions.matches(isOpen()))
     }
 
-    @Test //will fail atm because navigation doesn't work yet
+    @Test
     fun navigationMenu_createPartyClicked_openCreatePartyFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
         Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
@@ -49,7 +49,7 @@ class MainActivityTest {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    @Test //will fail atm because navigation doesn't work yet
+    @Test
     fun navigationMenu_createGameClicked_openCreateGameFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
         Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
@@ -57,7 +57,7 @@ class MainActivityTest {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    @Test //will fail atm because navigation doesn't work yet
+    @Test
     fun navigationMenu_mapClicked_openMapFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
         Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
@@ -65,7 +65,7 @@ class MainActivityTest {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    @Test //will fail atm because navigation doesn't work yet
+    @Test
     fun navigationMenu_accountClicked_openAccountFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
         Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
