@@ -54,9 +54,6 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
     implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
 
-    // Map service
-    implementation "com.google.android.gms:play-services-maps:$version_map"
-
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
@@ -85,6 +82,9 @@ dependencies {
 
     // Multidex
     implementation "com.android.support:multidex:$version_multidex"
+
+    // Google Maps
+    implementation "com.google.android.gms:play-services-maps:$version_maps"
 
     // Testing
     testImplementation "junit:junit:$version_junit"

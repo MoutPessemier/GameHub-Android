@@ -10,7 +10,7 @@
         <EditText
             android:id="@+id/txt_user_name"
             style="@style/txt_field"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="32dp"
             android:autofillHints="@string/hint_user_name"
             android:ems="10"
             android:hint="@string/hint_user_name"
@@ -48,7 +48,7 @@
         <Button
             android:id="@+id/btn_login"
             style="@style/btn_large_primary"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="32dp"
             android:text="@string/login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -69,7 +69,6 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="118dp"
-            android:layout_marginTop="40dp"
             android:contentDescription="@string/logo_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

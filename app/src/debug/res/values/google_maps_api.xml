@@ -1,0 +1,22 @@
+<resources>
+    <!--
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=B6:F9:F3:44:A5:02:D5:13:F7:9F:87:99:F4:8E:D7:5A:D9:32:E1:1C%3Bdigitized.gamehub.map
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    B6:F9:F3:44:A5:02:D5:13:F7:9F:87:99:F4:8E:D7:5A:D9:32:E1:1C
+
+    SHA-1 certificate fingerprint:
+    B6:F9:F3:44:A5:02:D5:13:F7:9F:87:99:F4:8E:D7:5A:D9:32:E1:1C
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBoyHbbodGZMm00kGudAfDIMUGRP25w7FA</string>
+</resources>

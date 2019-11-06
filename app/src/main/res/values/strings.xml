@@ -32,9 +32,9 @@
     <string name="decline">Decline</string>
     <string name="distance_min">2</string>
     <string name="distance_max">100</string>
+    <string name="pick_a_date">Pick a Date</string>
+    <string name="title_activity_maps">Map</string>
 
     <string name="com_auth0_client_id">sYzG0ngpUGEKKEAeNqh9AaC8hX6uVBWr</string>
     <string name="com_auth0_domain">gamehub.eu.auth0.com</string>
-    <string name="pick_a_date">Pick a Date</string>
-
 </resources>
