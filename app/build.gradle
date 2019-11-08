@@ -47,7 +47,9 @@ dependencies {
     // Timber
     implementation "com.jakewharton.timber:timber:$version_timber"
 
-    // ViewModel and LiveData
+    // LifeCycle & Room
+    implementation "androidx.room:room-runtime:$version_room"
+    kapt "androidx.room:room-compiler:$version_room"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
     // Navigation
@@ -85,6 +87,9 @@ dependencies {
 
     // Google Maps
     implementation "com.google.android.gms:play-services-maps:$version_maps"
+
+    // Yuyakaido Card Stack
+    implementation "com.yuyakaido.android:card-stack-view:$version_cards"
 
     // Testing
     testImplementation "junit:junit:$version_junit"

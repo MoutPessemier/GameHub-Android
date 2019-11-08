@@ -7,7 +7,7 @@ import java.util.*
 
 @Parcelize
 class User(
-    @Json(name = "_id") val id: String,
+    @Json(name = "_id") val id: String?,
     val firstName: String,
     val lastName: String,
     val telephone: String,

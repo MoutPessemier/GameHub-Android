@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/gameCardsFragment"
         android:name="digitized.gamehub.cardStack.GameCardsFragment"
-        android:label="GameCardsFragment">
+        android:label="GameHub">
         <action
             android:id="@+id/action_gameCardsFragment_to_gamePartyInfoFragment"
             app:destination="@id/gamePartyInfoFragment"
@@ -16,11 +16,11 @@
     <fragment
         android:id="@+id/nav_account_view"
         android:name="digitized.gamehub.accountSettings.AccountSettingsFragment"
-        android:label="AccountSettingsFragment" />
+        android:label="Account" />
     <fragment
         android:id="@+id/nav_create_game_view"
         android:name="digitized.gamehub.createGame.CreateGameFragment"
-        android:label="CreateGameFragment" >
+        android:label="Create a new Game">
         <action
             android:id="@+id/action_nav_create_game_view_to_gameCardsFragment"
             app:destination="@id/gameCardsFragment" />
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/nav_create_party_view"
         android:name="digitized.gamehub.createParty.CreatePartyFragment"
-        android:label="CreatePartyFragment" >
+        android:label="Create a new Party">
         <action
             android:id="@+id/action_nav_create_party_view_to_gameCardsFragment"
             app:destination="@id/gameCardsFragment" />
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/gamePartyInfoFragment"
         android:name="digitized.gamehub.partyInfo.GamePartyInfoFragment"
-        android:label="GamePartyInfoFragment">
+        android:label="Party Info">
         <action
             android:id="@+id/action_gamePartyInfoFragment_to_gameCardsFragment_Join"
             app:destination="@id/gameCardsFragment" />
@@ -50,5 +50,5 @@
     <fragment
         android:id="@+id/nav_map_view"
         android:name="digitized.gamehub.map.MapFragment"
-        android:label="MapFragment" />
+        android:label="Map" />
 </navigation>

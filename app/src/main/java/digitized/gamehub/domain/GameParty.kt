@@ -7,7 +7,7 @@ import java.util.*
 
 @Parcelize
 data class GameParty(
-    @Json(name = "_id") val id: String,
+    @Json(name = "_id") val id: String?,
     val name: String,
     val date: Date,
     val maxSize: Int,
