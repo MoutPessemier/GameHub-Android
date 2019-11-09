@@ -31,86 +31,45 @@ interface GameHubAPIService {
     fun getGameById(@Query("id") id: String): Deferred<Game>
 
     @POST("createGame")
-    fun createGame(
-        @Body game: Game
-    ): Deferred<Game>
+    fun createGame(@Body game: Game): Deferred<Game>
 
     @PUT("updateGame")
-    fun updateGame(
-        id: String,
-        name: String,
-        description: String,
-        rules: String,
-        requirements: String,
-        type: GameType
-    ): Deferred<Game>
+    fun updateGame(@Body game: Game): Deferred<Game>
 
     @DELETE("deleteGame")
-    fun deleteGame(id: String): Deferred<String>
+    fun deleteGame(@Body id: String): Deferred<String>
 
     // Party
     @GET("getPartiesNearYou")
     fun getPatiesNearYou(@Query("distance") distance: Int, @Query("lat") lat: Double, @Query("long") long: Double): Deferred<List<GameParty>>
 
     @POST("createParty")
-    fun createParty(
-
-        name: String,
-        date: Date,
-        maxSize: Int,
-        participants: Array<String>,
-        coordinates: DoubleArray,
-        game: String
-    ): Deferred<GameParty>
+    fun createParty(@Body party: GameParty): Deferred<GameParty>
 
     @PUT("updateParty")
-    fun updateParty(
-        id: String,
-        name: String,
-        date: Date,
-        maxSize: Int,
-        participants: Array<String>,
-        coordinates: DoubleArray,
-        game: String
-    ): Deferred<GameParty>
+    fun updateParty(@Body party: GameParty): Deferred<GameParty>
 
     @DELETE("deleteParty")
-    fun deleteParty(id: String): Deferred<String>
+    fun deleteParty(@Body id: String): Deferred<String>
 
     @POST("joinParty")
     fun joinParty(partyId: String, userId: String): Deferred<GameParty>
+
+    @POST
+    fun declineParty(partyId: String, userId: String): Deferred<GameParty>
 
     // User
     @POST("login")
     fun login(email: String, password: String): Deferred<User>
 
     @POST("register")
-    fun register(
-        firstName: String,
-        lastName: String,
-        telephone: String,
-        email: String,
-        birthDate: Date,
-        userRole: UserRole,
-        password: String,
-        maxDistance: Int
-    ): Deferred<User>
+    fun register(@Body user: User): Deferred<User>
 
     @PUT("updateUser")
-    fun updateUser(
-        id: String,
-        firstName: String,
-        lastName: String,
-        telephone: String,
-        email: String,
-        birthDate: Date,
-        userRole: UserRole,
-        password: String,
-        maxDistance: Int
-    ): Deferred<User>
+    fun updateUser(@Body user: User): Deferred<User>
 
     @DELETE("deleteUser")
-    fun deleteUser(id: String): Deferred<String>
+    fun deleteUser(@Body id: String): Deferred<String>
 
 }
 
