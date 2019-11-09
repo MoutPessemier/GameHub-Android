@@ -22,6 +22,15 @@
                 app:navGraph="@navigation/navigation" />
         </LinearLayout>
 
+        <com.yuyakaido.android.cardstackview.CardStackView
+            android:id="@+id/card_stack_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/button_container"
+            android:padding="4dp"
+            android:clipToPadding="false">
+        </com.yuyakaido.android.cardstackview.CardStackView>
+
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"

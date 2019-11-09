@@ -20,34 +20,8 @@ class GameCardsViewModel() : ViewModel() {
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _parties = MutableLiveData<List<GameParty>>()
-    val partiesNearYou: LiveData<List<GameParty>>
-        get() = _parties
-
-    private val _navigateToSelectedProperty = MutableLiveData<GameParty>()
-    val navigateToSelectedProperty: LiveData<GameParty>
-        get() = _navigateToSelectedProperty
-
     var party: GameParty? = null
 
-    init {
-        // getPartiesNearYou(,)
-    }
-
-    private fun getPartiesNearYou(distance: Int, lat: Double, long: Double) {
-        coroutineScope.launch {
-            val parties = GameHubAPI.service.getPatiesNearYou(distance, lat, long)
-            try {
-                _status.value = ApiStatus.LOADING
-                val resultList = parties.await()
-                _status.value = ApiStatus.DONE
-                _parties.value = resultList
-            } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-                _parties.value = ArrayList()
-            }
-        }
-    }
 
     fun joinParty(partyId: String, userId: String) {
         coroutineScope.launch {
@@ -60,6 +34,22 @@ class GameCardsViewModel() : ViewModel() {
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
                 party = null
+            }
+        }
+    }
+
+    fun declineParty(partyId: String, userId: String) {
+        coroutineScope.launch {
+            val partyToDecline = GameHubAPI.service.declineParty(partyId, userId)
+            try {
+                _status.value = ApiStatus.LOADING
+                val result = partyToDecline.await()
+                _status.value = ApiStatus.DONE
+                party = result
+            } catch (e: Exception) {
+                _status.value = ApiStatus.ERROR
+                party = null
+
             }
         }
     }
