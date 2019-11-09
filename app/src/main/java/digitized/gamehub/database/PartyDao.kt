@@ -1,5 +1,6 @@
 package digitized.gamehub.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import digitized.gamehub.domain.GameParty
 
@@ -12,10 +13,10 @@ interface PartyDao {
     fun update(party: PartyEntity)
 
     @Query("select * from Party")
-    fun getGames(): List<PartyEntity>?
+    fun getGames(): LiveData<List<PartyEntity>>
 
     @Query("select * from Party where id = :id")
-    fun getGame(id:String): PartyEntity?
+    fun getGame(id:String): LiveData<PartyEntity>
 
     @Query("delete from Party where id = :id")
     fun deleteGame(id: String)

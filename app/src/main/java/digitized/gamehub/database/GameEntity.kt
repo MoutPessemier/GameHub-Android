@@ -8,12 +8,12 @@ import digitized.gamehub.domain.GameType
 @Entity(tableName = "Game")
 data class GameEntity(
     @PrimaryKey
-    var id: String,
-    var name: String,
-    var description: String,
-    var rules: String,
-    var requirements: String,
-    var type: GameType
+    val id: String,
+    val name: String,
+    val description: String,
+    val rules: String,
+    val requirements: String,
+    val type: GameType
 )
 
 fun List<GameEntity>.asDomainModel(): List<Game> {
