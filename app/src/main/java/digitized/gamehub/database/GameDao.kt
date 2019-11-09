@@ -1,14 +1,11 @@
 package digitized.gamehub.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import digitized.gamehub.domain.Game
 
 @Dao
 interface GameDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(game: GameEntity)
 
     @Update
