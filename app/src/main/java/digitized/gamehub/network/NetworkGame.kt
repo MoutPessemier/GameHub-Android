@@ -31,7 +31,7 @@ fun NetworkGameContainer.asDomainModel(): List<Game> {
     }
 }
 
-fun NetworkGameContainer.asDatabaseModel(): List<GameEntity> {
+fun NetworkGameContainer.asDatabaseModel(): Array<GameEntity> {
     return games.map {
         GameEntity(
             it.id,
@@ -41,6 +41,6 @@ fun NetworkGameContainer.asDatabaseModel(): List<GameEntity> {
             it.requirements,
             it.type
         )
-    }
+    }.toTypedArray()
 }
 

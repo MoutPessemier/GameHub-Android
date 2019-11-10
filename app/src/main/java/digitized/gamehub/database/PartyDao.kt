@@ -7,19 +7,19 @@ import digitized.gamehub.domain.GameParty
 @Dao
 interface PartyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(party: PartyEntity)
+    fun insertAll(vararg parties: PartyEntity)
 
     @Update
     fun update(party: PartyEntity)
 
     @Query("select * from Party")
-    fun getGames(): LiveData<List<PartyEntity>>
+    fun getParties(): LiveData<List<PartyEntity>>
 
     @Query("select * from Party where id = :id")
-    fun getGame(id:String): LiveData<PartyEntity>
+    fun getParty(id:String): LiveData<PartyEntity>
 
     @Query("delete from Party where id = :id")
-    fun deleteGame(id: String)
+    fun deleteParty(id: String)
 
     @Query("delete from Party")
     fun clearAll()

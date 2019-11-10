@@ -31,7 +31,7 @@ fun NetworkPartyContainer.asDomainModel(): List<GameParty> {
     }
 }
 
-fun NetworkPartyContainer.asDatabaseModel(): List<PartyEntity> {
+fun NetworkPartyContainer.asDatabaseModel(): Array<PartyEntity> {
     return parties.map {
         PartyEntity(
             it.id,
@@ -41,5 +41,5 @@ fun NetworkPartyContainer.asDatabaseModel(): List<PartyEntity> {
             it.participants,
             it.gameId
         )
-    }
+    }.toTypedArray()
 }

@@ -7,7 +7,7 @@ import digitized.gamehub.domain.Game
 @Dao
 interface GameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(game: GameEntity)
+    fun insertAll(vararg games: GameEntity)
 
     @Update
     fun update(game: GameEntity)

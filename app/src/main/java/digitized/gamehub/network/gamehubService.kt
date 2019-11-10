@@ -25,38 +25,42 @@ private val retrofit = Retrofit.Builder()
 interface GameHubAPIService {
     // Game
     @GET("games")
-    fun getAllGames(): Deferred<List<Game>>
+    fun getAllGames(): Deferred<NetworkGameContainer>
 
     @GET("gameById")
-    fun getGameById(@Query("id") id: String): Deferred<Game>
+    fun getGameById(@Query("id") id: String): Deferred<NetworkGame>
 
     @POST("createGame")
-    fun createGame(@Body game: Game): Deferred<Game>
+    fun createGame(@Body game: Game): Deferred<NetworkGame>
 
     @PUT("updateGame")
-    fun updateGame(@Body game: Game): Deferred<Game>
+    fun updateGame(@Body game: Game): Deferred<NetworkGame>
 
     @DELETE("deleteGame")
     fun deleteGame(@Body id: String): Deferred<String>
 
     // Party
     @GET("getPartiesNearYou")
-    fun getPatiesNearYou(@Query("distance") distance: Int, @Query("lat") lat: Double, @Query("long") long: Double): Deferred<List<GameParty>>
+    fun getPatiesNearYou(
+        @Query("distance") distance: Int,
+        @Query("lat") lat: Double,
+        @Query("long") long: Double
+    ): Deferred<NetworkPartyContainer>
 
     @POST("createParty")
-    fun createParty(@Body party: GameParty): Deferred<GameParty>
+    fun createParty(@Body party: GameParty): Deferred<NetworkParty>
 
     @PUT("updateParty")
-    fun updateParty(@Body party: GameParty): Deferred<GameParty>
+    fun updateParty(@Body party: GameParty): Deferred<NetworkParty>
 
     @DELETE("deleteParty")
     fun deleteParty(@Body id: String): Deferred<String>
 
     @POST("joinParty")
-    fun joinParty(partyId: String, userId: String): Deferred<GameParty>
+    fun joinParty(partyId: String, userId: String): Deferred<NetworkParty>
 
     @POST
-    fun declineParty(partyId: String, userId: String): Deferred<GameParty>
+    fun declineParty(partyId: String, userId: String): Deferred<NetworkParty>
 
     // User
     @POST("login")

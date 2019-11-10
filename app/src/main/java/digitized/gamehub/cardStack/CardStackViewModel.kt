@@ -1,11 +1,13 @@
 package digitized.gamehub.cardStack
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.GameParty
 import digitized.gamehub.network.GameHubAPI
+import digitized.gamehub.repositories.GameRepository
+import digitized.gamehub.repositories.PartyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -13,7 +15,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CardStackViewModel(): ViewModel() {
+class CardStackViewModel(application: Application): AndroidViewModel(application) {
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -32,6 +34,10 @@ class CardStackViewModel(): ViewModel() {
 
     var party: GameParty? = null
 
+    private val database = getInstance(application)
+    private val gameRepository = GameRepository(database)
+    private val partyRepository = PartyRepository(database)
+
     fun getPartiesNearYou(distance: Int, lat: Double, long: Double) {
         coroutineScope.launch {
             val parties = GameHubAPI.service.getPatiesNearYou(distance, lat, long)
@@ -39,7 +45,7 @@ class CardStackViewModel(): ViewModel() {
                 _status.value = ApiStatus.LOADING
                 val resultList = parties.await()
                 _status.value = ApiStatus.DONE
-                _parties.value = resultList
+                //_parties.value = resultList
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
                 _parties.value = ArrayList()
@@ -56,5 +62,15 @@ class CardStackViewModel(): ViewModel() {
 
         // ovelropen van u object, gehaald ID op, deze geef je mee aan viewmodel en die roept een repository op en returned de gameobject
 
+    }
+
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(CardStackViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return CardStackViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 }

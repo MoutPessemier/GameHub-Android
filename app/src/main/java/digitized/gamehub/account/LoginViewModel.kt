@@ -3,9 +3,8 @@ package digitized.gamehub.account
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.User
 import digitized.gamehub.network.GameHubAPI
@@ -14,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class LoginViewModel(application: Application) : ViewModel() {
+class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     private val sharedPreferences: SharedPreferences =
         application.applicationContext.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
@@ -29,6 +28,9 @@ class LoginViewModel(application: Application) : ViewModel() {
     private val _user = MutableLiveData<User?>()
     val user: LiveData<User?>
         get() = _user
+
+    private val database = getInstance(application)
+
 
     fun login(email: String, password: String) {
         coroutineScope.launch {
@@ -53,4 +55,15 @@ class LoginViewModel(application: Application) : ViewModel() {
         super.onCleared()
         viewModelJob.cancel()
     }
+
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return LoginViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
+
 }

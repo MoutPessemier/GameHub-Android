@@ -1,5 +1,6 @@
 package digitized.gamehub.partyInfo
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,13 +28,16 @@ class GamePartyInfoFragment : Fragment() {
             )
         binding.setLifecycleOwner(this)
 
+
         val party = GamePartyInfoFragmentArgs.fromBundle(arguments!!).selectedParty
-        val viewModelFactory = PartyInfoViewModelFactory(party)
+        val activity = requireNotNull(this.activity)
         viewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(GamePartyInfoViewModel::class.java)
+            ViewModelProviders.of(this, GamePartyInfoViewModel.Factory(party, activity.application))
+                .get(GamePartyInfoViewModel::class.java)
+
         binding.viewModel = viewModel
 
-        binding.btnJoinParty.setOnClickListener { view:View ->
+        binding.btnJoinParty.setOnClickListener { view: View ->
             // viewModel.joinParty(party.id, "")
             findNavController().navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragmentJoin())
         }

@@ -3,9 +3,8 @@ package digitized.gamehub.account
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.User
 import digitized.gamehub.domain.UserRole
@@ -16,7 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
 
-class RegisterViewModel(application: Application) : ViewModel() {
+class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
     private val sharedPreferences: SharedPreferences =
         application.applicationContext.getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
@@ -32,6 +31,8 @@ class RegisterViewModel(application: Application) : ViewModel() {
     val user: LiveData<User?>
         get() = _user
 
+    private val database = getInstance(application)
+
     fun register(
         firstName: String,
         lastName: String,
@@ -44,14 +45,17 @@ class RegisterViewModel(application: Application) : ViewModel() {
     ) {
         coroutineScope.launch {
             val register = GameHubAPI.service.register(
-                firstName,
-                lastName,
-                telephone,
-                email,
-                birthDate,
-                userRole,
-                password,
-                maxDistance
+                User(
+                    null,
+                    firstName,
+                    lastName,
+                    telephone,
+                    email,
+                    birthDate,
+                    userRole,
+                    password,
+                    maxDistance
+                )
             )
             try {
                 _status.value = ApiStatus.LOADING
@@ -72,5 +76,15 @@ class RegisterViewModel(application: Application) : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return RegisterViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 }
