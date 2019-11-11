@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -24,44 +25,35 @@ class CardStackViewModel(application: Application): AndroidViewModel(application
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _parties = MutableLiveData<List<GameParty>>()
-    val partiesNearYou: LiveData<List<GameParty>>
-        get() = _parties
-
-    private val _navigateToSelectedProperty = MutableLiveData<GameParty>()
-    val navigateToSelectedProperty: LiveData<GameParty>
-        get() = _navigateToSelectedProperty
-
-    var party: GameParty? = null
-
     private val database = getInstance(application)
     private val gameRepository = GameRepository(database)
     private val partyRepository = PartyRepository(database)
 
-    fun getPartiesNearYou(distance: Int, lat: Double, long: Double) {
+    val parties = partyRepository.parties
+    val games = gameRepository.games
+
+    init {
         coroutineScope.launch {
-            val parties = GameHubAPI.service.getPatiesNearYou(distance, lat, long)
-            try {
-                _status.value = ApiStatus.LOADING
-                val resultList = parties.await()
-                _status.value = ApiStatus.DONE
-                //_parties.value = resultList
-            } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-                _parties.value = ArrayList()
-            }
+            partyRepository.getPartiesNearYou(10, 50.0, 50.0)
+            gameRepository.getGames()
+            //both null for some reason --> logging requests shows true data though
+            Timber.d(parties.value.toString())
+            Timber.d(games.value.toString())
         }
     }
 
-    fun getPartiesNearYouMock(): List<GameParty> {
-        return listOf<GameParty>(
-            GameParty("1", "Temp1", Date(), 4, arrayOf("", "", ""), "2"),
-            GameParty("2", "Temp2", Date(), 4, arrayOf("", "", ""), "2"),
-            GameParty("3", "Temp2", Date(), 4, arrayOf("", "", ""), "2")
-        )
+    fun refreshPartiesNearYou(){
+        coroutineScope.launch {
+            partyRepository.getPartiesNearYou(10,50.0, 50.0)
+        }
+    }
 
-        // ovelropen van u object, gehaald ID op, deze geef je mee aan viewmodel en die roept een repository op en returned de gameobject
+    fun joinParty() {
+        TODO()
+    }
 
+    fun declineParty() {
+        TODO()
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

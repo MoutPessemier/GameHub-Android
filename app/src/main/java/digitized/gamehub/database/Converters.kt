@@ -48,7 +48,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun stringTOStringArray(string: String): Array<String> {
+    fun stringToStringArray(string: String): Array<String> {
        return string.split(",", ignoreCase = true).map { a -> a.trim().substring(0, a.length -1) }.toTypedArray()
     }
 }

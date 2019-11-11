@@ -1,5 +1,6 @@
 package digitized.gamehub.network
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import digitized.gamehub.database.PartyEntity
 import digitized.gamehub.domain.GameParty
@@ -10,7 +11,7 @@ data class NetworkPartyContainer(val parties: List<NetworkParty>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkParty(
-    val id: String,
+    @Json(name = "_id") val id: String,
     val name: String,
     val date: Date,
     val maxSize: Int,

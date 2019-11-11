@@ -6,6 +6,7 @@ import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.GameParty
 import digitized.gamehub.network.GameHubAPI
+import digitized.gamehub.network.PartyInteractionDTO
 import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
 import kotlinx.coroutines.CoroutineScope
@@ -31,7 +32,7 @@ class GameCardsViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun joinParty(partyId: String, userId: String) {
         coroutineScope.launch {
-            val partyToJoin = GameHubAPI.service.joinParty(partyId, userId)
+            val partyToJoin = GameHubAPI.service.joinParty(PartyInteractionDTO(partyId, userId))
             try {
                 _status.value = ApiStatus.LOADING
                 val result = partyToJoin.await()
@@ -46,7 +47,7 @@ class GameCardsViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun declineParty(partyId: String, userId: String) {
         coroutineScope.launch {
-            val partyToDecline = GameHubAPI.service.declineParty(partyId, userId)
+            val partyToDecline = GameHubAPI.service.declineParty(PartyInteractionDTO(partyId, userId))
             try {
                 _status.value = ApiStatus.LOADING
                 val result = partyToDecline.await()

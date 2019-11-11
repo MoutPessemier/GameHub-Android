@@ -8,6 +8,7 @@ import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.User
 import digitized.gamehub.network.GameHubAPI
+import digitized.gamehub.network.LoginDTO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -34,7 +35,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     fun login(email: String, password: String) {
         coroutineScope.launch {
-            val user = GameHubAPI.service.login(email, password)
+            val user = GameHubAPI.service.login(LoginDTO(email, password))
             try {
                 _status.value = ApiStatus.LOADING
                 val result = user.await()

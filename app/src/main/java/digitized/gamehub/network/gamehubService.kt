@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import digitized.gamehub.domain.*
+import digitized.gamehub.repositories.DateAdapter
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -14,6 +15,7 @@ private const val BASE_URL = "https://game-hub-backend.herokuapp.com/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
+    .add(DateAdapter())
     .build()
 
 private val retrofit = Retrofit.Builder()
@@ -44,7 +46,8 @@ interface GameHubAPIService {
     fun getPatiesNearYou(
         @Query("distance") distance: Int,
         @Query("lat") lat: Double,
-        @Query("long") long: Double
+        @Query("long") long: Double,
+        @Query("userId") userId: String
     ): Deferred<NetworkPartyContainer>
 
     @POST("createParty")
@@ -57,14 +60,14 @@ interface GameHubAPIService {
     fun deleteParty(@Body id: String): Deferred<String>
 
     @POST("joinParty")
-    fun joinParty(partyId: String, userId: String): Deferred<NetworkParty>
+    fun joinParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
     @POST
-    fun declineParty(partyId: String, userId: String): Deferred<NetworkParty>
+    fun declineParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
     // User
     @POST("login")
-    fun login(email: String, password: String): Deferred<User>
+    fun login(@Body loginDTO: LoginDTO): Deferred<User>
 
     @POST("register")
     fun register(@Body user: User): Deferred<User>

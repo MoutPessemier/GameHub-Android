@@ -8,6 +8,7 @@ import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameParty
 import digitized.gamehub.domain.GameType
 import digitized.gamehub.network.GameHubAPI
+import digitized.gamehub.network.PartyInteractionDTO
 import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
 import kotlinx.coroutines.CoroutineScope
@@ -60,7 +61,7 @@ class GamePartyInfoViewModel(var party: GameParty, application: Application) : A
 
     fun joinParty(partyId: String, userId: String) {
         coroutineScope.launch {
-            val partyToJoin = GameHubAPI.service.joinParty(partyId, userId)
+            val partyToJoin = GameHubAPI.service.joinParty(PartyInteractionDTO(partyId, userId))
             try {
                 _status.value = ApiStatus.LOADING
                 val result = partyToJoin.await()

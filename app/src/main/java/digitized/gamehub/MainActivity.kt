@@ -18,6 +18,7 @@ import digitized.gamehub.cardStack.CardStackAdapter
 import digitized.gamehub.cardStack.CardStackViewModel
 import digitized.gamehub.cardStack.PartyDiffCallback
 import digitized.gamehub.databinding.ActivityMainBinding
+import digitized.gamehub.domain.GameParty
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), CardStackListener {
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         viewModel = ViewModelProviders.of(this).get(CardStackViewModel::class.java)
         cardStackView = findViewById(R.id.card_stack_view)
         manager = CardStackLayoutManager(this, this)
-        adapter = CardStackAdapter(viewModel.getPartiesNearYouMock())
+        // I need to make sure these are not null
+        adapter = CardStackAdapter(viewModel.parties.value, viewModel.games.value)
 
         initialize()
 
@@ -69,7 +71,14 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     override fun onCardSwiped(direction: Direction?) {
         Timber.d("onCardDragging: d = ${direction?.name}")
-        if (manager.topPosition == adapter.itemCount - 10) {
+        Timber.d("listSize: ${adapter.getParties()?.size}")
+        if(direction?.name == "left") {
+            viewModel.declineParty()
+        }
+        if(direction?.name == "right"){
+            viewModel.joinParty()
+        }
+        if (manager.topPosition == 5) { // if 5 left, fetch new (max 25) parties --> always a max of 30 parties at once
             paginate()
         }
     }
@@ -87,13 +96,13 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     private fun initialize() {
-        manager.setStackFrom(StackFrom.None)
+        manager.setStackFrom(StackFrom.Top)
         manager.setVisibleCount(3)
         manager.setTranslationInterval(8.0f)
         manager.setScaleInterval(0.95f)
         manager.setSwipeThreshold(0.3f)
         manager.setMaxDegree(20.0f)
-        manager.setDirections(Direction.HORIZONTAL)
+        manager.setDirections(Direction.FREEDOM)
         manager.setCanScrollHorizontal(true)
         manager.setCanScrollVertical(true)
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
@@ -108,11 +117,13 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     private fun paginate() {
-        val old = adapter.getParties()
-        val new = old.plus(viewModel.getPartiesNearYouMock())
-        val callback = PartyDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setParties(new)
-        result.dispatchUpdatesTo(adapter)
+//        var old = adapter.getParties()
+//        if(old == null) old = listOf()
+//        viewModel.refreshPartiesNearYou()
+//        val new = old.plus(viewModel.parties.value)
+//        val callback = PartyDiffCallback(old, new)
+//        val result = DiffUtil.calculateDiff(callback)
+//        adapter.setParties(new)
+//        result.dispatchUpdatesTo(adapter)
     }
 }

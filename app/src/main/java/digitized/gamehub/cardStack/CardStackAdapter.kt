@@ -7,9 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import digitized.gamehub.R
+import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameParty
 
-class CardStackAdapter(private var parties: List<GameParty>) :
+class CardStackAdapter(private var parties: List<GameParty>?, private var games: List<Game>?) :
     RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardStackAdapter.ViewHolder {
@@ -19,16 +20,24 @@ class CardStackAdapter(private var parties: List<GameParty>) :
     }
 
     override fun getItemCount(): Int {
-        return parties.size
+        return if (parties != null) parties!!.size else 0
     }
 
-    override fun onBindViewHolder(holder: CardStackAdapter.ViewHolder, position: Int) {
-        val party = parties[position]
-        holder.partyWhen.text = party.date.toString()
-        // I need to get my game here as well --> object al ophalen en meegeven aan de adapter
-        // holder.gameName.text = party.gameId
-        // holder.partyWhere.text =
-        // Glide.with(holder.gameImage).load().into(holder.gameImage)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if(parties != null && games != null){
+            val party = parties!!.get(position)
+            val game = games!!.filter { g -> g.id == party.gameId }.firstOrNull()
+            if(game != null){
+                holder.partyWhen.text = party.date.toString()
+                holder.gameName.text = game.name
+                holder.gameDescription.text = game.description
+                // holder.partyWhere.text =
+                // Glide.with(holder.gameImage).load().into(holder.gameImage)
+            }
+        } else {
+            //let the user know that there are not parties
+        }
+
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -39,7 +48,7 @@ class CardStackAdapter(private var parties: List<GameParty>) :
         val partyWhere: TextView = view.findViewById(R.id.txt_party_where)
     }
 
-    fun getParties(): List<GameParty> {
+    fun getParties(): List<GameParty>? {
         return parties
     }
 

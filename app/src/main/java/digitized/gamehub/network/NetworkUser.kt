@@ -1,5 +1,6 @@
 package digitized.gamehub.network
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import digitized.gamehub.domain.User
 import digitized.gamehub.domain.UserRole
@@ -10,7 +11,7 @@ data class NetworkUserContainer(val user: NetworkUser)
 
 @JsonClass(generateAdapter = true)
 data class NetworkUser(
-    val id: String,
+    @Json(name = "_id") val id: String,
     val firstName: String,
     val lastName: String,
     val telephone: String,

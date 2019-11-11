@@ -31,6 +31,32 @@
             android:clipToPadding="false">
         </com.yuyakaido.android.cardstackview.CardStackView>
 
+<!--        <FrameLayout-->
+<!--            android:id="@+id/left_overlay"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            &lt;!&ndash; Set your left overlay &ndash;&gt;-->
+
+<!--        </FrameLayout>-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/right_overlay"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            &lt;!&ndash; Set your left overlay &ndash;&gt;-->
+
+<!--        </FrameLayout>-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/top_overlay"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            &lt;!&ndash; Set your left overlay &ndash;&gt;-->
+
+<!--        </FrameLayout>-->
+
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
