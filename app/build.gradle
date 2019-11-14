@@ -16,6 +16,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        manifestPlaceholders = [auth0Domain: "@string/com_auth0_domain", auth0Scheme: "demo"]
     }
     buildTypes {
         release {
@@ -77,7 +78,7 @@ dependencies {
     // implementation "android.arch.work:work-runtime-ktx:$version_work" // doesn't work with multidex
 
     // Auth0
-    // implementation "com.auth0.android:auth0:$version_auth0"
+    implementation "com.auth0.android:auth0:$version_auth0"
 
     // Vector drawable
     implementation "androidx.vectordrawable:vectordrawable:$version_vector_drawable"

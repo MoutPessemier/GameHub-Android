@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import digitized.gamehub.MainActivity
 import digitized.gamehub.R
 import digitized.gamehub.databinding.LoginBinding
-import timber.log.Timber
 
 class LoginFragment : Fragment() {
 

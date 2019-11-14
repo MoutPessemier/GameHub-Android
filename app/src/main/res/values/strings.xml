@@ -35,6 +35,7 @@
     <string name="pick_a_date">Pick a Date</string>
     <string name="title_activity_maps">Map</string>
 
-    <string name="com_auth0_client_id">sYzG0ngpUGEKKEAeNqh9AaC8hX6uVBWr</string>
+    <string name="com_auth0_client_id">gt5kv2v705Pzlfv1KQR0rb2ELHetvPE3</string>
     <string name="com_auth0_domain">gamehub.eu.auth0.com</string>
+    <string name="btn_signup">Sign Up</string>
 </resources>
