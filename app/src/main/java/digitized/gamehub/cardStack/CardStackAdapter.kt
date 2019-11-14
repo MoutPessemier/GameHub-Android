@@ -13,7 +13,7 @@ import digitized.gamehub.domain.GameParty
 class CardStackAdapter(private var parties: List<GameParty>?, private var games: List<Game>?) :
     RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardStackAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.game_cards, parent, false)
         return ViewHolder(view)
@@ -24,10 +24,10 @@ class CardStackAdapter(private var parties: List<GameParty>?, private var games:
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(parties != null && games != null){
+        if (parties != null && games != null || parties?.size == 0 || games?.size == 0) {
             val party = parties!!.get(position)
             val game = games!!.filter { g -> g.id == party.gameId }.firstOrNull()
-            if(game != null){
+            if (game != null) {
                 holder.partyWhen.text = party.date.toString()
                 holder.gameName.text = game.name
                 holder.gameDescription.text = game.description
@@ -36,6 +36,7 @@ class CardStackAdapter(private var parties: List<GameParty>?, private var games:
             }
         } else {
             //let the user know that there are not parties
+
         }
 
     }
@@ -43,8 +44,8 @@ class CardStackAdapter(private var parties: List<GameParty>?, private var games:
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val gameImage: ImageView = view.findViewById(R.id.img_game)
         val gameName: TextView = view.findViewById(R.id.txt_party_name)
-        val gameDescription:TextView = view.findViewById(R.id.txt_game_description)
-        val partyWhen:TextView = view.findViewById(R.id.txt_party_when)
+        val gameDescription: TextView = view.findViewById(R.id.txt_game_description)
+        val partyWhen: TextView = view.findViewById(R.id.txt_party_when)
         val partyWhere: TextView = view.findViewById(R.id.txt_party_where)
     }
 

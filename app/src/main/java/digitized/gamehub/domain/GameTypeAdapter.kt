@@ -25,3 +25,4 @@ class GameTypeAdapter: JsonAdapter<GameType>() {
 
 }
 
+

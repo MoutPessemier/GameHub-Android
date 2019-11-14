@@ -20,7 +20,7 @@ class MapFragment: Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.map, container, false)
 
         val mapActivity = Intent(context, MapsActivity::class.java)
-        startActivity(mapActivity);
+        startActivity(mapActivity)
 
         return binding.root
     }

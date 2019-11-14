@@ -1,10 +1,8 @@
 package digitized.gamehub.partyInfo
 
-import android.util.Log
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import digitized.gamehub.domain.GameType
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 

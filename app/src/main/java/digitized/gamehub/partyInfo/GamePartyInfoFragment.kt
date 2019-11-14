@@ -1,6 +1,5 @@
 package digitized.gamehub.partyInfo
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +25,7 @@ class GamePartyInfoFragment : Fragment() {
                 inflater,
                 R.layout.game_party_info, container, false
             )
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
 
         val party = GamePartyInfoFragmentArgs.fromBundle(arguments!!).selectedParty

@@ -1,7 +1,6 @@
 package digitized.gamehub.domain
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -14,4 +13,4 @@ data class GameParty(
     val participants: Array<String>,
     val gameId: String
     //,@Json("location.coordinates") val coordinates: DoubleArray
-) : Parcelable {}
+) : Parcelable

@@ -12,7 +12,8 @@ data class NetworkGameContainer(val games: List<NetworkGame>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkGame(
-    @Json(name = "_id")val id: String, val name: String,
+    @Json(name = "_id")val id: String,
+    val name: String,
     val description: String,
     val rules: String,
     val requirements: String,

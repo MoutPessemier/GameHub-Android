@@ -1,7 +1,6 @@
 package digitized.gamehub.domain
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -16,4 +15,4 @@ class User(
     val userRole: UserRole,
     val password: String,
     val maxDistance: Int
-) : Parcelable {}
+) : Parcelable

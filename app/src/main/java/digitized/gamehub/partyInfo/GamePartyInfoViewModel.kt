@@ -15,7 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class GamePartyInfoViewModel(var party: GameParty, application: Application) : AndroidViewModel(application) {
 
@@ -44,20 +43,7 @@ class GamePartyInfoViewModel(var party: GameParty, application: Application) : A
         _partyGame.value = Game("1", "Temp", "description", "rules", "requirements", GameType.CARD_GAME)
     }
 
-    private fun getGame(id: String) {
-        coroutineScope.launch {
-            val game = GameHubAPI.service.getGameById(id)
-            try {
-                _status.value = ApiStatus.LOADING
-                val result = game.await()
-                _status.value = ApiStatus.DONE
-                // _partyGame.value = result
-            } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-                _partyGame.value = null
-            }
-        }
-    }
+    private fun getGame(id: String) {}
 
     fun joinParty(partyId: String, userId: String) {
         coroutineScope.launch {

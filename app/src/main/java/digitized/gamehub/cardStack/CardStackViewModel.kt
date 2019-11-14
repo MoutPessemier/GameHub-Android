@@ -4,8 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
-import digitized.gamehub.domain.GameParty
-import digitized.gamehub.network.GameHubAPI
+import digitized.gamehub.network.PartyInteractionDTO
 import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
 import kotlinx.coroutines.CoroutineScope
@@ -13,10 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.util.*
-import kotlin.collections.ArrayList
 
-class CardStackViewModel(application: Application): AndroidViewModel(application) {
+class CardStackViewModel(application: Application) : AndroidViewModel(application) {
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -42,18 +39,22 @@ class CardStackViewModel(application: Application): AndroidViewModel(application
         }
     }
 
-    fun refreshPartiesNearYou(){
+    fun refreshPartiesNearYou() {
         coroutineScope.launch {
-            partyRepository.getPartiesNearYou(10,50.0, 50.0)
+            partyRepository.getPartiesNearYou(10, 50.0, 50.0)
         }
     }
 
     fun joinParty() {
-        TODO()
+        coroutineScope.launch {
+            partyRepository.joinParty(PartyInteractionDTO("", ""))
+        }
     }
 
     fun declineParty() {
-        TODO()
+        coroutineScope.launch {
+            partyRepository.declineParty(PartyInteractionDTO("", ""))
+        }
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

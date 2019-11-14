@@ -12,7 +12,6 @@ import digitized.gamehub.R
 import digitized.gamehub.databinding.AddNewGameBinding
 import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameType
-import timber.log.Timber
 
 class CreateGameFragment : Fragment() {
 

@@ -2,7 +2,6 @@ package digitized.gamehub.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import digitized.gamehub.domain.GameParty
 
 @Dao
 interface PartyDao {
