@@ -95,6 +95,9 @@ dependencies {
     // Google Places
     implementation "com.google.android.libraries.places:places:$version_places"
 
+    //Lottie
+    implementation "com.airbnb.android:lottie:$version_lottie"
+
     // Testing
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"

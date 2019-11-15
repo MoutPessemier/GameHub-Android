@@ -6,6 +6,7 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -33,11 +34,23 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        viewModel = ViewModelProviders.of(this).get(CardStackViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, CardStackViewModel.Factory(application)).get(CardStackViewModel::class.java)
+        binding.viewModel = viewModel
         cardStackView = findViewById(R.id.card_stack_view)
         manager = CardStackLayoutManager(this, this)
-        // I need to make sure these are not null
-        adapter = CardStackAdapter(viewModel.parties.value, viewModel.games.value)
+        adapter = CardStackAdapter()
+
+        viewModel.parties.observe(this, Observer {
+            Timber.d("PartyList")
+            Timber.d(it.toString())
+            adapter.parties = it
+        })
+
+        viewModel.games.observe(this, Observer {
+            Timber.d("GameList")
+            Timber.d(it.toString())
+            adapter.games = it
+        })
 
         initialize()
 
@@ -71,7 +84,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     override fun onCardSwiped(direction: Direction?) {
         Timber.d("onCardDragging: d = ${direction?.name}")
-        Timber.d("listSize: ${adapter.getParties()?.size}")
+        Timber.d("listSize: ${adapter.parties.size}")
         if(direction?.name == "left") {
             viewModel.declineParty()
         }
@@ -117,13 +130,12 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     private fun paginate() {
-//        var old = adapter.getParties()
-//        if(old == null) old = listOf()
-//        viewModel.refreshPartiesNearYou()
-//        val new = old.plus(viewModel.parties.value)
-//        val callback = PartyDiffCallback(old, new)
-//        val result = DiffUtil.calculateDiff(callback)
-//        adapter.setParties(new)
-//        result.dispatchUpdatesTo(adapter)
+        var old = adapter.parties
+        viewModel.refreshPartiesNearYou()
+        val new = old.plus(adapter.parties)
+        val callback = PartyDiffCallback(old, new)
+        val result = DiffUtil.calculateDiff(callback)
+        adapter.parties = new
+        result.dispatchUpdatesTo(adapter)
     }
 }

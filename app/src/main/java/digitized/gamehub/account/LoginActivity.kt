@@ -33,11 +33,6 @@ class LoginActivity : AppCompatActivity() {
         binding.btnSignup.setOnClickListener {
             login()
         }
-
-//        if (intent.getBooleanExtra(EXTRA_CLEAR_CREDENTIALS, false)) {
-//            logout()
-//        }
-//        login()
     }
 
     private fun login() {
@@ -67,6 +62,11 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onSuccess(credentials: Credentials) {
                     // Store credentials
+                    Timber.d(credentials.accessToken)
+                    Timber.d(credentials.idToken)
+                    Timber.d(credentials.refreshToken)
+                    Timber.d(credentials.scope)
+                    Timber.d(credentials.type)
                     val mainActivityIntent = Intent(application, MainActivity::class.java)
                     startActivity(mainActivityIntent)
                     runOnUiThread {
@@ -75,14 +75,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
     }
-
-
-//    private fun logout() {
-//        val intent = Intent(this, LoginActivity::class.java)
-//        intent.putExtra(LoginActivity.EXTRA_CLEAR_CREDENTIALS, true)
-//        startActivity(intent)
-//        finish()
-//    }
 
     private fun logout() {
         WebAuthProvider.logout(auth0)

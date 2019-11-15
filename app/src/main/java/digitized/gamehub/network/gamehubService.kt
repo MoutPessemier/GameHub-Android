@@ -62,12 +62,6 @@ interface GameHubAPIService {
     fun declineParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
     // User
-    @POST("login")
-    fun login(@Body loginDTO: LoginDTO): Deferred<User>
-
-    @POST("register")
-    fun register(@Body user: User): Deferred<User>
-
     @PUT("updateUser")
     fun updateUser(@Body user: User): Deferred<User>
 

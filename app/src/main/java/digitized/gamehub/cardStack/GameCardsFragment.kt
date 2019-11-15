@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import digitized.gamehub.R
 import digitized.gamehub.databinding.GameCardsBinding
 import digitized.gamehub.domain.GameParty
+import digitized.gamehub.domain.Location
 import java.util.*
 
 
@@ -24,16 +25,28 @@ class GameCardsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: GameCardsBinding =
-            DataBindingUtil.inflate(inflater,
-                R.layout.game_cards, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.game_cards, container, false
+            )
 
         viewModel = ViewModelProviders.of(this).get(GameCardsViewModel::class.java)
 
         binding.btnInfo.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(GameCardsFragmentDirections.actionGameCardsFragmentToGamePartyInfoFragment(
-                    GameParty("1", "Temp", Date(), 4, arrayOf("11"),"5db76b7430957f0ef05e73fa")
-                ))
+                .navigate(
+                    GameCardsFragmentDirections.actionGameCardsFragmentToGamePartyInfoFragment(
+                        GameParty(
+                            "1",
+                            "Temp",
+                            Date(),
+                            4,
+                            arrayOf("11"),
+                            "5db76b7430957f0ef05e73fa",
+                            Location("Point", doubleArrayOf(50.0, 50.0))
+                        )
+                    )
+                )
         }
 
         return binding.root

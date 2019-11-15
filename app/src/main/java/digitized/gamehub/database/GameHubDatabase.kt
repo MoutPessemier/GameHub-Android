@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [GameEntity::class, PartyEntity::class], version = 3, exportSchema = false)
+@Database(entities = [GameEntity::class, PartyEntity::class, UserEntity::class], version = 5, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class GameHubDatabase : RoomDatabase() {
     abstract val gameDao: GameDao
     abstract val partyDao: PartyDao
+    abstract val userDao: UserDao
 
     companion object {
         @Volatile

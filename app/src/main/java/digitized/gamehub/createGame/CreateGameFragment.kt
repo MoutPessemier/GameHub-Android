@@ -40,7 +40,7 @@ class CreateGameFragment : Fragment() {
                     binding.txtGameDescription.text.toString(),
                     binding.txtGameRules.text.toString(),
                     binding.txtGameRequirement.text.toString(),
-                    type
+                    type, true
                 )
             )
             if (viewModel.game != null) {

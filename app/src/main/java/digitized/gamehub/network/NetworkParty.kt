@@ -4,6 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import digitized.gamehub.database.PartyEntity
 import digitized.gamehub.domain.GameParty
+import digitized.gamehub.domain.Location
 import java.util.*
 
 @JsonClass(generateAdapter = true)
@@ -16,7 +17,8 @@ data class NetworkParty(
     val date: Date,
     val maxSize: Int,
     val participants: Array<String>,
-    val gameId: String
+    val gameId: String,
+    val location: Location
 )
 
 fun NetworkPartyContainer.asDomainModel(): List<GameParty> {
@@ -27,7 +29,8 @@ fun NetworkPartyContainer.asDomainModel(): List<GameParty> {
             it.date,
             it.maxSize,
             it.participants,
-            it.gameId
+            it.gameId,
+            it.location
         )
     }
 }
@@ -40,7 +43,8 @@ fun NetworkPartyContainer.asDatabaseModel(): Array<PartyEntity> {
             it.date,
             it.maxSize,
             it.participants,
-            it.gameId
+            it.gameId,
+            it.location
         )
     }.toTypedArray()
 }

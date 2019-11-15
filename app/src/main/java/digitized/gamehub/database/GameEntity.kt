@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameType
 
-@Entity(tableName = "GameEntity")
+@Entity(tableName = "Game")
 data class GameEntity(
     @PrimaryKey
     val id: String,
@@ -13,7 +13,8 @@ data class GameEntity(
     val description: String,
     val rules: String,
     val requirements: String,
-    val type: GameType
+    val type: GameType,
+    val visible: Boolean
 )
 
 fun List<GameEntity>.asDomainModel(): List<Game> {
@@ -24,7 +25,8 @@ fun List<GameEntity>.asDomainModel(): List<Game> {
             it.description,
             it.rules,
             it.requirements,
-            it.type
+            it.type,
+            it.visible
         )
     }
 }

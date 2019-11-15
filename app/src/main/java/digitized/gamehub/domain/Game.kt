@@ -10,5 +10,6 @@ data class Game(
     val description: String,
     val rules: String,
     val requirements: String,
-    val type: GameType
+    val type: GameType,
+    val visible: Boolean
 ) : Parcelable

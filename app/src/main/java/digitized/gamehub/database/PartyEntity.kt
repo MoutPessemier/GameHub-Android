@@ -3,6 +3,7 @@ package digitized.gamehub.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import digitized.gamehub.domain.GameParty
+import digitized.gamehub.domain.Location
 import java.util.*
 
 @Entity(tableName = "Party")
@@ -13,8 +14,10 @@ data class PartyEntity(
     val date: Date,
     val maxSize: Int,
     val participants: Array<String>,
-    val gameId: String
+    val gameId: String,
+    val location: Location
 )
+
 fun List<PartyEntity>.asDomainModel(): List<GameParty> {
     return map {
         GameParty(
@@ -23,7 +26,8 @@ fun List<PartyEntity>.asDomainModel(): List<GameParty> {
             it.date,
             it.maxSize,
             it.participants,
-            it.gameId
+            it.gameId,
+            it.location
         )
     }
 }

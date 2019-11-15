@@ -10,8 +10,17 @@ import digitized.gamehub.R
 import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameParty
 
-class CardStackAdapter(private var parties: List<GameParty>?, private var games: List<Game>?) :
+class CardStackAdapter() :
     RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
+
+    var parties = listOf<GameParty>()
+        set(value) {
+            field = value
+        }
+    var games = listOf<Game>()
+        set(value) {
+            field = value
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,24 +29,19 @@ class CardStackAdapter(private var parties: List<GameParty>?, private var games:
     }
 
     override fun getItemCount(): Int {
-        return if (parties != null) parties!!.size else 0
+        return parties.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (parties != null && games != null || parties?.size == 0 || games?.size == 0) {
-            val party = parties!!.get(position)
-            val game = games!!.filter { g -> g.id == party.gameId }.firstOrNull()
-            if (game != null) {
-                holder.partyWhen.text = party.date.toString()
-                holder.gameName.text = game.name
-                holder.gameDescription.text = game.description
-                // holder.partyWhere.text =
-                // Glide.with(holder.gameImage).load().into(holder.gameImage)
-            }
-        } else {
-            //let the user know that there are not parties
 
-        }
+        val party = parties.get(position)
+        val game = games.filter { g -> g.id == party.gameId }.first()
+        holder.partyWhen.text = party.date.toString()
+        holder.gameName.text = game.name
+        holder.gameDescription.text = game.description
+        // holder.partyWhere.text =
+        // Glide.with(holder.gameImage).load().into(holder.gameImage)
+
 
     }
 
@@ -47,14 +51,6 @@ class CardStackAdapter(private var parties: List<GameParty>?, private var games:
         val gameDescription: TextView = view.findViewById(R.id.txt_game_description)
         val partyWhen: TextView = view.findViewById(R.id.txt_party_when)
         val partyWhere: TextView = view.findViewById(R.id.txt_party_where)
-    }
-
-    fun getParties(): List<GameParty>? {
-        return parties
-    }
-
-    fun setParties(parties: List<GameParty>) {
-        this.parties = parties
     }
 
 }

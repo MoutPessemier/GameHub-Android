@@ -16,7 +16,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class GamePartyInfoViewModel(var party: GameParty, application: Application) : AndroidViewModel(application) {
+class GamePartyInfoViewModel(var party: GameParty, application: Application) :
+    AndroidViewModel(application) {
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -40,7 +41,8 @@ class GamePartyInfoViewModel(var party: GameParty, application: Application) : A
 
     init {
         _selectedParty.value = party
-        _partyGame.value = Game("1", "Temp", "description", "rules", "requirements", GameType.CARD_GAME)
+        _partyGame.value =
+            Game("1", "Temp", "description", "rules", "requirements", GameType.CARD_GAME, true)
     }
 
     private fun getGame(id: String) {}
@@ -64,7 +66,7 @@ class GamePartyInfoViewModel(var party: GameParty, application: Application) : A
         viewModelJob.cancel()
     }
 
-    class Factory(val party: GameParty, val application: Application): ViewModelProvider.Factory {
+    class Factory(val party: GameParty, val application: Application) : ViewModelProvider.Factory {
         @Suppress("unchecked_cast")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(GamePartyInfoViewModel::class.java)) {

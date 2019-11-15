@@ -17,7 +17,8 @@ data class NetworkGame(
     val description: String,
     val rules: String,
     val requirements: String,
-    val type: GameType
+    val type: GameType,
+    val visible: Boolean
 )
 
 fun NetworkGameContainer.asDomainModel(): List<Game> {
@@ -28,7 +29,8 @@ fun NetworkGameContainer.asDomainModel(): List<Game> {
             it.description,
             it.rules,
             it.requirements,
-            it.type
+            it.type,
+            it.visible
         )
     }
 }
@@ -41,7 +43,8 @@ fun NetworkGameContainer.asDatabaseModel(): Array<GameEntity> {
             it.description,
             it.rules,
             it.requirements,
-            it.type
+            it.type,
+            it.visible
         )
     }.toTypedArray()
 }

@@ -56,7 +56,7 @@ class CreateGameViewModel(application: Application) : AndroidViewModel(applicati
     ) {
         coroutineScope.launch {
             val updatedGame =
-                GameHubAPI.service.updateGame(Game(id, name, description, rules, requirements, type))
+                GameHubAPI.service.updateGame(Game(id, name, description, rules, requirements, type, true))
             try {
                 _status.value = ApiStatus.LOADING
                 val result = updatedGame.await()
