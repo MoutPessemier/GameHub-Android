@@ -25,21 +25,25 @@
 
         <activity
             android:name=".map.MapsActivity"
-            android:label="@string/title_activity_maps"/>
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".account.LoginActivity"
-            android:label="GameHub">
+            android:label="GameHub"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".MainActivity"
-            android:label="GameHub" />
+            android:label="GameHub"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
