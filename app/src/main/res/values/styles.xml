@@ -21,6 +21,7 @@
         <item name="android:layout_height">@dimen/button_height_large</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@color/snow_white</item>
+        <item name="android:radius">@dimen/card_border_radius</item>
     </style>
 
     <style name="txt_label" parent="@style/Widget.AppCompat.TextView" >

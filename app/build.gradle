@@ -92,6 +92,9 @@ dependencies {
     // Yuyakaido Card Stack
     implementation "com.yuyakaido.android:card-stack-view:$version_cards"
 
+    // Google Places
+    implementation "com.google.android.libraries.places:places:$version_places"
+
     // Testing
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
