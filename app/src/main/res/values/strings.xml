@@ -1,4 +1,7 @@
 <resources>
+    <string name="com_auth0_client_id">gt5kv2v705Pzlfv1KQR0rb2ELHetvPE3</string>
+    <string name="com_auth0_domain">gamehub.eu.auth0.com</string>
+
     <string name="app_name">GameHub</string>
     <string name="img_game_type_desc">The type of game</string>
     <string name="logo_description">GameHub Logo</string>
@@ -34,10 +37,7 @@
     <string name="distance_max">100</string>
     <string name="pick_a_date">Pick a Date</string>
     <string name="title_activity_maps">Map</string>
-
-    <string name="com_auth0_client_id">gt5kv2v705Pzlfv1KQR0rb2ELHetvPE3</string>
-    <string name="com_auth0_domain">gamehub.eu.auth0.com</string>
-    <string name="btn_signup">Sign Up</string>
+    <string name="btn_signup">Sign Up/Log in</string>
     <string name="searchIcon">A Search Icon</string>
     <string name="pick_a_location">Pick a location</string>
 </resources>
