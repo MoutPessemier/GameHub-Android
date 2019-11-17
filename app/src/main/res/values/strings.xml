@@ -40,4 +40,7 @@
     <string name="btn_signup">Sign Up/Log in</string>
     <string name="searchIcon">A Search Icon</string>
     <string name="pick_a_location">Pick a location</string>
+    <string name="_100">100</string>
+    <string name="_2">2</string>
+    <string name="party_overview">Party Overview</string>
 </resources>

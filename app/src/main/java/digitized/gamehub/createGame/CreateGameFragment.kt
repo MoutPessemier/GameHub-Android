@@ -28,7 +28,11 @@ class CreateGameFragment : Fragment() {
                 R.layout.add_new_game, container, false
             )
 
-        viewModel = ViewModelProviders.of(this).get(CreateGameViewModel::class.java)
+        // ViewModel
+        val application = requireNotNull(activity).application
+        viewModel = ViewModelProviders.of(this, CreateGameViewModel.Factory(application)).get(CreateGameViewModel::class.java)
+        binding.viewModel = viewModel
+
 
         binding.btnCreateGame.setOnClickListener { view: View ->
             val type: GameType =

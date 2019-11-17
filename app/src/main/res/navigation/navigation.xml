@@ -51,4 +51,8 @@
         android:id="@+id/nav_map_view"
         android:name="digitized.gamehub.map.MapFragment"
         android:label="Map" />
+    <fragment
+        android:id="@+id/nav_party_overview"
+        android:name="digitized.gamehub.partyOverview.PartyOverviewFragment"
+        android:label="Overview" />
 </navigation>

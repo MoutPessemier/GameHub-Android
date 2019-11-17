@@ -5,36 +5,42 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.location.*
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import digitized.gamehub.R
+import digitized.gamehub.databinding.ActivityMapsBinding
 import timber.log.Timber
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.LatLng
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var locationManager: LocationManager
     private lateinit var viewModel: MapViewModel
+    private lateinit var binding: ActivityMapsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_maps)
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        viewModel = ViewModelProviders.of(this).get(MapViewModel::class.java)
+        // ViewModel
+        viewModel = ViewModelProviders.of(this, MapViewModel.Factory(application))
+            .get(MapViewModel::class.java)
+
 
         try {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 1000F, this)
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 100f, this)
         } catch (e: SecurityException) {
             Timber.d(e.localizedMessage)
         }
@@ -42,9 +48,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val ghent = LatLng(51.0543, 3.7174)
-        mMap.addMarker(MarkerOptions().position(ghent).title("Marker in Ghent"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ghent))
+        // get current location and zoom in on that location
         placeMarkersOnMap(mMap)
     }
 

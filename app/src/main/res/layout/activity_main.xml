@@ -37,41 +37,6 @@
             android:clipToPadding="false">
         </com.yuyakaido.android.cardstackview.CardStackView>
 
-<!--        <FrameLayout-->
-<!--            android:id="@+id/left_overlay"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            &lt;!&ndash; Set your left overlay &ndash;&gt;-->
-
-<!--        </FrameLayout>-->
-
-<!--        <FrameLayout-->
-<!--            android:id="@+id/right_overlay"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            &lt;!&ndash; Set your left overlay &ndash;&gt;-->
-
-<!--        </FrameLayout>-->
-<!--        <FrameLayout-->
-<!--            android:id="@+id/top_overlay"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            &lt;!&ndash; Set your left overlay &ndash;&gt;-->
-
-<!--        </FrameLayout>-->
-
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/navdrawer_menu" />
-
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/status_image_parties"
             android:layout_width="wrap_content"
@@ -83,6 +48,15 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:apiStatus="@{viewModel.status}" />
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/navdrawer_menu" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

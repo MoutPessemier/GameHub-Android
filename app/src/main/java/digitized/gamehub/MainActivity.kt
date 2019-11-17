@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         viewModel.parties.observe(this, Observer {
             Timber.d("PartyList")
             Timber.d(it.toString())
-            adapter.parties = it
+            adapter.setParties(it)
         })
 
         viewModel.games.observe(this, Observer {
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     override fun onCardSwiped(direction: Direction?) {
         Timber.d("onCardDragging: d = ${direction?.name}")
-        Timber.d("listSize: ${adapter.parties.size}")
+        Timber.d("listSize: ${adapter.getParties().size}")
         if(direction?.name == "left") {
             viewModel.declineParty()
         }
@@ -130,12 +130,12 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     private fun paginate() {
-        var old = adapter.parties
+        var old = adapter.getParties()
         viewModel.refreshPartiesNearYou()
-        val new = old.plus(adapter.parties)
+        val new = old.plus(adapter.getParties())
         val callback = PartyDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)
-        adapter.parties = new
+        adapter.setParties(new)
         result.dispatchUpdatesTo(adapter)
     }
 }

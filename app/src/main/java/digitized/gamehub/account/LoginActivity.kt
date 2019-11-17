@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
             DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         auth0 = Auth0(this)
         auth0.isOIDCConformant = true
-
+        login()
         binding.btnSignup.setOnClickListener {
             login()
         }
@@ -48,7 +48,8 @@ class LoginActivity : AppCompatActivity() {
                 override fun onFailure(dialog: Dialog) {
                     // Show error Dialog to user
                     runOnUiThread {
-                        Toast.makeText(applicationContext, "Error Logging In.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Error Logging In.", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
@@ -56,7 +57,11 @@ class LoginActivity : AppCompatActivity() {
                     // Show error to user
                     Timber.d(exception.description)
                     runOnUiThread {
-                        Toast.makeText(applicationContext, "Something Went Wrong!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Something Went Wrong!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -70,7 +75,11 @@ class LoginActivity : AppCompatActivity() {
                     val mainActivityIntent = Intent(application, MainActivity::class.java)
                     startActivity(mainActivityIntent)
                     runOnUiThread {
-                        Toast.makeText(applicationContext, "Succesfully Logged In!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Succesfully Logged In!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             })

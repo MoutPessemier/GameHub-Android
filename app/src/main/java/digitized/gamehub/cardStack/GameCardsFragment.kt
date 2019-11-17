@@ -30,7 +30,11 @@ class GameCardsFragment : Fragment() {
                 R.layout.game_cards, container, false
             )
 
-        viewModel = ViewModelProviders.of(this).get(GameCardsViewModel::class.java)
+        // ViewModel
+        val application = requireNotNull(activity).application
+        viewModel = ViewModelProviders.of(this, GameCardsViewModel.Factory(application))
+            .get(GameCardsViewModel::class.java)
+        binding.viewModel = viewModel
 
         binding.btnInfo.setOnClickListener { view: View ->
             view.findNavController()

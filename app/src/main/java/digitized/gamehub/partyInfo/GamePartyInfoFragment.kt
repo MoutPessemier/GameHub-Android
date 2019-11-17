@@ -29,9 +29,11 @@ class GamePartyInfoFragment : Fragment() {
 
 
         val party = GamePartyInfoFragmentArgs.fromBundle(arguments!!).selectedParty
-        val activity = requireNotNull(this.activity)
+
+        // ViewModel
+        val application = requireNotNull(this.activity).application
         viewModel =
-            ViewModelProviders.of(this, GamePartyInfoViewModel.Factory(party, activity.application))
+            ViewModelProviders.of(this, GamePartyInfoViewModel.Factory(party, application))
                 .get(GamePartyInfoViewModel::class.java)
 
         binding.viewModel = viewModel

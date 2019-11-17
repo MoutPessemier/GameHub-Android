@@ -28,6 +28,11 @@ class CreatePartyFragment : Fragment() {
                 R.layout.create_game_party, container, false
             )
 
+        // ViewModel
+        val application = requireNotNull(activity).application
+        viewModel = ViewModelProviders.of(this, CreatePartyViewModel.Factory(application)).get(CreatePartyViewModel::class.java)
+        binding.viewModel = viewModel
+
         // val spinnerAdapter = ArrayAdapter<String>(context!!) do I need this?
         // binding.sprPartyGame.adapter = spinnerAdapter
 
@@ -37,13 +42,10 @@ class CreatePartyFragment : Fragment() {
                 .navigate(CreatePartyFragmentDirections.actionNavCreatePartyViewToGameCardsFragment())
         }
 
-        binding.materialButton.setOnClickListener{
+        binding.btnChooseLocation.setOnClickListener{
             val activity = Intent(context, AutocompleteActivity::class.java)
             startActivity(activity)
         }
-
-        viewModel = ViewModelProviders.of(this).get(CreatePartyViewModel::class.java)
-        //binding.viewModel = viewModel
 
         return binding.root
     }

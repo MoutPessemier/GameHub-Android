@@ -37,7 +37,7 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
 
     init {
         coroutineScope.launch {
-            getPartiesNearYou(10, 50.0, 50.0, "5db8838eaffe445c66076a88")
+            getPartiesNearYou(1000, 51.0538286, 3.7250121, "5db8838eaffe445c66076a89")
             gameRepository.getGames()
         }
     }
