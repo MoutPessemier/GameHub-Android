@@ -46,6 +46,9 @@ interface GameHubAPIService {
         @Query("userId") userId: String
     ): Deferred<NetworkPartyContainer>
 
+    @GET("getJoinedParties")
+    fun getJoinedParties(@Query("userId") userId: String): Deferred<NetworkPartyContainer>
+
     @POST("createParty")
     fun createParty(@Body party: GameParty): Deferred<NetworkParty>
 

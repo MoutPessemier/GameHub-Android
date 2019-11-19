@@ -20,7 +20,10 @@ import digitized.gamehub.cardStack.CardStackViewModel
 import digitized.gamehub.cardStack.PartyDiffCallback
 import digitized.gamehub.databinding.ActivityMainBinding
 import digitized.gamehub.domain.GameParty
+import digitized.gamehub.domain.Location
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity(), CardStackListener {
 
@@ -34,11 +37,105 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        viewModel = ViewModelProviders.of(this, CardStackViewModel.Factory(application)).get(CardStackViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, CardStackViewModel.Factory(application))
+            .get(CardStackViewModel::class.java)
         binding.viewModel = viewModel
         cardStackView = findViewById(R.id.card_stack_view)
         manager = CardStackLayoutManager(this, this)
-        adapter = CardStackAdapter()
+        adapter = CardStackAdapter(
+            listOf(
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                ),
+                GameParty(
+                    id = "5dbac8daaeedb610997724bb",
+                    name = "Mout's Sexy Hartenjagen Party v2",
+                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
+                    maxSize = 4,
+                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
+                    gameId = "5db76b7430957f0ef05e73fa",
+                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
+                )
+            )
+        )
 
         viewModel.parties.observe(this, Observer {
             Timber.d("PartyList")
@@ -85,13 +182,13 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     override fun onCardSwiped(direction: Direction?) {
         Timber.d("onCardDragging: d = ${direction?.name}")
         Timber.d("listSize: ${adapter.getParties().size}")
-        if(direction?.name == "left") {
+        if (direction?.name == "left") {
             viewModel.declineParty()
         }
-        if(direction?.name == "right"){
+        if (direction?.name == "right") {
             viewModel.joinParty()
         }
-        if (manager.topPosition == 5) { // if 5 left, fetch new (max 25) parties --> always a max of 30 parties at once
+        if (manager.topPosition == 5) {
             paginate()
         }
     }
