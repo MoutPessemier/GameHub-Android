@@ -2,57 +2,39 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/gameCardsFragment">
-
+    app:startDestination="@id/card_stack_fragment">
     <fragment
-        android:id="@+id/gameCardsFragment"
-        android:name="digitized.gamehub.cardStack.GameCardsFragment"
+        android:id="@+id/card_stack_fragment"
+        android:name="digitized.gamehub.cardStack.CardStackFragment"
         android:label="GameHub">
         <action
-            android:id="@+id/action_gameCardsFragment_to_gamePartyInfoFragment"
-            app:destination="@id/gamePartyInfoFragment"
-            app:popUpTo="@+id/gameCardsFragment" />
+            android:id="@+id/action_cardStackFragment_to_gamePartyInfoFragment"
+            app:destination="@id/party_info_fragment"
+            app:popUpTo="@+id/card_stack_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_account_view"
+        android:id="@+id/account_settings_fragment"
         android:name="digitized.gamehub.accountSettings.AccountSettingsFragment"
-        android:label="Account" />
+        android:label="Account Settings" />
     <fragment
-        android:id="@+id/nav_create_game_view"
-        android:name="digitized.gamehub.createGame.CreateGameFragment"
-        android:label="Create a new Game">
-        <action
-            android:id="@+id/action_nav_create_game_view_to_gameCardsFragment"
-            app:destination="@id/gameCardsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_create_party_view"
+        android:id="@+id/create_party_fragment"
         android:name="digitized.gamehub.createParty.CreatePartyFragment"
-        android:label="Create a new Party">
+        android:label="Create a Party">
         <action
-            android:id="@+id/action_nav_create_party_view_to_gameCardsFragment"
-            app:destination="@id/gameCardsFragment" />
+            android:id="@+id/action_createPartyFragment_to_cardStackFragment"
+            app:destination="@id/card_stack_fragment"
+            app:popUpTo="@+id/card_stack_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/gamePartyInfoFragment"
+        android:id="@+id/party_info_fragment"
         android:name="digitized.gamehub.partyInfo.GamePartyInfoFragment"
-        android:label="Party Info">
-        <action
-            android:id="@+id/action_gamePartyInfoFragment_to_gameCardsFragment_Join"
-            app:destination="@id/gameCardsFragment" />
-        <argument
-            android:name="selectedParty"
-            app:argType="digitized.gamehub.domain.GameParty" />
-        <action
-            android:id="@+id/action_gamePartyInfoFragment_to_gameCardsFragment_Decline"
-            app:destination="@id/gameCardsFragment" />
-    </fragment>
+        android:label="Party Info" />
     <fragment
-        android:id="@+id/nav_map_view"
+        android:id="@+id/map_fragment"
         android:name="digitized.gamehub.map.MapFragment"
         android:label="Map" />
     <fragment
-        android:id="@+id/nav_party_overview"
+        android:id="@+id/party_overview_fragment"
         android:name="digitized.gamehub.partyOverview.PartyOverviewFragment"
-        android:label="Overview" />
+        android:label="Joined Parties" />
 </navigation>

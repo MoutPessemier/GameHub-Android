@@ -25,131 +25,16 @@ import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity(), CardStackListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var viewModel: CardStackViewModel
-    private lateinit var cardStackView: CardStackView
-    private lateinit var manager: CardStackLayoutManager
-    private lateinit var adapter: CardStackAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        viewModel = ViewModelProviders.of(this, CardStackViewModel.Factory(application))
-            .get(CardStackViewModel::class.java)
-        binding.viewModel = viewModel
-        cardStackView = findViewById(R.id.card_stack_view)
-        manager = CardStackLayoutManager(this, this)
-        adapter = CardStackAdapter(
-            listOf(
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                ),
-                GameParty(
-                    id = "5dbac8daaeedb610997724bb",
-                    name = "Mout's Sexy Hartenjagen Party v2",
-                    date = SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse("2019-12-12")!!,
-                    maxSize = 4,
-                    participants = arrayOf("5db7f1fd89ecf72554ca996"),
-                    gameId = "5db76b7430957f0ef05e73fa",
-                    location = Location(type = "Point", coordinates = doubleArrayOf(50.07, 50.07))
-                )
-            )
-        )
-
-        viewModel.parties.observe(this, Observer {
-            Timber.d("PartyList")
-            Timber.d(it.toString())
-            adapter.setParties(it)
-        })
-
-        viewModel.games.observe(this, Observer {
-            Timber.d("GameList")
-            Timber.d(it.toString())
-            adapter.games = it
-        })
-
-        initialize()
 
         drawerLayout = binding.drawerLayout
         val navController = this.findNavController(R.id.nav_hostView)
@@ -171,68 +56,4 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
 
-    override fun onCardDisappeared(view: View?, position: Int) {
-        Timber.d("position = $position")
     }
-
-    override fun onCardDragging(direction: Direction?, ratio: Float) {
-        Timber.d("onCardDragging: d = ${direction?.name}, r = $ratio")
-    }
-
-    override fun onCardSwiped(direction: Direction?) {
-        Timber.d("onCardDragging: d = ${direction?.name}")
-        Timber.d("listSize: ${adapter.getParties().size}")
-        if (direction?.name == "left") {
-            viewModel.declineParty()
-        }
-        if (direction?.name == "right") {
-            viewModel.joinParty()
-        }
-        if (manager.topPosition == 5) {
-            paginate()
-        }
-    }
-
-    override fun onCardCanceled() {
-        Timber.d("onCardCanceled: ${manager.topPosition}")
-    }
-
-    override fun onCardAppeared(view: View?, position: Int) {
-        Timber.d("position = $position")
-    }
-
-    override fun onCardRewound() {
-        Timber.d("onCardCanceled: ${manager.topPosition}")
-    }
-
-    private fun initialize() {
-        manager.setStackFrom(StackFrom.Top)
-        manager.setVisibleCount(3)
-        manager.setTranslationInterval(8.0f)
-        manager.setScaleInterval(0.95f)
-        manager.setSwipeThreshold(0.3f)
-        manager.setMaxDegree(20.0f)
-        manager.setDirections(Direction.FREEDOM)
-        manager.setCanScrollHorizontal(true)
-        manager.setCanScrollVertical(true)
-        manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
-        manager.setOverlayInterpolator(LinearInterpolator())
-        cardStackView.layoutManager = manager
-        cardStackView.adapter = adapter
-        cardStackView.itemAnimator.apply {
-            if (this is DefaultItemAnimator) {
-                supportsChangeAnimations = false
-            }
-        }
-    }
-
-    private fun paginate() {
-        var old = adapter.getParties()
-        viewModel.refreshPartiesNearYou()
-        val new = old.plus(adapter.getParties())
-        val callback = PartyDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        adapter.setParties(new)
-        result.dispatchUpdatesTo(adapter)
-    }
-}

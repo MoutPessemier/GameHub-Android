@@ -14,18 +14,24 @@ import timber.log.Timber
 class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
+    init {
+        Timber.i("Created the Adapter")
+    }
+
     var games = listOf<Game>()
         set(value) {
             field = value
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        Timber.i("Created a ViewHolder")
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.game_cards, parent, false)
+        val view = layoutInflater.inflate(R.layout.card_stack_card_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
+        Timber.i("Size ${parties.size}")
         return parties.size
     }
 

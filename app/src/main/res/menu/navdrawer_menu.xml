@@ -4,17 +4,17 @@
 
 
     <item
-        android:id="@+id/nav_map_view"
+        android:id="@+id/map_fragment"
         android:icon="@drawable/ic_map_black_24dp"
         android:title="@string/to_map" />
 
     <item
-        android:id="@+id/nav_party_overview"
+        android:id="@+id/party_overview_fragment"
         android:icon="@drawable/ic_list_black_24dp"
         android:title="@string/party_overview" />
 
     <item
-        android:id="@+id/nav_create_party_view"
+        android:id="@+id/create_party_fragment"
         android:icon="@drawable/ic_group_add_black_24dp"
         android:title="@string/create_game_party" />
 
@@ -24,7 +24,7 @@
     <!--            android:icon="@drawable/ic_videogame_asset_black_24dp"/>-->
 
     <item
-        android:id="@+id/nav_account_view"
+        android:id="@+id/account_settings_fragment"
         android:icon="@drawable/ic_account_circle_black_24dp"
         android:title="@string/account_settings" />
 </menu>
