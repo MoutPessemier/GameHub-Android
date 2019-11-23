@@ -7,33 +7,34 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import timber.log.Timber
+import digitized.gamehub.domain.Game
 import java.text.SimpleDateFormat
 import java.util.*
 
 class PartyOverviewAdapter : ListAdapter<GameParty,
         PartyOverviewAdapter.ViewHolder>(PartyDiffCallback()) {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
-    }
+    var games: List<Game>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Timber.d("HAAAAAAAAAAI")
         return ViewHolder.from(parent)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item, games!!)
     }
 
     class ViewHolder private constructor(val binding: PartyOverviewListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: GameParty) {
-            Timber.d("HALLO?")
+        fun bind(item: GameParty, games: List<Game>) {
             binding.txtPartyName.text = item.name
             binding.txtPartyWhen.text =
                 SimpleDateFormat("dd/MM/YYYY", Locale.FRENCH).format(item.date)
-            binding.txtPartyWhere.text = item.location.coordinates.map { toString() }.toString()
-            binding.txtGameName.text = item.gameId
+//            binding.txtPartyWhere.text = item.location.coordinates.map { toString() }.toString()
+            val game = games.find { game -> game.id == item.gameId }
+            binding.txtGameName.text = game!!.name
         }
 
         companion object {
@@ -54,4 +55,5 @@ class PartyDiffCallback : DiffUtil.ItemCallback<GameParty>() {
     override fun areContentsTheSame(oldItem: GameParty, newItem: GameParty): Boolean {
         return oldItem == newItem
     }
+
 }

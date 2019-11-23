@@ -16,6 +16,7 @@ class PartyOverviewFragment : Fragment() {
 
     private lateinit var binding: PartyOverviewFragmentBinding
     private lateinit var viewModel: PartyOverviewViewModel
+    private lateinit var adapter: PartyOverviewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,15 +37,24 @@ class PartyOverviewFragment : Fragment() {
             .get(PartyOverviewViewModel::class.java)
         binding.viewModel = viewModel
 
-        val adapter = PartyOverviewAdapter()
+        adapter = PartyOverviewAdapter()
         binding.listOverview.adapter = adapter
+
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
         viewModel.parties.observe(viewLifecycleOwner, Observer {
             it?.let {
-                it.forEach{ Timber.d(it.toString())}
                 adapter.submitList(it)
             }
 
         })
-        return binding.root
+        viewModel.games.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.games = it
+            }
+        })
     }
 }
