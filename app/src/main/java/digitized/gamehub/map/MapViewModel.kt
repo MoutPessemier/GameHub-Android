@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MapViewModel(application: Application) : AndroidViewModel(application) {
     private val viewModelJob = Job()
@@ -22,12 +23,16 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
     private val userRepository = UserRepository(database)
     private val partyRepository = PartyRepository(database)
 
-    val parties = partyRepository.parties
+    val parties = partyRepository.joinedParties
 
     fun updateUserLocation(lat: Double?, long: Double?) {
-        val user = userRepository.user!!.value!!
         coroutineScope.launch {
-            userRepository.updateAccount(user, lat, long)
+            try {
+                val user = userRepository.user!!.value!!
+                userRepository.updateAccount(user, lat, long)
+            } catch (e: Exception) {
+
+            }
         }
     }
 

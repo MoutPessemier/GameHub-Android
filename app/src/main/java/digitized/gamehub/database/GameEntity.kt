@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameType
 
-@Entity(tableName = "Game")
+@Entity(tableName = "games")
 data class GameEntity(
     @PrimaryKey
     val id: String,

@@ -11,18 +11,18 @@ interface PartyDao {
     @Update
     fun update(party: PartyEntity)
 
-    @Query("select * from Party")
+    @Query("select * from parties")
     fun getParties(): LiveData<List<PartyEntity>>
 
-    @Query("select * from Party where id = :id")
+    @Query("select * from parties where id = :id")
     fun getParty(id:String): LiveData<PartyEntity>
 
-    @Query("select * from Party where participants like '%' || :id || '%'")
+    @Query("select * from parties where participants like '%' || :id || '%'")
     fun getJoinedParties(id: String): LiveData<List<PartyEntity>>
 
-    @Query("delete from Party where id = :id")
+    @Query("delete from parties where id = :id")
     fun deleteParty(id: String)
 
-    @Query("delete from Party")
+    @Query("delete from parties")
     fun clearAll()
 }

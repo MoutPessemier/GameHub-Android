@@ -11,9 +11,9 @@ interface UserDao {
     @Update
     fun update(user: UserEntity)
 
-    @Query("select * from User")
+    @Query("select * from user")
     fun getUser(): LiveData<UserEntity>
 
-    @Query("delete from User")
+    @Query("delete from user")
     fun clear()
 }

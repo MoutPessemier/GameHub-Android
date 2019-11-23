@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import digitized.gamehub.domain.UserRole
 import java.util.*
 
-@Entity(tableName = "User")
+@Entity(tableName = "user")
 data class UserEntity(
     @PrimaryKey
     val id: String,
@@ -17,7 +17,6 @@ data class UserEntity(
     val userRole: UserRole,
     val password: String,
     val maxDistance: Int
-//    ,
 //    val lat: Double?,
 //    val long: Double?
 )

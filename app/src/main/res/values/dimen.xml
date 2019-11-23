@@ -42,4 +42,9 @@
 
     <dimen name="spinner_width">300dp</dimen>
     <dimen name="spinner_height">45dp</dimen>
+
+    <dimen name="card_item_margin">4dp</dimen>
+    <dimen name="card_item_text_margin">8dp</dimen>
+    <dimen name="card_item_space_between">4dp</dimen>
+    <dimen name="card_party_title_font_size">16sp</dimen>
 </resources>

@@ -6,7 +6,7 @@ import digitized.gamehub.domain.GameParty
 import digitized.gamehub.domain.Location
 import java.util.*
 
-@Entity(tableName = "Party")
+@Entity(tableName = "parties")
 data class PartyEntity(
     @PrimaryKey
     val id: String,
