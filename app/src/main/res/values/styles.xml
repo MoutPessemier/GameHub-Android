@@ -31,7 +31,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginBottom">@dimen/label_space</item>
-        <item name="android:layout_marginTop">@dimen/margin_top_general</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_label</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:fontFamily">@font/montserrat</item>
     </style>

@@ -42,16 +42,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".map.MapsActivity"
-            android:label="@string/title_activity_maps"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".createParty.AutocompleteActivity"
-            android:label="Location"
-            android:screenOrientation="portrait" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

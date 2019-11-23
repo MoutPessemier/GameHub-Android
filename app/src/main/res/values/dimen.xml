@@ -17,7 +17,7 @@
     <dimen name="card_margin_top">75dp</dimen>
 
     <dimen name="card_title_height">55dp</dimen>
-    <dimen name="card_title_text_size">30sp</dimen>
+    <dimen name="card_title_text_size">25sp</dimen>
     <dimen name="card_game_size">40dp</dimen>
     <dimen name="card_game_text_size">25sp</dimen>
     <dimen name="card_description_height">100dp</dimen>
@@ -36,6 +36,7 @@
 
     <dimen name="margin_top_general">15dp</dimen>
     <dimen name="margin_top_title">35dp</dimen>
+    <dimen name="margin_top_label">8dp</dimen>
     <dimen name="margin_top_subtitle">20dp</dimen>
     <dimen name="margin_bottom_general">20dp</dimen>
     <dimen name="label_space">5dp</dimen>
@@ -47,4 +48,5 @@
     <dimen name="card_item_text_margin">8dp</dimen>
     <dimen name="card_item_space_between">4dp</dimen>
     <dimen name="card_party_title_font_size">16sp</dimen>
+    <dimen name="card_item_text_padding">4dp</dimen>
 </resources>

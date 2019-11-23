@@ -6,12 +6,7 @@
     <fragment
         android:id="@+id/card_stack_fragment"
         android:name="digitized.gamehub.cardStack.CardStackFragment"
-        android:label="GameHub">
-        <action
-            android:id="@+id/action_cardStackFragment_to_gamePartyInfoFragment"
-            app:destination="@id/party_info_fragment"
-            app:popUpTo="@+id/card_stack_fragment" />
-    </fragment>
+        android:label="GameHub"/>
     <fragment
         android:id="@+id/account_settings_fragment"
         android:name="digitized.gamehub.accountSettings.AccountSettingsFragment"
@@ -22,8 +17,7 @@
         android:label="Create a Party">
         <action
             android:id="@+id/action_createPartyFragment_to_cardStackFragment"
-            app:destination="@id/card_stack_fragment"
-            app:popUpTo="@+id/card_stack_fragment" />
+            app:destination="@id/card_stack_fragment" />
     </fragment>
     <fragment
         android:id="@+id/party_info_fragment"
