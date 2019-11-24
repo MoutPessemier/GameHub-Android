@@ -24,6 +24,7 @@ buildscript {
         version_cards = "2.3.4"
         version_places = "2.1.0"
         version_lottie = "3.1.0"
+        version_jwt_decode = "1.4.0"
 
         version_espresso = "3.2.0"
         version_junit = "4.12"
@@ -31,6 +32,9 @@ buildscript {
         version_testrules = "1.2.0"
         version_androidx_junit = "1.1.1"
         version_mockk = "1.9.3"
+        version_testing_core = "2.1.0"
+        version_ui_automator = "2.2.0"
+        version_truth = "0.42"
 
         version_legacy = "1.0.0"
         version_appcompat = "1.1.0"

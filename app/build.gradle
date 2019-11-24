@@ -102,16 +102,23 @@ dependencies {
     //Lottie
     implementation "com.airbnb.android:lottie:$version_lottie"
 
+    // Aut0 JWT Decode
+    implementation "com.auth0.android:jwtdecode:$version_jwt_decode"
+
     // Testing
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$version_espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$version_espresso"
     androidTestImplementation "androidx.test:runner:$version_testrunner"
     androidTestImplementation "androidx.test:rules:$version_testrules"
     androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
-    testImplementation "androidx.arch.core:core-testing:$version_lifecycle_extensions"
+    testImplementation "androidx.arch.core:core-testing:$version_testing_core"
+    androidTestImplementation "androidx.arch.core:core-testing:$version_testing_core"
     testImplementation "io.mockk:mockk:$version_mockk"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$version_ui_automator"
+    androidTestImplementation "com.google.truth:truth:$version_truth"
 
     // Misc
     implementation "androidx.appcompat:appcompat:$version_appcompat"

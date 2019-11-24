@@ -12,6 +12,7 @@
 
 
     <ScrollView
+        android:id="@+id/account_settings_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -29,8 +30,7 @@
                 style="@style/txt_field"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/hint_user_name"
-                android:inputType="text"
-                android:text="@{viewModel.currentUser.firstName +  ' ' + viewModel.currentUser.lastName}" />
+                android:inputType="text" />
 
             <TextView
                 style="@style/txt_label"
@@ -41,8 +41,7 @@
                 style="@style/txt_field"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/hint_user_email"
-                android:inputType="textEmailAddress"
-                android:text="@{viewModel.currentUser.email}" />
+                android:inputType="textEmailAddress"/>
 
             <TextView
                 style="@style/txt_label"
@@ -53,8 +52,7 @@
                 style="@style/txt_field"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/hint_user_phone"
-                android:inputType="phone"
-                android:text="@{viewModel.currentUser.telephone}" />
+                android:inputType="phone" />
 
             <TextView
                 style="@style/txt_label"
