@@ -28,59 +28,59 @@ class CreateGameViewModel(application: Application) : AndroidViewModel(applicati
     private val database = getInstance(application)
     private val gameRepository= GameRepository(database)
 
-    fun createGame(
-        g: Game
-    ) {
-        coroutineScope.launch {
-            val createdGame =
-                GameHubAPI.service.createGame(g)
-            try {
-                _status.value = ApiStatus.LOADING
-                val result = createdGame.await()
-                _status.value = ApiStatus.DONE
-                // game = result
-            } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-                game = null
-            }
-        }
-    }
+//    fun createGame(
+//        g: Game
+//    ) {
+//        coroutineScope.launch {
+//            val createdGame =
+//                GameHubAPI.service.createGame(g)
+//            try {
+//                _status.value = ApiStatus.LOADING
+//                val result = createdGame.await()
+//                _status.value = ApiStatus.DONE
+//                // game = result
+//            } catch (e: Exception) {
+//                _status.value = ApiStatus.ERROR
+//                game = null
+//            }
+//        }
+//    }
 
-    fun updateGame(
-        id: String,
-        name: String,
-        description: String,
-        rules: String,
-        requirements: String,
-        type: GameType
-    ) {
-        coroutineScope.launch {
-            val updatedGame =
-                GameHubAPI.service.updateGame(Game(id, name, description, rules, requirements, type, true))
-            try {
-                _status.value = ApiStatus.LOADING
-                val result = updatedGame.await()
-                _status.value = ApiStatus.DONE
-                // game = result
-            } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-                game = null
-            }
-        }
-    }
+//    fun updateGame(
+//        id: String,
+//        name: String,
+//        description: String,
+//        rules: String,
+//        requirements: String,
+//        type: GameType
+//    ) {
+//        coroutineScope.launch {
+//            val updatedGame =
+//                GameHubAPI.service.updateGame(Game(id, name, description, rules, requirements, type, true))
+//            try {
+//                _status.value = ApiStatus.LOADING
+//                val result = updatedGame.await()
+//                _status.value = ApiStatus.DONE
+//                // game = result
+//            } catch (e: Exception) {
+//                _status.value = ApiStatus.ERROR
+//                game = null
+//            }
+//        }
+//    }
 
-    fun deleteGame(id: String) {
-        coroutineScope.launch {
-            val deletedGame = GameHubAPI.service.deleteGame(id)
-            try {
-                _status.value = ApiStatus.LOADING
-                val result = deletedGame.await()
-                _status.value = ApiStatus.DONE
-            } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-            }
-        }
-    }
+//    fun deleteGame(id: String) {
+//        coroutineScope.launch {
+//            val deletedGame = GameHubAPI.service.deleteGame(id)
+//            try {
+//                _status.value = ApiStatus.LOADING
+//                val result = deletedGame.await()
+//                _status.value = ApiStatus.DONE
+//            } catch (e: Exception) {
+//                _status.value = ApiStatus.ERROR
+//            }
+//        }
+//    }
 
     override fun onCleared() {
         super.onCleared()

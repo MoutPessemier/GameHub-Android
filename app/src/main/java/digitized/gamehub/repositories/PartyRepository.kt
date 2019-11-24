@@ -11,19 +11,31 @@ import digitized.gamehub.domain.GameParty
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.PartyInteractionDTO
 import digitized.gamehub.network.asDatabaseModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import timber.log.Timber
 
 class PartyRepository(private val database: GameHubDatabase) {
 
-    val parties: LiveData<List<GameParty>> = Transformations.map(database.partyDao.getParties()) {
+    // val parties = database.partyDao.getParties().asDomainModel()
+
+    private val viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+
+    val parties = Transformations.map(database.partyDao.getParties()) {
         it.asDomainModel()
     }
+
+    val joinedParties: LiveData<List<GameParty>> =
+        Transformations.map(database.partyDao.getJoinedParties("5db8838eaffe445c66076a88")) {
+            it.asDomainModel()
+        }
+
 
     suspend fun getPartiesNearYou(distance: Int, lat: Double, long: Double, userId: String) {
         withContext(Dispatchers.IO) {
             val parties = GameHubAPI.service.getPatiesNearYou(distance, lat, long, userId).await()
+            parties.parties.forEach { p -> Timber.d("$p") }
             database.partyDao.insertAll(*parties.asDatabaseModel())
         }
     }
@@ -38,6 +50,7 @@ class PartyRepository(private val database: GameHubDatabase) {
                     party.date,
                     party.maxSize,
                     party.participants,
+                    party.declines,
                     party.gameId,
                     party.location
                 )
@@ -45,30 +58,30 @@ class PartyRepository(private val database: GameHubDatabase) {
         }
     }
 
-    suspend fun updateParty(party: GameParty) {
-        withContext(Dispatchers.IO) {
-            val party = GameHubAPI.service.updateParty(party).await()
-            database.partyDao.update(
-                PartyEntity(
-                    party.id,
-                    party.name,
-                    party.date,
-                    party.maxSize,
-                    party.participants,
-                    party.gameId,
-                    party.location
-                )
-            )
-        }
-    }
+//    suspend fun updateParty(party: GameParty) {
+//        withContext(Dispatchers.IO) {
+//            val party = GameHubAPI.service.updateParty(party).await()
+//            database.partyDao.update(
+//                PartyEntity(
+//                    party.id,
+//                    party.name,
+//                    party.date,
+//                    party.maxSize,
+//                    party.participants,
+//                    party.gameId,
+//                    party.location
+//                )
+//            )
+//        }
+//    }
 
-    suspend fun deleteParty(partyId: String) {
-        withContext(Dispatchers.IO) {
-            val id = GameHubAPI.service.deleteParty(partyId).await()
-            database.partyDao.deleteParty(id)
-        }
-
-    }
+//    suspend fun deleteParty(partyId: String) {
+//        withContext(Dispatchers.IO) {
+//            val id = GameHubAPI.service.deleteParty(partyId).await()
+//            database.partyDao.deleteParty(id)
+//        }
+//
+//    }
 
     suspend fun joinParty(partyInteractionDTO: PartyInteractionDTO) {
         withContext(Dispatchers.IO) {
@@ -80,6 +93,7 @@ class PartyRepository(private val database: GameHubDatabase) {
                     party.date,
                     party.maxSize,
                     party.participants,
+                    party.declines,
                     party.gameId,
                     party.location
                 )
@@ -97,6 +111,7 @@ class PartyRepository(private val database: GameHubDatabase) {
                     party.date,
                     party.maxSize,
                     party.participants,
+                    party.declines,
                     party.gameId,
                     party.location
                 )

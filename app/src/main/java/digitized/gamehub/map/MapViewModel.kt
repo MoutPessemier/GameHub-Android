@@ -29,7 +29,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
         coroutineScope.launch {
             try {
                 val user = userRepository.user!!.value!!
-                userRepository.updateAccount(user, lat, long)
+                //userRepository.updateAccount(user, lat, long)
             } catch (e: Exception) {
 
             }

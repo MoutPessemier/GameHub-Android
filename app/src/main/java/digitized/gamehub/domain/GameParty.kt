@@ -11,6 +11,7 @@ data class GameParty(
     val date: Date,
     val maxSize: Int,
     val participants: Array<String>,
+    val declines: Array<String>,
     val gameId: String,
     val location: Location
 ) : Parcelable

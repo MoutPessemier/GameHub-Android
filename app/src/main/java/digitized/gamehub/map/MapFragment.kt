@@ -60,6 +60,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         viewModel = ViewModelProviders.of(this, MapViewModel.Factory(application))
             .get(MapViewModel::class.java)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         // LocationManager
         locationManager = requireContext().getSystemService(LOCATION_SERVICE) as LocationManager

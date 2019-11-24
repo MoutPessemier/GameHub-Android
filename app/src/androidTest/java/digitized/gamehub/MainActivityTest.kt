@@ -23,14 +23,7 @@ class MainActivityTest {
 
     @Test
     fun onStartUp_showCorrectFragment() {
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_game_card))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
-
-    @Test
-    fun onClickInfo_goToGamePartyInfoFragment() {
-        Espresso.onView(ViewMatchers.withId(R.id.btn_info)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_party_info))
+        Espresso.onView(ViewMatchers.withId(R.id.card_stack_container))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
@@ -42,51 +35,34 @@ class MainActivityTest {
     }
 
     @Test
-    fun navigationMenu_createPartyClicked_openCreatePartyFragment() {
+    fun navigationMenu_CreatePartyClicked_openCreatePartyFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_create_party))
+        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.create_party_fragment))
+        Espresso.onView(ViewMatchers.withId(R.id.create_party_container))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     @Test
-    fun navigationMenu_createGameClicked_openCreateGameFragment() {
+    fun navigationMenu_MapClicked_openCreateGameFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_create_party))
+        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.map_fragment))
+        Espresso.onView(ViewMatchers.withId(R.id.map_container))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     @Test
-    fun navigationMenu_mapClicked_openMapFragment() {
+    fun navigationMenu_AccountClicked_openMapFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_create_party))
+        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.account_settings_fragment))
+        Espresso.onView(ViewMatchers.withId(R.id.account_settings_container))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     @Test
-    fun navigationMenu_accountClicked_openAccountFragment() {
+    fun navigationMenu_PartOverviewClicked_openAccountFragment() {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_create_party_view))
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_create_party))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
-
-    @Test
-    fun infoScreen_upButtonClicked_backToTitle() {
-        Espresso.onView(ViewMatchers.withId(R.id.btn_info)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withContentDescription(R.string.abc_action_bar_up_description))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_game_card))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
-
-    @Test
-    fun gameScreen_slideNavDrawerOpen_doesNotOpen() {
-        Espresso.onView(ViewMatchers.withId(R.id.btn_info)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open())
-        Espresso.onView(ViewMatchers.withId(R.id.constraint_party_info))
+        Espresso.onView(ViewMatchers.withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.party_overview_fragment))
+        Espresso.onView(ViewMatchers.withId(R.id.party_overview_container))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }

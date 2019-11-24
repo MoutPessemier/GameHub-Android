@@ -10,12 +10,13 @@ import java.util.*
 data class PartyEntity(
     @PrimaryKey
     val id: String,
-    val name: String,
-    val date: Date,
-    val maxSize: Int,
-    val participants: Array<String>,
-    val gameId: String,
-    val location: Location
+    var name: String,
+    var date: Date,
+    var maxSize: Int,
+    var participants: Array<String>,
+    var declines: Array<String>,
+    var gameId: String,
+    var location: Location
 )
 
 fun List<PartyEntity>.asDomainModel(): List<GameParty> {
@@ -26,6 +27,7 @@ fun List<PartyEntity>.asDomainModel(): List<GameParty> {
             it.date,
             it.maxSize,
             it.participants,
+            it.declines,
             it.gameId,
             it.location
         )

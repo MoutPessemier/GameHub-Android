@@ -25,14 +25,15 @@ data class NetworkUser(
 fun NetworkUserContainer.asDomainModel(): User {
     return User(
         user.id,
-        user.firstName,
-        user.lastName,
-        user.telephone,
+//        user.firstName,
+//        user.lastName,
+//        user.telephone,
         user.email,
-        user.birthDate,
-        user.userRole,
-        user.password,
-        user.maxDistance
+//        user.birthDate,
+//        user.userRole,
+//        user.password,
+        user.maxDistance,
+        null, null
     )
 }
 

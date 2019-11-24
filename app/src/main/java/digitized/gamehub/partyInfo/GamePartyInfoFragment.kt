@@ -28,25 +28,25 @@ class GamePartyInfoFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        val party = GamePartyInfoFragmentArgs.fromBundle(arguments!!).selectedParty
+        //val party = GamePartyInfoFragmentArgs.fromBundle(arguments!!).selectedParty
 
         // ViewModel
         val application = requireNotNull(this.activity).application
-        viewModel =
-            ViewModelProviders.of(this, GamePartyInfoViewModel.Factory(party, application))
-                .get(GamePartyInfoViewModel::class.java)
+        //viewModel =
+            //ViewModelProviders.of(this, GamePartyInfoViewModel.Factory(party, application))
+                //.get(GamePartyInfoViewModel::class.java)
 
         binding.viewModel = viewModel
 
-        binding.btnJoinParty.setOnClickListener { view: View ->
-            // viewModel.joinParty(party.id, "")
-            findNavController().navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragmentJoin())
-        }
+//        binding.btnJoinParty.setOnClickListener { view: View ->
+//            // viewModel.joinParty(party.id, "")
+//            findNavController().navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragmentJoin())
+//        }
 
-        binding.btnDeclineParty.setOnClickListener { view: View ->
-            //decline in some way
-            findNavController().navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragmentDecline())
-        }
+//        binding.btnDeclineParty.setOnClickListener { view: View ->
+//            //decline in some way
+//            findNavController().navigate(GamePartyInfoFragmentDirections.actionGamePartyInfoFragmentToGameCardsFragmentDecline())
+//        }
 
 
         return binding.root

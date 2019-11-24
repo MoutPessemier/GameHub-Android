@@ -20,50 +20,48 @@ class UserRepository(private val database: GameHubDatabase) {
     val user: LiveData<User>?
         get() = _user
 
-    suspend fun insertUser(user: User, lat: Double?, long: Double?){
+    suspend fun insertUser(user: User, lat: Double?, long: Double?) {
         withContext(Dispatchers.IO) {
             val entityUser = UserEntity(
                 user.id!!,
-                user.firstName,
-                user.lastName,
-                user.telephone,
+//                user.firstName,
+//                user.lastName,
+//                user.telephone,
                 user.email,
-                user.birthDate,
-                user.userRole,
-                user.password,
+//                user.birthDate,
+//                user.userRole,
+//                user.password,
                 user.maxDistance
-//                ,
-//                lat, long
+                //lat, long
             )
             database.userDao.insertUser(entityUser)
         }
     }
 
-    suspend fun updateAccount(user: User, lat: Double?, long: Double?) {
-        withContext(Dispatchers.IO) {
-            val usr = GameHubAPI.service.updateUser(user).await()
-            val entityUser = UserEntity(
-                user.id!!,
-                user.firstName,
-                user.lastName,
-                user.telephone,
-                user.email,
-                user.birthDate,
-                user.userRole,
-                user.password,
-                user.maxDistance
-//                ,
-//                lat, long
-            )
-            database.userDao.update(entityUser)
-            _user?.value = usr
-        }
-    }
+//    suspend fun updateAccount(user: User, lat: Double?, long: Double?) {
+//        withContext(Dispatchers.IO) {
+//            val usr = GameHubAPI.service.updateUser(user).await()
+//            val entityUser = UserEntity(
+//                user.id!!,
+//                user.firstName,
+//                user.lastName,
+//                user.telephone,
+//                user.email,
+//                user.birthDate,
+//                user.userRole,
+//                user.password,
+//                user.maxDistance
+//                //lat, long
+//            )
+//            database.userDao.update(entityUser)
+//            _user?.value = usr
+//        }
+//    }
 
-    suspend fun deleteAccount(id: String) {
-        withContext(Dispatchers.IO) {
-            GameHubAPI.service.deleteUser(id).await()
-            database.userDao.clear()
-        }
-    }
+//    suspend fun deleteAccount(id: String) {
+//        withContext(Dispatchers.IO) {
+//            GameHubAPI.service.deleteUser(id).await()
+//            database.userDao.clear()
+//        }
+//    }
 }

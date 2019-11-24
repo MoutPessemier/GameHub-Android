@@ -9,14 +9,14 @@ import java.util.*
 data class UserEntity(
     @PrimaryKey
     val id: String,
-    val firstName: String,
-    val lastName: String,
-    val telephone: String,
-    val email: String,
-    val birthDate: Date,
-    val userRole: UserRole,
-    val password: String,
-    val maxDistance: Int
-//    val lat: Double?,
-//    val long: Double?
+//    val firstName: String,
+//    val lastName: String,
+//    val telephone: String,
+    var email: String,
+//    val birthDate: Date,
+//    val userRole: UserRole,
+//    val password: String,
+    var maxDistance: Int
+//    var lat: Double?,
+//    var long: Double?
 )

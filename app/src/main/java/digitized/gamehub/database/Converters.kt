@@ -48,13 +48,12 @@ class Converters {
 
     @TypeConverter
     fun stringArrayToString(array: Array<String>): String {
-        return array.map { a -> "$a," }.toString()
+        return array.joinToString(",")
     }
 
     @TypeConverter
     fun stringToStringArray(string: String): Array<String> {
-        return string.split(",", ignoreCase = true).map { a -> a.trim().substring(0, a.length - 1) }
-            .toTypedArray()
+        return string.split(",", ignoreCase = true).map { a -> a.trim() }.toTypedArray()
     }
 
     @TypeConverter

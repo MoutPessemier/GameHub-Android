@@ -17,6 +17,7 @@ data class NetworkParty(
     val date: Date,
     val maxSize: Int,
     val participants: Array<String>,
+    val declines: Array<String>,
     val gameId: String,
     val location: Location
 )
@@ -29,6 +30,7 @@ fun NetworkPartyContainer.asDomainModel(): List<GameParty> {
             it.date,
             it.maxSize,
             it.participants,
+            it.declines,
             it.gameId,
             it.location
         )
@@ -43,6 +45,7 @@ fun NetworkPartyContainer.asDatabaseModel(): Array<PartyEntity> {
             it.date,
             it.maxSize,
             it.participants,
+            it.declines,
             it.gameId,
             it.location
         )

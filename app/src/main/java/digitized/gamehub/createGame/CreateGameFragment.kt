@@ -34,27 +34,27 @@ class CreateGameFragment : Fragment() {
         binding.viewModel = viewModel
 
 
-        binding.btnCreateGame.setOnClickListener { view: View ->
-            val type: GameType =
-                viewModel.convertToType(binding.sprGameType.selectedItem.toString())
-            viewModel.createGame(
-                Game(
-                    null,
-                    binding.txtGameName.text.toString(),
-                    binding.txtGameDescription.text.toString(),
-                    binding.txtGameRules.text.toString(),
-                    binding.txtGameRequirement.text.toString(),
-                    type, true
-                )
-            )
-            if (viewModel.game != null) {
-                view.findNavController()
-                    .navigate(CreateGameFragmentDirections.actionNavCreateGameViewToGameCardsFragment())
-            } else {
-                // error message
-            }
-
-        }
+//        binding.btnCreateGame.setOnClickListener { view: View ->
+//            val type: GameType =
+//                viewModel.convertToType(binding.sprGameType.selectedItem.toString())
+//            viewModel.createGame(
+//                Game(
+//                    null,
+//                    binding.txtGameName.text.toString(),
+//                    binding.txtGameDescription.text.toString(),
+//                    binding.txtGameRules.text.toString(),
+//                    binding.txtGameRequirement.text.toString(),
+//                    type, true
+//                )
+//            )
+//            if (viewModel.game != null) {
+//                view.findNavController()
+//                    .navigate(CreateGameFragmentDirections.actionNavCreateGameViewToGameCardsFragment())
+//            } else {
+//                // error message
+//            }
+//
+//        }
 
         return binding.root
     }

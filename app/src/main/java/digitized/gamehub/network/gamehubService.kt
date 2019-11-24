@@ -28,14 +28,15 @@ interface GameHubAPIService {
     @GET("games")
     fun getAllGames(): Deferred<NetworkGameContainer>
 
-    @POST("createGame")
-    fun createGame(@Body game: Game): Deferred<NetworkGame>
-
-    @PUT("updateGame")
-    fun updateGame(@Body game: Game): Deferred<NetworkGame>
-
-    @DELETE("deleteGame")
-    fun deleteGame(@Body id: String): Deferred<String>
+//    extra
+//    @POST("createGame")
+//    fun createGame(@Body game: Game): Deferred<NetworkGame>
+//
+//    @PUT("updateGame")
+//    fun updateGame(@Body game: Game): Deferred<NetworkGame>
+//
+//    @DELETE("deleteGame")
+//    fun deleteGame(@Body id: String): Deferred<String>
 
     // Party
     @GET("getPartiesNearYou")
@@ -52,11 +53,11 @@ interface GameHubAPIService {
     @POST("createParty")
     fun createParty(@Body party: GameParty): Deferred<NetworkParty>
 
-    @PUT("updateParty")
-    fun updateParty(@Body party: GameParty): Deferred<NetworkParty>
-
-    @DELETE("deleteParty")
-    fun deleteParty(@Body id: String): Deferred<String>
+//    @PUT("updateParty")
+//    fun updateParty(@Body party: GameParty): Deferred<NetworkParty>
+//
+//    @DELETE("deleteParty")
+//    fun deleteParty(@Body id: String): Deferred<String>
 
     @POST("joinParty")
     fun joinParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
@@ -65,11 +66,11 @@ interface GameHubAPIService {
     fun declineParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
     // User
-    @PUT("updateUser")
-    fun updateUser(@Body user: User): Deferred<User>
-
-    @DELETE("deleteUser")
-    fun deleteUser(@Body id: String): Deferred<String>
+//    @PUT("updateUser")
+//    fun updateUser(@Body user: User): Deferred<User>
+//
+//    @DELETE("deleteUser")
+//    fun deleteUser(@Body id: String): Deferred<String>
 
 }
 
