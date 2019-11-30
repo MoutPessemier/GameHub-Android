@@ -2,6 +2,7 @@ package digitized.gamehub.network
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import digitized.gamehub.database.UserEntity
 import digitized.gamehub.domain.User
 import digitized.gamehub.domain.UserRole
 import java.util.*
@@ -33,7 +34,24 @@ fun NetworkUserContainer.asDomainModel(): User {
 //        user.userRole,
 //        user.password,
         user.maxDistance,
-        null, null
+        null,
+        null
+    )
+}
+
+fun NetworkUserContainer.asDatabaseModel(): UserEntity {
+    return UserEntity(
+        user.id,
+//        user.firstName,
+//        user.lastName,
+//        user.telephone,
+        user.email,
+//        user.birthDate,
+//        user.userRole,
+//        user.password,
+        user.maxDistance,
+        null,
+        null
     )
 }
 

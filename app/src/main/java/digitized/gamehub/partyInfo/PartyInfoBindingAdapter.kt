@@ -21,6 +21,6 @@ fun bindGameType(textView: TextView, gameType: GameType?){
 
 @BindingAdapter("partyDate")
 fun bindDate(textView: TextView, date: Date?){
-    val d = SimpleDateFormat("dd/MM/YYYY", Locale.FRENCH).format(date!!)
+    val d = SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH).format(date!!)
     textView.text = d
 }

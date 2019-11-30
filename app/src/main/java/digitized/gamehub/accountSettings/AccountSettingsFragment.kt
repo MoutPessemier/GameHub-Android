@@ -15,7 +15,7 @@ import com.auth0.android.provider.VoidCallback
 import com.auth0.android.provider.WebAuthProvider
 import digitized.gamehub.R
 import digitized.gamehub.account.LoginActivity
-import digitized.gamehub.databinding.AccountSettingsBinding
+import digitized.gamehub.databinding.AccountSettingsFragmentBinding
 import timber.log.Timber
 
 class AccountSettingsFragment : Fragment() {
@@ -28,10 +28,10 @@ class AccountSettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: AccountSettingsBinding =
+        val binding: AccountSettingsFragmentBinding =
             DataBindingUtil.inflate(
                 inflater,
-                R.layout.account_settings, container, false
+                R.layout.account_settings_fragment, container, false
             )
 
         // ViewModel
@@ -48,8 +48,6 @@ class AccountSettingsFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             logout()
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
         }
 
         return binding.root
@@ -60,7 +58,9 @@ class AccountSettingsFragment : Fragment() {
             .withScheme("demo")
             .start(context, object : VoidCallback {
                 override fun onSuccess(payload: Void) {
-                    Timber.d(payload.toString())
+                    //Timber.d(payload.toString())
+                    val intent = Intent(context, LoginActivity::class.java)
+                    startActivity(intent)
                 }
                 override fun onFailure(error: Auth0Exception) {
                     // Show error to user

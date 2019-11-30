@@ -1,4 +1,4 @@
-package digitized.gamehub.createParty
+package  digitized.gamehub.createParty
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,8 +14,11 @@ import androidx.navigation.findNavController
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.model.TypeFilter
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import digitized.gamehub.R
 import digitized.gamehub.databinding.CreateGamePartyBinding
 import timber.log.Timber
@@ -63,7 +66,7 @@ class CreatePartyFragment : Fragment() {
         }
 
         val placesClient = Places.createClient(requireActivity().applicationContext)
-
+        placesClient.findAutocompletePredictions(FindAutocompletePredictionsRequest.newInstance("Berlin"))
 
         binding.sprPartyGame.adapter = spinnerAdapter
         binding.sprPartyGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -99,6 +102,10 @@ class CreatePartyFragment : Fragment() {
                 Place.Field.ADDRESS
             )
         )
+
+        autocompleteFragment.setTypeFilter(TypeFilter.ADDRESS)
+
+        autocompleteFragment.setActivityMode(AutocompleteActivityMode.OVERLAY)
 
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(place: Place) {

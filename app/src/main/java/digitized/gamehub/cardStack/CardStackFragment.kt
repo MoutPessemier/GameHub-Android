@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -14,9 +15,10 @@ import androidx.recyclerview.widget.DiffUtil
 import com.yuyakaido.android.cardstackview.*
 import digitized.gamehub.R
 import digitized.gamehub.databinding.CardStackFragmentBinding
+import digitized.gamehub.domain.GameParty
 import timber.log.Timber
 
-class CardStackFragment :Fragment(), CardStackListener {
+class CardStackFragment : Fragment(), CardStackListener {
 
     private lateinit var binding: CardStackFragmentBinding
     private lateinit var viewModel: CardStackViewModel
@@ -36,13 +38,14 @@ class CardStackFragment :Fragment(), CardStackListener {
 
         // ViewModel
         val application = requireNotNull(activity).application
-        viewModel = ViewModelProviders.of(this, CardStackViewModel.Factory(application)).get(CardStackViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, CardStackViewModel.Factory(application))
+            .get(CardStackViewModel::class.java)
         binding.viewModel = viewModel
 
         // CardStack
         cardStackView = binding.cardStackView
         manager = CardStackLayoutManager(context, this)
-        adapter = CardStackAdapter()
+        adapter = CardStackAdapter(ArrayList<GameParty>())
         initialize()
 
         return binding.root
@@ -50,13 +53,15 @@ class CardStackFragment :Fragment(), CardStackListener {
 
     override fun onStart() {
         super.onStart()
-        viewModel.parties.observe(this, Observer {
-            adapter.setParties(it);
-        })
+//        viewModel.parties.observe(this, Observer {
+//            adapter.setParties(it)
+//        })
+//
+//        viewModel.games.observe(this, Observer {
+//            adapter.games = it
+//        })
 
-        viewModel.games.observe(this, Observer {
-            adapter.games = it
-        })
+        setupButtons()
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
@@ -71,13 +76,39 @@ class CardStackFragment :Fragment(), CardStackListener {
         Timber.d("onCardDragging: d = ${direction?.name}")
         Timber.d("listSize: ${adapter.getParties().size}")
         if (direction?.name == "left") {
-            viewModel.declineParty()
+            //viewModel.declineParty()
         }
         if (direction?.name == "right") {
-            viewModel.joinParty()
+            //viewModel.joinParty()
         }
         if (manager.topPosition == 5) {
             //paginate()
+        }
+    }
+
+    private fun setupButtons() {
+        val skip = view!!.findViewById<View>(R.id.skip_button)
+        skip.setOnClickListener {
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Left)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            manager.setSwipeAnimationSetting(setting)
+            //viewModel.declineParty()
+            cardStackView.swipe()
+        }
+
+        val like = view!!.findViewById<View>(R.id.like_button)
+        like.setOnClickListener {
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Right)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            manager.setSwipeAnimationSetting(setting)
+            //viewModel.joinParty()
+            cardStackView.swipe()
         }
     }
 

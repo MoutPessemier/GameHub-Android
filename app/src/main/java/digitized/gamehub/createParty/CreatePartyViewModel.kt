@@ -42,7 +42,8 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
             partyName,
             whenDate,
             maxSize,
-            arrayOf<String>(""),
+            arrayOf(""),
+            arrayOf(),
             game!!.id!!,
             Location(
                 "Point",
@@ -60,6 +61,7 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
                     addedParty.date,
                     addedParty.maxSize,
                     addedParty.participants,
+                    addedParty.declines,
                     addedParty.gameId,
                     addedParty.location
                 )

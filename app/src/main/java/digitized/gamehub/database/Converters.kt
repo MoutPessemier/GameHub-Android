@@ -12,12 +12,12 @@ import java.util.*
 class Converters {
     @TypeConverter
     fun dateFromString(dateString: String): Date? {
-        return SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse(dateString)
+        return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString)
     }
 
     @TypeConverter
     fun dateToString(date: Date): String {
-        return SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).format(date)
+        return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(date)
     }
 
     @TypeConverter

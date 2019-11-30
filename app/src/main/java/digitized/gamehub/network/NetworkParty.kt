@@ -22,21 +22,6 @@ data class NetworkParty(
     val location: Location
 )
 
-fun NetworkPartyContainer.asDomainModel(): List<GameParty> {
-    return parties.map {
-        GameParty(
-            it.id,
-            it.name,
-            it.date,
-            it.maxSize,
-            it.participants,
-            it.declines,
-            it.gameId,
-            it.location
-        )
-    }
-}
-
 fun NetworkPartyContainer.asDatabaseModel(): Array<PartyEntity> {
     return parties.map {
         PartyEntity(
@@ -50,4 +35,17 @@ fun NetworkPartyContainer.asDatabaseModel(): Array<PartyEntity> {
             it.location
         )
     }.toTypedArray()
+}
+
+fun NetworkParty.asDatabaseModel(): PartyEntity {
+    return PartyEntity(
+        id,
+        name,
+        date,
+        maxSize,
+        participants,
+        declines,
+        gameId,
+        location
+    )
 }

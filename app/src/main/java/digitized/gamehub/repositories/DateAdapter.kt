@@ -8,13 +8,12 @@ class DateAdapter: JsonAdapter<Date>() {
     @FromJson
     override fun fromJson(reader: JsonReader): Date? {
         val value = reader.nextString()
-        return SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).parse(value)
-        //return getDateInstance(DateFormat.LONG, Locale.FRENCH).parse(value)
+        return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(value)
     }
 
     @ToJson
     override fun toJson(writer: JsonWriter, value: Date?) {
-        writer.value(SimpleDateFormat("yyyy-MM-dd", Locale.FRENCH).format(value))
+        writer.value(SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(value!!))
     }
 
 }

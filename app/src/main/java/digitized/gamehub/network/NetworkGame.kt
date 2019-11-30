@@ -12,7 +12,7 @@ data class NetworkGameContainer(val games: List<NetworkGame>)
 
 @JsonClass(generateAdapter = true)
 data class NetworkGame(
-    @Json(name = "_id")val id: String,
+    @Json(name = "_id") val id: String,
     val name: String,
     val description: String,
     val rules: String,
@@ -20,20 +20,6 @@ data class NetworkGame(
     val type: GameType,
     val visible: Boolean
 )
-
-fun NetworkGameContainer.asDomainModel(): List<Game> {
-    return games.map {
-        Game(
-            it.id,
-            it.name,
-            it.description,
-            it.rules,
-            it.requirements,
-            it.type,
-            it.visible
-        )
-    }
-}
 
 fun NetworkGameContainer.asDatabaseModel(): Array<GameEntity> {
     return games.map {
