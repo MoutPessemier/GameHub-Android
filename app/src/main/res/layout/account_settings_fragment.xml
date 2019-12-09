@@ -21,16 +21,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/txt_label"
-                android:text="@string/hint_user_name" />
+            <!--            <TextView-->
+            <!--                style="@style/txt_label"-->
+            <!--                android:text="@string/hint_user_name" />-->
 
-            <EditText
-                android:id="@+id/txt_user_name"
-                style="@style/txt_field"
-                android:layout_gravity="center_horizontal"
-                android:autofillHints="@string/hint_user_name"
-                android:inputType="text" />
+            <!--            <EditText-->
+            <!--                android:id="@+id/txt_user_name"-->
+            <!--                style="@style/txt_field"-->
+            <!--                android:layout_gravity="center_horizontal"-->
+            <!--                android:autofillHints="@string/hint_user_name"-->
+            <!--                android:inputType="text" />-->
 
             <TextView
                 style="@style/txt_label"
@@ -41,18 +41,19 @@
                 style="@style/txt_field"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/hint_user_email"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
+            <!--    android:text="@{viewModel.currentUser.emaill}"/>-->
 
-            <TextView
-                style="@style/txt_label"
-                android:text="@string/hint_user_phone" />
+            <!--            <TextView-->
+            <!--                style="@style/txt_label"-->
+            <!--                android:text="@string/hint_user_phone" />-->
 
-            <EditText
-                android:id="@+id/txt_user_phone"
-                style="@style/txt_field"
-                android:layout_gravity="center_horizontal"
-                android:autofillHints="@string/hint_user_phone"
-                android:inputType="phone" />
+            <!--            <EditText-->
+            <!--                android:id="@+id/txt_user_phone"-->
+            <!--                style="@style/txt_field"-->
+            <!--                android:layout_gravity="center_horizontal"-->
+            <!--                android:autofillHints="@string/hint_user_phone"-->
+            <!--                android:inputType="phone" />-->
 
             <TextView
                 style="@style/txt_label"
@@ -85,12 +86,19 @@
                     android:text="@string/_100" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/btn_save_updates"
+                style="@style/btn_large_primary"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_top_large"
+                android:background="@drawable/custom_button_green"
+                android:text="@string/save_changes" />
 
             <Button
                 android:id="@+id/btn_logout"
                 style="@style/btn_large_primary"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_top_large"
+                android:layout_marginTop="@dimen/margin_top_general"
                 android:background="@drawable/custom_button_green"
                 android:text="@string/logout" />
 

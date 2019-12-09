@@ -10,7 +10,11 @@
     <fragment
         android:id="@+id/account_settings_fragment"
         android:name="digitized.gamehub.accountSettings.AccountSettingsFragment"
-        android:label="Account Settings" />
+        android:label="Account Settings" >
+        <action
+            android:id="@+id/action_account_settings_fragment_to_card_stack_fragment"
+            app:destination="@id/card_stack_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/create_party_fragment"
         android:name="digitized.gamehub.createParty.CreatePartyFragment"

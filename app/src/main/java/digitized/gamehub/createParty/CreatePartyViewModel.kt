@@ -2,6 +2,7 @@ package digitized.gamehub.createParty
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
@@ -11,11 +12,13 @@ import digitized.gamehub.repositories.GameRepository
 import java.util.*
 import digitized.gamehub.domain.Location
 import digitized.gamehub.network.GameHubAPI
+import digitized.gamehub.network.asDomainModel
 import digitized.gamehub.repositories.PartyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.lang.Exception
 
 class CreatePartyViewModel(application: Application) : AndroidViewModel(application) {
@@ -34,7 +37,8 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
     val games = gameRepository.games
 
     var game: Game? = null
-    var place: Place? = null
+    var currentLocation = LatLng(0.0, 0.0)
+//    var place: Place? = null
 
     fun createParty(partyName: String, whenDate: Date, maxSize: Int): Boolean {
         val createdParty = GameParty(
@@ -42,31 +46,21 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
             partyName,
             whenDate,
             maxSize,
-            arrayOf(""),
+            arrayOf("5db8838eaffe445c66076a88"),
             arrayOf(),
-            game!!.id!!,
+            "5dd0200902611d001e96838e",
             Location(
                 "Point",
-                doubleArrayOf(place!!.latLng!!.latitude, place!!.latLng!!.longitude)
+                doubleArrayOf(currentLocation.latitude, currentLocation.longitude)
             )
         )
+        Timber.d(createdParty.toString())
         try {
             coroutineScope.launch {
                 _status.value = ApiStatus.LOADING
                 val addedParty = GameHubAPI.service.createParty(createdParty).await()
                 _status.value = ApiStatus.DONE
-                val domainParty = GameParty(
-                    addedParty.id,
-                    addedParty.name,
-                    addedParty.date,
-                    addedParty.maxSize,
-                    addedParty.participants,
-                    addedParty.declines,
-                    addedParty.gameId,
-                    addedParty.location
-                )
-                partyRepository.createParty(domainParty)
-
+                partyRepository.createParty(addedParty.asDomainModel())
             }
             return true
         } catch (e: Exception) {

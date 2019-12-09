@@ -46,4 +46,6 @@
     <string name="app_slogan">Meet. Greet. Play.</string>
     <string name="max_size_hint">Max amount of people</string>
     <string name="max_party_size">Max Party Size</string>
+    <string name="party_where_txt">Your current location will be used</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.auth0.android.Auth0
 import com.auth0.android.Auth0Exception
 import com.auth0.android.provider.VoidCallback
@@ -20,6 +21,7 @@ import timber.log.Timber
 
 class AccountSettingsFragment : Fragment() {
 
+    private lateinit var binding: AccountSettingsFragmentBinding
     private lateinit var viewModel: AccountSettingsViewModel
     private lateinit var auth0: Auth0
 
@@ -28,7 +30,7 @@ class AccountSettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: AccountSettingsFragmentBinding =
+        binding =
             DataBindingUtil.inflate(
                 inflater,
                 R.layout.account_settings_fragment, container, false
@@ -46,11 +48,25 @@ class AccountSettingsFragment : Fragment() {
         auth0.isOIDCConformant = true
 
 
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        binding.btnSaveUpdates.setOnClickListener { view ->
+            viewModel.updateAccount(binding.txtUserEmail.text.toString(), binding.maxDistance.progress)
+            view.findNavController().navigate(AccountSettingsFragmentDirections.actionAccountSettingsFragmentToCardStackFragment())
+        }
+
         binding.btnLogout.setOnClickListener {
             logout()
         }
 
-        return binding.root
+        binding.btnRemoveAccount.setOnClickListener {
+            viewModel.deleteAccount()
+            logout()
+        }
     }
 
     private fun logout() {
@@ -62,6 +78,7 @@ class AccountSettingsFragment : Fragment() {
                     val intent = Intent(context, LoginActivity::class.java)
                     startActivity(intent)
                 }
+
                 override fun onFailure(error: Auth0Exception) {
                     // Show error to user
                     Timber.d(error)

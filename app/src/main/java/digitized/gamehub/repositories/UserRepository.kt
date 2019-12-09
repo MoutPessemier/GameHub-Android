@@ -20,7 +20,7 @@ class UserRepository(private val database: GameHubDatabase) {
     val user: LiveData<User>?
         get() = _user
 
-    suspend fun insertUser(user: User, lat: Double?, long: Double?) {
+    suspend fun insertUser(user: User, latitude: Double?, longitude: Double?) {
         withContext(Dispatchers.IO) {
             val entityUser = UserEntity(
                 user.id!!,
@@ -31,37 +31,37 @@ class UserRepository(private val database: GameHubDatabase) {
 //                user.birthDate,
 //                user.userRole,
 //                user.password,
-                user.maxDistance
-                //lat, long
+                user.maxDistance,
+                latitude, longitude
             )
             database.userDao.insertUser(entityUser)
         }
     }
 
-//    suspend fun updateAccount(user: User, lat: Double?, long: Double?) {
-//        withContext(Dispatchers.IO) {
-//            val usr = GameHubAPI.service.updateUser(user).await()
-//            val entityUser = UserEntity(
-//                user.id!!,
+    suspend fun updateAccount(user: User, latitude: Double?, longitude: Double?) {
+        withContext(Dispatchers.IO) {
+            val usr = GameHubAPI.service.updateUser(user).await()
+            val entityUser = UserEntity(
+                user.id,
 //                user.firstName,
 //                user.lastName,
 //                user.telephone,
-//                user.email,
+                user.email,
 //                user.birthDate,
 //                user.userRole,
 //                user.password,
-//                user.maxDistance
-//                //lat, long
-//            )
-//            database.userDao.update(entityUser)
-//            _user?.value = usr
-//        }
-//    }
+                user.maxDistance,
+                latitude,
+                longitude
+            )
+            database.userDao.update(entityUser)
+        }
+    }
 
-//    suspend fun deleteAccount(id: String) {
-//        withContext(Dispatchers.IO) {
-//            GameHubAPI.service.deleteUser(id).await()
-//            database.userDao.clear()
-//        }
-//    }
+    suspend fun deleteAccount(id: String) {
+        withContext(Dispatchers.IO) {
+            GameHubAPI.service.deleteUser(id).await()
+            database.userDao.clear()
+        }
+    }
 }

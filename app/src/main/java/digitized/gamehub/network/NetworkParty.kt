@@ -49,3 +49,16 @@ fun NetworkParty.asDatabaseModel(): PartyEntity {
         location
     )
 }
+
+fun NetworkParty.asDomainModel(): GameParty{
+    return GameParty(
+        id,
+        name,
+        date,
+        maxSize,
+        participants,
+        declines,
+        gameId,
+        location
+    )
+}

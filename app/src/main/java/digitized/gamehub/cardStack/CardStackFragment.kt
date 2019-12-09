@@ -45,7 +45,7 @@ class CardStackFragment : Fragment(), CardStackListener {
         // CardStack
         cardStackView = binding.cardStackView
         manager = CardStackLayoutManager(context, this)
-        adapter = CardStackAdapter(ArrayList<GameParty>())
+        adapter = CardStackAdapter()
         initialize()
 
         return binding.root
@@ -53,13 +53,13 @@ class CardStackFragment : Fragment(), CardStackListener {
 
     override fun onStart() {
         super.onStart()
-//        viewModel.parties.observe(this, Observer {
-//            adapter.setParties(it)
-//        })
-//
-//        viewModel.games.observe(this, Observer {
-//            adapter.games = it
-//        })
+        viewModel.parties.observe(this, Observer {
+            adapter.setParties(it)
+        })
+
+        viewModel.games.observe(this, Observer {
+            adapter.games = it
+        })
 
         setupButtons()
     }

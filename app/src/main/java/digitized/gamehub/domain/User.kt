@@ -7,17 +7,17 @@ import java.util.*
 
 @Parcelize
 class User(
-    val id: String,
+    var id: String,
 //    val firstName: String,
 //    val lastName: String,
 //    val telephone: String,
-    val email: String,
+    var email: String,
 //    val birthDate: Date,
 //    val userRole: UserRole,
 //    val password: String,
-    val maxDistance: Int,
-    val latitude: Double?,
-    val longitude: Double?
+    var maxDistance: Int,
+    var latitude: Double?,
+    var longitude: Double?
 ) : Parcelable
 
 fun User.asDatabaseModel(): UserEntity {

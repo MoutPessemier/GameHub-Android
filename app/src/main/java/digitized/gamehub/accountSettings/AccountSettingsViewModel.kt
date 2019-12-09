@@ -11,6 +11,7 @@ import digitized.gamehub.repositories.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class AccountSettingsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,8 +25,21 @@ class AccountSettingsViewModel(application: Application) : AndroidViewModel(appl
     private val database = getInstance(application)
     private val userRepository = UserRepository(database)
 
-    val currentUser = userRepository.user
+    fun updateAccount(email:String, maxDistance: Int){
+        coroutineScope.launch {
+            val user = userRepository.user!!.value!!
+            user.email = email
+            user.maxDistance = maxDistance
+            userRepository.updateAccount(user, user.latitude, user.longitude)
+        }
+    }
 
+    fun deleteAccount(){
+        coroutineScope.launch {
+            val user = userRepository.user!!.value!!
+            userRepository.deleteAccount(user.id)
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()

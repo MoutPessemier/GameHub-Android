@@ -1,17 +1,24 @@
 package  digitized.gamehub.createParty
 
+import android.location.Location
+import android.location.LocationListener
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.google.android.gms.common.api.Status
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.model.TypeFilter
@@ -27,14 +34,14 @@ import java.util.*
 
 
 class CreatePartyFragment : Fragment() {
-
     private lateinit var viewModel: CreatePartyViewModel
     private lateinit var binding: CreateGamePartyBinding
     private lateinit var spinnerAdapter: ArrayAdapter<String>
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    companion object {
-        private const val AUTOCOMPLETE_REQUEST_CODE = 1
-    }
+//    companion object {
+//        private const val AUTOCOMPLETE_REQUEST_CODE = 1
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,15 +65,18 @@ class CreatePartyFragment : Fragment() {
             android.R.layout.simple_spinner_dropdown_item
         )
 
-        if (!Places.isInitialized()) {
-            Places.initialize(
-                requireActivity().applicationContext,
-                getString(R.string.google_maps_key)
-            )
-        }
+//        if (!Places.isInitialized()) {
+//            Places.initialize(
+//                requireActivity().applicationContext,
+//                getString(R.string.google_maps_key)
+//            )
+//        }
+//
+//        val placesClient = Places.createClient(requireActivity().applicationContext)
+//        placesClient.findAutocompletePredictions(FindAutocompletePredictionsRequest.newInstance("Berlin"))
 
-        val placesClient = Places.createClient(requireActivity().applicationContext)
-        placesClient.findAutocompletePredictions(FindAutocompletePredictionsRequest.newInstance("Berlin"))
+        fusedLocationClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
 
         binding.sprPartyGame.adapter = spinnerAdapter
         binding.sprPartyGame.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -90,33 +100,40 @@ class CreatePartyFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val autocompleteFragment =
-            childFragmentManager
-                .findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+//        val autocompleteFragment =
+//            childFragmentManager
+//                .findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+//
+//        autocompleteFragment.setPlaceFields(
+//            listOf(
+//                Place.Field.ID,
+//                Place.Field.NAME,
+//                Place.Field.LAT_LNG,
+//                Place.Field.ADDRESS
+//            )
+//        )
+//
+//        autocompleteFragment.setTypeFilter(TypeFilter.ADDRESS)
+//
+//        autocompleteFragment.setActivityMode(AutocompleteActivityMode.OVERLAY)
+//
+//        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+//            override fun onPlaceSelected(place: Place) {
+//                Timber.d("Place: %s, %s, %s, %s", place.name, place.id, place.latLng, place.address)
+//                viewModel.place = place
+//            }
+//
+//            override fun onError(status: Status) {
+//                Timber.d("An error occurred: $status")
+//            }
+//        })
 
-        autocompleteFragment.setPlaceFields(
-            listOf(
-                Place.Field.ID,
-                Place.Field.NAME,
-                Place.Field.LAT_LNG,
-                Place.Field.ADDRESS
-            )
-        )
-
-        autocompleteFragment.setTypeFilter(TypeFilter.ADDRESS)
-
-        autocompleteFragment.setActivityMode(AutocompleteActivityMode.OVERLAY)
-
-        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
-            override fun onPlaceSelected(place: Place) {
-                Timber.d("Place: %s, %s, %s, %s", place.name, place.id, place.latLng, place.address)
-                viewModel.place = place
+        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { newLocation ->
+            if (newLocation != null) {
+                val currentLatLng = LatLng(newLocation.latitude, newLocation.longitude)
+                viewModel.currentLocation = currentLatLng
             }
-
-            override fun onError(status: Status) {
-                Timber.d("An error occurred: $status")
-            }
-        })
+        }
 
         viewModel.games.observe(viewLifecycleOwner, Observer {
             spinnerAdapter.clear()
@@ -124,9 +141,12 @@ class CreatePartyFragment : Fragment() {
         })
 
         binding.btnCreateGamParty.setOnClickListener { view: View ->
+            Timber.d(binding.txtPartyDate.text.toString())
+            Timber.d("hey")
+            Timber.d(binding.txtPartyName.text.toString())
             val succes = viewModel.createParty(
                 binding.txtPartyName.text.toString(),
-                SimpleDateFormat().parse(binding.txtPartyDate.text.toString())!!,
+                SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(binding.txtPartyDate.text.toString())!!,
                 binding.txtMaxSize.text.toString().toInt()
             )
             if (succes) {

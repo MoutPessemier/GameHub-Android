@@ -68,9 +68,9 @@ interface GameHubAPIService {
     // User
     @PUT("updateUser")
     fun updateUser(@Body user: User): Deferred<NetworkUserContainer>
-//
-//    @DELETE("deleteUser")
-//    fun deleteUser(@Body id: String): Deferred<String>
+
+    @DELETE("deleteUser")
+    fun deleteUser(@Body id: String): Deferred<String>
 
 }
 
