@@ -8,6 +8,10 @@ Clone this repository and import into **Android Studio**
 git clone git@github.com:MoutPessemier/GameHub-Android.git
 ```
 
+### Test credentials
+email: test@hotmail.com
+password: P@ssword1111
+
 ## Technologies Used:
 
  - Frontend: Android (Kotlin 1.3.50, Android Studio 3.5)
