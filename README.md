@@ -9,8 +9,10 @@ git clone git@github.com:MoutPessemier/GameHub-Android.git
 ```
 
 ### Test credentials
-email: test@hotmail.com
-password: P@ssword1111
+
+Email: test@hotmail.com
+
+Password: P@ssword1111
 
 ## Technologies Used:
 
