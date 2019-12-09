@@ -46,3 +46,5 @@ From Android Studio:
 - [Backend](https://github.com/MoutPessemier/GameHub-Backend)
 - [Twitter](https://twitter.com/MoutPessemier)
 - [LinkedIn](https://www.linkedin.com/in/moutpessemier/)
+
+Copyright 2019 © by Mout Pessemier
