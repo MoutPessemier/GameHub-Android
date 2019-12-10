@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.DiffUtil
 import com.yuyakaido.android.cardstackview.*
 import digitized.gamehub.R
 import digitized.gamehub.databinding.CardStackFragmentBinding
-import digitized.gamehub.domain.GameParty
 import timber.log.Timber
 
 class CardStackFragment : Fragment(), CardStackListener {
@@ -44,9 +43,7 @@ class CardStackFragment : Fragment(), CardStackListener {
 
         // CardStack
         cardStackView = binding.cardStackView
-        manager = CardStackLayoutManager(context, this)
-        adapter = CardStackAdapter()
-        initialize()
+        initializeCardStackView()
 
         return binding.root
     }
@@ -124,7 +121,17 @@ class CardStackFragment : Fragment(), CardStackListener {
         Timber.d("onCardCanceled: ${manager.topPosition}")
     }
 
-    private fun initialize() {
+
+    /**
+     * Sets up thje CardStackView. It adds the required dependencies
+     * and sets up the Visuals for the component.
+     */
+    private fun initializeCardStackView() {
+        manager = CardStackLayoutManager(context, this)
+        adapter = CardStackAdapter()
+        cardStackView.layoutManager = manager
+        cardStackView.adapter = adapter
+
         manager.setStackFrom(StackFrom.Top)
         manager.setVisibleCount(3)
         manager.setTranslationInterval(8.0f)
@@ -136,8 +143,6 @@ class CardStackFragment : Fragment(), CardStackListener {
         manager.setCanScrollVertical(true)
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
         manager.setOverlayInterpolator(LinearInterpolator())
-        cardStackView.layoutManager = manager
-        cardStackView.adapter = adapter
         cardStackView.itemAnimator.apply {
             if (this is DefaultItemAnimator) {
                 supportsChangeAnimations = false
