@@ -14,6 +14,10 @@ Email: test@hotmail.com
 
 Password: P@ssword1111
 
+### Crash on launch
+This is normal, since I'm using the free hosting platform of [Heroku](https://www.heroku.com/). This means that my backend is running online, but that it's not running permanently. When you send your first request, the backend will start up but by that time, a `SocketTimeoutException` will be thrown. Just restart the app, it will work fine now that my backend is also online.
+
+
 ## Technologies Used:
 
  - Frontend: Android (Kotlin 1.3.50, Android Studio 3.5)
