@@ -20,9 +20,6 @@ interface PartyDao {
     @Query("select * from parties where participants like '%' || :id || '%'")
     fun getJoinedParties(id: String): LiveData<List<PartyEntity>>
 
-//    @Query("delete from parties where id = :id")
-//    fun deleteParty(id: String)
-
     @Query("delete from parties")
     fun clearAll()
 }

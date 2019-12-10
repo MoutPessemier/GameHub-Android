@@ -10,24 +10,8 @@ import java.util.*
 data class UserEntity(
     @PrimaryKey
     var id: String,
-//    val firstName: String,
-//    val lastName: String,
-//    val telephone: String,
     var email: String,
-//    val birthDate: Date,
-//    val userRole: UserRole,
-//    val password: String,
     var maxDistance: Int,
     var latitude: Double?,
     var longitude: Double?
 )
-
-fun UserEntity.asDomainModel(): User {
-    return User(
-        id,
-        email,
-        maxDistance,
-        latitude,
-        longitude
-    )
-}

@@ -1,10 +1,7 @@
 package digitized.gamehub.accountSettings
 
 import android.app.Application
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
-import digitized.gamehub.createGame.CreateGameViewModel
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.repositories.UserRepository

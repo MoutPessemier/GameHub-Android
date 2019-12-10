@@ -52,6 +52,10 @@ class CardStackFragment : Fragment(), CardStackListener {
         super.onStart()
         viewModel.parties.observe(this, Observer {
             adapter.setParties(it)
+            var callback = PartyDiffCallback(listOf(), it)
+            var result = DiffUtil.calculateDiff(callback)
+            result.dispatchUpdatesTo(adapter)
+
         })
 
         viewModel.games.observe(this, Observer {

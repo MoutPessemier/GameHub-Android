@@ -9,8 +9,10 @@ import digitized.gamehub.database.GameHubDatabase
 import digitized.gamehub.database.UserEntity
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.User
+import digitized.gamehub.domain.asDatabaseModel
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.LoginDTO
+import digitized.gamehub.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -22,18 +24,7 @@ class UserRepository(private val database: GameHubDatabase) {
 
     suspend fun insertUser(user: User, latitude: Double?, longitude: Double?) {
         withContext(Dispatchers.IO) {
-            val entityUser = UserEntity(
-                user.id!!,
-//                user.firstName,
-//                user.lastName,
-//                user.telephone,
-                user.email,
-//                user.birthDate,
-//                user.userRole,
-//                user.password,
-                user.maxDistance,
-                latitude, longitude
-            )
+            val entityUser = user.asDatabaseModel()
             database.userDao.insertUser(entityUser)
         }
     }
@@ -41,19 +32,7 @@ class UserRepository(private val database: GameHubDatabase) {
     suspend fun updateAccount(user: User, latitude: Double?, longitude: Double?) {
         withContext(Dispatchers.IO) {
             val usr = GameHubAPI.service.updateUser(user).await()
-            val entityUser = UserEntity(
-                user.id,
-//                user.firstName,
-//                user.lastName,
-//                user.telephone,
-                user.email,
-//                user.birthDate,
-//                user.userRole,
-//                user.password,
-                user.maxDistance,
-                latitude,
-                longitude
-            )
+            val entityUser = usr.asDatabaseModel()
             database.userDao.update(entityUser)
         }
     }

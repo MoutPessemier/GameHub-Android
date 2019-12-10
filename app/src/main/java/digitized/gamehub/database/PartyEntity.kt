@@ -33,16 +33,3 @@ fun List<PartyEntity>.asDomainModel(): List<GameParty> {
         )
     }
 }
-
-fun PartyEntity.asDomainModel(): GameParty {
-    return GameParty(
-        id,
-        name,
-        date,
-        maxSize,
-        participants,
-        declines,
-        gameId,
-        location
-    )
-}

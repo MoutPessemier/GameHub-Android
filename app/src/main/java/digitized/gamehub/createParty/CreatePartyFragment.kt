@@ -39,10 +39,6 @@ class CreatePartyFragment : Fragment() {
     private lateinit var spinnerAdapter: ArrayAdapter<String>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-//    companion object {
-//        private const val AUTOCOMPLETE_REQUEST_CODE = 1
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,16 +60,6 @@ class CreatePartyFragment : Fragment() {
             this.requireContext(),
             android.R.layout.simple_spinner_dropdown_item
         )
-
-//        if (!Places.isInitialized()) {
-//            Places.initialize(
-//                requireActivity().applicationContext,
-//                getString(R.string.google_maps_key)
-//            )
-//        }
-//
-//        val placesClient = Places.createClient(requireActivity().applicationContext)
-//        placesClient.findAutocompletePredictions(FindAutocompletePredictionsRequest.newInstance("Berlin"))
 
         fusedLocationClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -100,34 +86,6 @@ class CreatePartyFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-//        val autocompleteFragment =
-//            childFragmentManager
-//                .findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
-//
-//        autocompleteFragment.setPlaceFields(
-//            listOf(
-//                Place.Field.ID,
-//                Place.Field.NAME,
-//                Place.Field.LAT_LNG,
-//                Place.Field.ADDRESS
-//            )
-//        )
-//
-//        autocompleteFragment.setTypeFilter(TypeFilter.ADDRESS)
-//
-//        autocompleteFragment.setActivityMode(AutocompleteActivityMode.OVERLAY)
-//
-//        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
-//            override fun onPlaceSelected(place: Place) {
-//                Timber.d("Place: %s, %s, %s, %s", place.name, place.id, place.latLng, place.address)
-//                viewModel.place = place
-//            }
-//
-//            override fun onError(status: Status) {
-//                Timber.d("An error occurred: $status")
-//            }
-//        })
-
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { newLocation ->
             if (newLocation != null) {
                 val currentLatLng = LatLng(newLocation.latitude, newLocation.longitude)

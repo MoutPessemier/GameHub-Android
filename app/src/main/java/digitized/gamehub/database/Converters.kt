@@ -57,24 +57,6 @@ class Converters {
     }
 
     @TypeConverter
-    fun userROleToString(userRole: UserRole): String {
-        return when (userRole) {
-            UserRole.USER -> "USER"
-            UserRole.ADMIN -> "ADMIN"
-            UserRole.OWNER -> "ADMIN"
-        }
-    }
-
-    @TypeConverter
-    fun stringToUserRole(string: String): UserRole {
-        return when (string) {
-            "ADMIN" -> UserRole.ADMIN
-            "OWNER" -> UserRole.OWNER
-            else -> UserRole.USER
-        }
-    }
-
-    @TypeConverter
     fun locationToString(location: Location): String {
         val coords = "${location.coordinates[0]},${location.coordinates[1]},"
         return coords

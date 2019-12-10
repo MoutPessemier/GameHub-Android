@@ -19,7 +19,6 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     var games = listOf<Game>()
         set(value) {
             field = value
-            notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -55,7 +54,6 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
 
     fun setParties(parties: List<GameParty>) {
         this.parties = parties
-        notifyDataSetChanged()
     }
 
     fun getParties(): List<GameParty> {

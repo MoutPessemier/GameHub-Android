@@ -32,7 +32,6 @@ class PartyOverviewAdapter : ListAdapter<GameParty,
             binding.txtPartyName.text = item.name
             binding.txtPartyWhen.text =
                 SimpleDateFormat("dd/MM/YYYY", Locale.FRENCH).format(item.date)
-//            binding.txtPartyWhere.text = item.location.coordinates.map { toString() }.toString()
             val game = games.find { game -> game.id == item.gameId }
             binding.txtGameName.text = game!!.name
         }

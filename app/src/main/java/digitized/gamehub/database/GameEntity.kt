@@ -30,15 +30,3 @@ fun List<GameEntity>.asDomainModel(): List<Game> {
         )
     }
 }
-
-fun GameEntity.asDomainModel(): Game {
-    return Game(
-        id,
-        name,
-        description,
-        rules,
-        requirements,
-        type,
-        visible
-    )
-}

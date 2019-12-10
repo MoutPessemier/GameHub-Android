@@ -26,13 +26,7 @@ data class NetworkUser(
 fun NetworkUserContainer.asDomainModel(): User {
     return User(
         user.id,
-//        user.firstName,
-//        user.lastName,
-//        user.telephone,
         user.email,
-//        user.birthDate,
-//        user.userRole,
-//        user.password,
         user.maxDistance,
         null,
         null
@@ -42,13 +36,7 @@ fun NetworkUserContainer.asDomainModel(): User {
 fun NetworkUserContainer.asDatabaseModel(): UserEntity {
     return UserEntity(
         user.id,
-//        user.firstName,
-//        user.lastName,
-//        user.telephone,
         user.email,
-//        user.birthDate,
-//        user.userRole,
-//        user.password,
         user.maxDistance,
         null,
         null

@@ -16,12 +16,6 @@ import timber.log.Timber
 
 class PartyRepository(private val database: GameHubDatabase) {
 
-    // val parties = database.partyDao.getParties().asDomainModel()
-
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-
     val parties = Transformations.map(database.partyDao.getParties()) {
         it.asDomainModel()
     }
@@ -57,31 +51,6 @@ class PartyRepository(private val database: GameHubDatabase) {
             )
         }
     }
-
-//    suspend fun updateParty(party: GameParty) {
-//        withContext(Dispatchers.IO) {
-//            val party = GameHubAPI.service.updateParty(party).await()
-//            database.partyDao.update(
-//                PartyEntity(
-//                    party.id,
-//                    party.name,
-//                    party.date,
-//                    party.maxSize,
-//                    party.participants,
-//                    party.gameId,
-//                    party.location
-//                )
-//            )
-//        }
-//    }
-
-//    suspend fun deleteParty(partyId: String) {
-//        withContext(Dispatchers.IO) {
-//            val id = GameHubAPI.service.deleteParty(partyId).await()
-//            database.partyDao.deleteParty(id)
-//        }
-//
-//    }
 
     suspend fun joinParty(partyInteractionDTO: PartyInteractionDTO) {
         withContext(Dispatchers.IO) {

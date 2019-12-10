@@ -37,19 +37,6 @@ fun NetworkPartyContainer.asDatabaseModel(): Array<PartyEntity> {
     }.toTypedArray()
 }
 
-fun NetworkParty.asDatabaseModel(): PartyEntity {
-    return PartyEntity(
-        id,
-        name,
-        date,
-        maxSize,
-        participants,
-        declines,
-        gameId,
-        location
-    )
-}
-
 fun NetworkParty.asDomainModel(): GameParty{
     return GameParty(
         id,
