@@ -4,6 +4,8 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import digitized.gamehub.domain.*
+import digitized.gamehub.network.DTO.PartyInteractionDTO
+import digitized.gamehub.network.DTO.RegisterDTO
 import digitized.gamehub.repositories.DateAdapter
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
@@ -50,6 +52,15 @@ interface GameHubAPIService {
     fun declineParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
     // User
+    @GET("doesUserExist")
+    fun doesUserExist(): Deferred<Boolean>
+
+    @POST("register")
+    fun register(@Body registerDTO: RegisterDTO): Deferred<NetworkUserContainer>
+
+    @POST("login")
+    fun login(@Body email: String): Deferred<NetworkUserContainer>
+
     @PUT("updateUser")
     fun updateUser(@Body user: User): Deferred<NetworkUserContainer>
 

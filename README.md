@@ -14,35 +14,21 @@ Email: test@hotmail.com
 
 Password: P@ssword1111
 
-### Crash on launch
-This is normal, since I'm using the free hosting platform of [Heroku](https://www.heroku.com/). This means that my backend is running online, but that it's not running permanently. When you send your first request, the backend will start up but by that time, a `SocketTimeoutException` will be thrown. Just restart the app, it will work fine now that my backend is also online.
+### Slow load on launch
+This is normal, since I'm using the free hosting platform of [Heroku](https://www.heroku.com/). This means that my backend is running online, but it's not running permanently. When you send your first request, the backend will start up but by that time, a `SocketTimeoutException` will be thrown. This is caught and resent but this means that the inital startup will be rather slow. After that inital request, my backend will have started up and will work smoothly.
 
 
 ## Technologies Used:
 
  - Frontend: Android (Kotlin 1.3.50, Android Studio 3.5)
- - Backend: Mongoose with a GraphQL layer on top (shared with IOS frontend)
+ - Backend: Node.JS with an Express layer
+ - Database: MongoDB (mongoose)
  
 ## Usage:
 
 1. Have a **virtual machine** installed / **physical device** on which you can install the apk
 2. Clone this project using a cloning tool like git
 3. Run
-
-## Generating signed APK
-From Android Studio:
-1. ***Build*** menu
-2. ***Generate Signed APK...***
-3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -m 'Add some feature')
-4. Run the linter (ruby lint.rb').
-5. Push your branch (git push origin my-new-feature)
-6. Create a new Pull Request
 
 ## Links:
 

@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
-import digitized.gamehub.network.GameHubAPI
-import digitized.gamehub.network.PartyInteractionDTO
-import digitized.gamehub.network.asDatabaseModel
+import digitized.gamehub.network.DTO.PartyInteractionDTO
 import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
 import digitized.gamehub.repositories.UserRepository
@@ -86,7 +84,12 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
             try {
-                partyRepository.declineParty(PartyInteractionDTO("", ""))
+                partyRepository.declineParty(
+                    PartyInteractionDTO(
+                        "",
+                        ""
+                    )
+                )
                 _status.value = ApiStatus.DONE
             } catch (e: Exception){
                 _status.value = ApiStatus.ERROR

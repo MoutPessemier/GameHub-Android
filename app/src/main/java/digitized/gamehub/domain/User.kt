@@ -8,6 +8,8 @@ import java.util.*
 @Parcelize
 class User(
     var id: String,
+    var firstName: String,
+    var lastName: String,
     var email: String,
     var maxDistance: Int,
     var latitude: Double?,
@@ -18,6 +20,8 @@ fun User.asDatabaseModel(): UserEntity {
     return UserEntity(
         id,
         email,
+        firstName,
+        lastName,
         maxDistance,
         latitude,
         longitude

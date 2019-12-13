@@ -15,17 +15,16 @@ data class NetworkUser(
     @Json(name = "_id") val id: String,
     val firstName: String,
     val lastName: String,
-    val telephone: String,
     val email: String,
-    val birthDate: Date,
     val userRole: UserRole,
-    val password: String,
     val maxDistance: Int
 )
 
 fun NetworkUserContainer.asDomainModel(): User {
     return User(
         user.id,
+        user.firstName,
+        user.lastName,
         user.email,
         user.maxDistance,
         null,
@@ -36,6 +35,8 @@ fun NetworkUserContainer.asDomainModel(): User {
 fun NetworkUserContainer.asDatabaseModel(): UserEntity {
     return UserEntity(
         user.id,
+        user.firstName,
+        user.lastName,
         user.email,
         user.maxDistance,
         null,

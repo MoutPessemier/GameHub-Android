@@ -40,4 +40,4 @@ build
 *~
 *.swp
 
-debug/
+app/src/debug/

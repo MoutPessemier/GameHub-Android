@@ -10,6 +10,8 @@ import java.util.*
 data class UserEntity(
     @PrimaryKey
     var id: String,
+    var firstName: String,
+    var lastName: String,
     var email: String,
     var maxDistance: Int,
     var latitude: Double?,

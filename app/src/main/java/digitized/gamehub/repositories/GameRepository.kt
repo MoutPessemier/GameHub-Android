@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.lang.Exception
+import java.net.SocketTimeoutException
 
 class GameRepository(private val database: GameHubDatabase) {
 
@@ -23,8 +24,16 @@ class GameRepository(private val database: GameHubDatabase) {
 
     suspend fun getGames() {
         withContext(Dispatchers.IO) {
-            val games = GameHubAPI.service.getAllGames().await()
-            database.gameDao.insertAll(*games.asDatabaseModel())
+            try {
+                val games = GameHubAPI.service.getAllGames().await()
+                database.gameDao.insertAll(*games.asDatabaseModel())
+            } catch (e: SocketTimeoutException) {
+                val games = GameHubAPI.service.getAllGames().await()
+                database.gameDao.insertAll(*games.asDatabaseModel())
+            } catch (e: Exception) {
+                Timber.d(e)
+                e.printStackTrace()
+            }
         }
     }
 }
