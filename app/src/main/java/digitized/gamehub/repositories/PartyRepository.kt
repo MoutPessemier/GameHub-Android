@@ -25,7 +25,9 @@ class PartyRepository(private val database: GameHubDatabase) {
             it.asDomainModel()
         }
 
-
+    /**
+     * Gets all parties near you
+     */
     suspend fun getPartiesNearYou(distance: Int, lat: Double, long: Double, userId: String) {
         withContext(Dispatchers.IO) {
             try {
@@ -43,6 +45,9 @@ class PartyRepository(private val database: GameHubDatabase) {
         }
     }
 
+    /**
+     * Creates a new party
+     */
     suspend fun createParty(party: GameParty) {
         withContext(Dispatchers.IO) {
             try {
@@ -80,6 +85,9 @@ class PartyRepository(private val database: GameHubDatabase) {
         }
     }
 
+    /**
+     * Joins a party
+     */
     suspend fun joinParty(partyInteractionDTO: PartyInteractionDTO) {
         withContext(Dispatchers.IO) {
             try {
@@ -117,6 +125,9 @@ class PartyRepository(private val database: GameHubDatabase) {
         }
     }
 
+    /**
+     * Declines a party
+     */
     suspend fun declineParty(partyInteractionDTO: PartyInteractionDTO) {
         withContext(Dispatchers.IO) {
             try {

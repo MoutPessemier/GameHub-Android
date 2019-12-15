@@ -22,6 +22,9 @@ class GameRepository(private val database: GameHubDatabase) {
         it.asDomainModel()
     }
 
+    /**
+     * Gets all the games
+     */
     suspend fun getGames() {
         withContext(Dispatchers.IO) {
             try {

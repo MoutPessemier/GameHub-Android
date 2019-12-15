@@ -26,9 +26,15 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface Auth0ApiService {
+    /**
+     * Gets the user info from Auth0
+     */
     @GET("userinfo")
     fun getAccount(@Header("Authorization") AccessTokenBearer: String): Deferred<Auth0IdDTO>
 
+    /**
+     * gets the user (metadata) from Auth0
+     */
     @GET("/api/v2/users/{id}")
     fun getUser(
         @Header("Authorization") accessJwt: String,
@@ -36,6 +42,9 @@ interface Auth0ApiService {
         @Header("Content-Type") contentType: String = "application/json"
     ): Deferred<Auth0UserDTO>
 
+    /**
+     * Gets the access token for the user
+     */
     @POST("oauth/token")
     fun getAccessToken(
         @Header("Content-Type") contentType: String,

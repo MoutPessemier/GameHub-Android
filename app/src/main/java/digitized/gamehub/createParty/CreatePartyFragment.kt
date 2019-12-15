@@ -99,9 +99,6 @@ class CreatePartyFragment : Fragment() {
         })
 
         binding.btnCreateGamParty.setOnClickListener { view: View ->
-            Timber.d(binding.txtPartyDate.text.toString())
-            Timber.d("hey")
-            Timber.d(binding.txtPartyName.text.toString())
             val succes = viewModel.createParty(
                 binding.txtPartyName.text.toString(),
                 SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(binding.txtPartyDate.text.toString())!!,
@@ -111,9 +108,9 @@ class CreatePartyFragment : Fragment() {
                 binding.txtPartyName.text.clear()
                 binding.txtMaxSize.text.clear()
                 binding.txtPartyDate.text.clear()
+                view.findNavController()
+                    .navigate(CreatePartyFragmentDirections.actionCreatePartyFragmentToCardStackFragment())
             }
-            view.findNavController()
-                .navigate(CreatePartyFragmentDirections.actionCreatePartyFragmentToCardStackFragment())
         }
     }
 }

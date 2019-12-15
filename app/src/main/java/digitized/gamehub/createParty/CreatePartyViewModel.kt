@@ -40,6 +40,9 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
     var currentLocation = LatLng(0.0, 0.0)
 //    var place: Place? = null
 
+    /**
+     * Creates a new party
+     */
     fun createParty(partyName: String, whenDate: Date, maxSize: Int): Boolean {
         val createdParty = GameParty(
             null,

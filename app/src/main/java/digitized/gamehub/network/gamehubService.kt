@@ -29,10 +29,16 @@ private val retrofit = Retrofit.Builder()
 
 interface GameHubAPIService {
     // Game
+    /**
+     * Gets all the games
+     */
     @GET("games")
     fun getAllGames(): Deferred<NetworkGameContainer>
 
     // Party
+    /**
+     * Gets all parties near logged in user
+     */
     @GET("getPartiesNearYou")
     fun getPatiesNearYou(
         @Query("distance") distance: Int,
@@ -41,34 +47,54 @@ interface GameHubAPIService {
         @Query("userId") userId: String
     ): Deferred<NetworkPartyContainer>
 
+    /**
+     * Gets the user joined parties
+     */
     @GET("getJoinedParties")
     fun getJoinedParties(@Query("userId") userId: String): Deferred<NetworkPartyContainer>
 
+    /**
+     * Creates a new party
+     */
     @POST("createParty")
     fun createParty(@Body party: GameParty): Deferred<NetworkParty>
 
+    /**
+     * Joins a party
+     */
     @POST("joinParty")
     fun joinParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
+    /**
+     * Declines a party
+     */
     @POST
     fun declineParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
     // User
+    /**
+     * Checks if the user already exists
+     */
     @GET("doesUserExist")
     fun doesUserExist(@Query("email")email: String): Deferred<Boolean>
 
+    /**
+     * Registers the user in my own backend
+     */
     @POST("register")
     fun register(@Body registerDTO: RegisterDTO): Deferred<NetworkUserContainer>
 
+    /**
+     * Logs the user in
+     */
     @POST("login")
     fun login(@Body loginDTO: LoginDTO): Deferred<NetworkUserContainer>
 
+    /**
+     * Updates a user's account
+     */
     @PUT("updateUser")
     fun updateUser(@Body user: User): Deferred<NetworkUserContainer>
-
-    @DELETE("deleteUser")
-    fun deleteUser(@Body id: String): Deferred<String>
-
 }
 
 object GameHubAPI {

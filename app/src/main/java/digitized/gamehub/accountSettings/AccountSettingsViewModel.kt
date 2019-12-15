@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
+import digitized.gamehub.domain.User
 import digitized.gamehub.repositories.LoginRepository
 import digitized.gamehub.repositories.UserRepository
 import kotlinx.coroutines.CoroutineScope
@@ -22,27 +23,33 @@ class AccountSettingsViewModel(application: Application) : AndroidViewModel(appl
 
     private val database = getInstance(application)
     private val userRepository = UserRepository(database)
-    var loginRepository= LoginRepository(application)
+    private var loginRepository= LoginRepository(application)
 
-    fun updateAccount(email:String, maxDistance: Int){
-        coroutineScope.launch {
-            val user = userRepository.user!!.value!!
-            user.email = email
-            user.maxDistance = maxDistance
-            userRepository.updateAccount(user)
-        }
-    }
+    //var user = loginRepository.user!!
 
-    fun deleteAccount(){
+    /**
+     * Updates the user account
+     */
+    fun updateAccount(fistName:String, lastName: String, email:String, maxDistance: Int){
         coroutineScope.launch {
-            val user = userRepository.user!!.value!!
-            userRepository.deleteAccount(user.id)
+            loginRepository.user!!.firstName = fistName
+            loginRepository.user!!.lastName = lastName
+            loginRepository.user!!.email = email
+            loginRepository.user!!.maxDistance = maxDistance
+            userRepository.updateAccount(loginRepository.user!!)
         }
     }
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    /**
+     * calls the logs the user out
+     */
+    fun logout() {
+        loginRepository.logout()
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

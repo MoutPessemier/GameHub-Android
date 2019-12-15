@@ -27,12 +27,14 @@ class LoginViewModel(val application: Application): ViewModel(){
         )
     }
 
+    /**
+     * Checks if Auth0 still has the credentials of the logged in user
+     */
     fun hasValidCredentials(): Boolean{
         return credentialsManager.hasValidCredentials()
     }
 
     class LoginViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
-
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
                 return LoginViewModel(application) as T

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -21,16 +19,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--            <TextView-->
-            <!--                style="@style/txt_label"-->
-            <!--                android:text="@string/hint_user_name" />-->
+            <TextView
+                style="@style/txt_label"
+                android:text="@string/firstName" />
 
-            <!--            <EditText-->
-            <!--                android:id="@+id/txt_user_name"-->
-            <!--                style="@style/txt_field"-->
-            <!--                android:layout_gravity="center_horizontal"-->
-            <!--                android:autofillHints="@string/hint_user_name"-->
-            <!--                android:inputType="text" />-->
+            <EditText
+                android:id="@+id/txt_firstName"
+                style="@style/txt_field"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/firstName"
+                android:inputType="text" />
+
+            <TextView
+                style="@style/txt_label"
+                android:text="@string/lastName" />
+
+            <EditText
+                android:id="@+id/txt_lastName"
+                style="@style/txt_field"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/lastName"
+                android:inputType="text" />
 
             <TextView
                 style="@style/txt_label"
@@ -42,18 +51,6 @@
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/hint_user_email"
                 android:inputType="textEmailAddress" />
-            <!--    android:text="@{viewModel.currentUser.emaill}"/>-->
-
-            <!--            <TextView-->
-            <!--                style="@style/txt_label"-->
-            <!--                android:text="@string/hint_user_phone" />-->
-
-            <!--            <EditText-->
-            <!--                android:id="@+id/txt_user_phone"-->
-            <!--                style="@style/txt_field"-->
-            <!--                android:layout_gravity="center_horizontal"-->
-            <!--                android:autofillHints="@string/hint_user_phone"-->
-            <!--                android:inputType="phone" />-->
 
             <TextView
                 style="@style/txt_label"
@@ -77,8 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:max="100"
-                    android:min="2"
-                    android:progress="10" />
+                    android:min="2" />
 
                 <TextView
                     android:layout_width="30dp"

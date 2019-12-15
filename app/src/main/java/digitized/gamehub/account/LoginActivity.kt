@@ -53,6 +53,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Redirects to the main activity
+     */
     private fun goToMainActivity() {
         viewModel.credentialsManager.getCredentials(object :
             BaseCallback<Credentials, CredentialsManagerException> {
@@ -70,6 +73,9 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Login method used to log a user in using Auth0
+     */
     private fun login() {
         WebAuthProvider.login(viewModel.auth0)
             .withScheme("demo")
@@ -112,6 +118,9 @@ class LoginActivity : AppCompatActivity() {
             })
     }
 
+    /**
+     * Method used to log a user out using Auth0
+     */
     private fun logout() {
         WebAuthProvider.logout(viewModel.auth0)
             .withScheme("demo")
@@ -121,7 +130,6 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(error: Auth0Exception) {
-                    // Show error to user
                     Toast.makeText(applicationContext, "failed to log user out", Toast.LENGTH_LONG)
                         .show()
                     goToMainActivity()

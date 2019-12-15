@@ -17,10 +17,12 @@ class UserDaoTest {
 
     private var user = UserEntity(
         id = "5db8838eaffe445c66076a88",
+        firstName = "test",
+        lastName = "user",
         email = "testUser@email.com",
-        maxDistance = 10
-        //lat = 51.0538286,
-        //long = 3.7250121
+        maxDistance = 10,
+        latitude = 51.0538286,
+        longitude = 3.7250121
     )
 
     @get:Rule

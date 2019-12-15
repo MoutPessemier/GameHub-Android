@@ -43,7 +43,7 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
         // Glide.with(holder.gameImage).load().into(holder.gameImage)
 
     }
-
+    
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val gameImage: ImageView = view.findViewById(R.id.img_game)
         val gameName: TextView = view.findViewById(R.id.txt_party_name)

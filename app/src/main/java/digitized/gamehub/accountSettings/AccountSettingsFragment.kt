@@ -24,7 +24,6 @@ class AccountSettingsFragment : Fragment() {
 
     private lateinit var binding: AccountSettingsFragmentBinding
     private lateinit var viewModel: AccountSettingsViewModel
-    private lateinit var auth0: Auth0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,12 +42,6 @@ class AccountSettingsFragment : Fragment() {
             .get(AccountSettingsViewModel::class.java)
         binding.viewModel = viewModel
 
-        // Auth0
-        val context = requireContext()
-        auth0 = Auth0(context)
-        auth0.isOIDCConformant = true
-
-
         return binding.root
     }
 
@@ -56,15 +49,21 @@ class AccountSettingsFragment : Fragment() {
         super.onStart()
 
         binding.btnSaveUpdates.setOnClickListener { view ->
-            viewModel.updateAccount(binding.txtUserEmail.text.toString(), binding.maxDistance.progress)
-            view.findNavController().navigate(AccountSettingsFragmentDirections.actionAccountSettingsFragmentToCardStackFragment())
+            viewModel.updateAccount(
+                binding.txtFirstName.text.toString(),
+                binding.txtLastName.text.toString(),
+                binding.txtUserEmail.text.toString(),
+                binding.maxDistance.progress
+            )
+            view.findNavController()
+                .navigate(AccountSettingsFragmentDirections.actionAccountSettingsFragmentToCardStackFragment())
         }
 
         binding.btnLogout.setOnClickListener {
-            viewModel.loginRepository.logout()
+            viewModel.logout()
 
             val loginActivity = Intent(activity, LoginActivity::class.java)
-            loginActivity.putExtra("CLEAR_CREDENTIALS",true)
+            loginActivity.putExtra("CLEAR_CREDENTIALS", true)
             startActivity(loginActivity)
 
             (activity as MainActivity).finish()

@@ -48,4 +48,6 @@
     <string name="max_party_size">Max Party Size</string>
     <string name="party_where_txt">Your current location will be used</string>
     <string name="save_changes">Save Changes</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
 </resources>

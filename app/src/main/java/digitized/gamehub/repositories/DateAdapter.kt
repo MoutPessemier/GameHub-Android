@@ -4,6 +4,9 @@ import com.squareup.moshi.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Custom Date adapter
+ */
 class DateAdapter: JsonAdapter<Date>() {
     @FromJson
     override fun fromJson(reader: JsonReader): Date? {

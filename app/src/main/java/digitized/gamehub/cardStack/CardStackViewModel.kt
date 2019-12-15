@@ -40,6 +40,10 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    /**
+     * Gets the parties for a user that are not yet declined or joined by him
+     * and within the max distance given up by the user
+     */
     private fun getPartiesNearYou(distance: Int, lat: Double, long: Double, userId: String) {
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
@@ -67,6 +71,9 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    /**
+     * Join a party
+     */
     fun joinParty() {
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
@@ -80,6 +87,9 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    /**
+     * Decline a party
+     */
     fun declineParty() {
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING

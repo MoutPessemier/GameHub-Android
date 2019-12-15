@@ -24,10 +24,6 @@
             app:destination="@id/card_stack_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/party_info_fragment"
-        android:name="digitized.gamehub.partyInfo.GamePartyInfoFragment"
-        android:label="Party Info" />
-    <fragment
         android:id="@+id/map_fragment"
         android:name="digitized.gamehub.map.MapFragment"
         android:label="Map" />

@@ -13,6 +13,7 @@ import digitized.gamehub.network.DTO.asDomainModel
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.asDomainModel
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.lang.Exception
 import java.net.SocketTimeoutException
@@ -25,6 +26,9 @@ class LoginRepository(val context: Context) {
     var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     var editor: SharedPreferences.Editor = sharedPreferences.edit()
 
+    /**
+     * Log the user in, get his metadata and register or log him in into my backend
+     */
     fun login(accessToken: String) {
         runBlocking {
             var auth0id = Auth0API.service.getAccount("Bearer $accessToken").await()
@@ -92,6 +96,9 @@ class LoginRepository(val context: Context) {
         }
     }
 
+    /**
+     * Deletes the content of the logged in user
+     */
     fun logout() {
         user = null
         editor.apply {
@@ -101,6 +108,9 @@ class LoginRepository(val context: Context) {
         editor.commit()
     }
 
+    /**
+     * Sets the content of the logged in user
+     */
     private fun setLoggedInUser(user: User) {
         this.user = user
         editor.apply {

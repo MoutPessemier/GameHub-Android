@@ -17,6 +17,10 @@ abstract class GameHubDatabase : RoomDatabase() {
         @Volatile
         private lateinit var INSTANCE: GameHubDatabase
 
+        /**
+         * Gives a singleton object of the database back
+         * This method is synchronized that way only one object will ever be created
+         */
         fun getInstance(context: Context): GameHubDatabase {
             synchronized(this) {
                 if (!::INSTANCE.isInitialized) {

@@ -10,16 +10,25 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class Converters {
+    /**
+     * Get date from string
+     */
     @TypeConverter
     fun dateFromString(dateString: String): Date? {
         return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(dateString)
     }
 
+    /**
+     * Turn date into string
+     */
     @TypeConverter
     fun dateToString(date: Date): String {
         return SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(date)
     }
 
+    /**
+     * Turn gametype into string
+     */
     @TypeConverter
     fun gameTypeToString(type: GameType): String {
         return when (type) {
@@ -33,6 +42,9 @@ class Converters {
         }
     }
 
+    /**
+     * Get gametype from string
+     */
     @TypeConverter
     fun stringToGameType(gameTypeString: String): GameType {
         return when (gameTypeString) {
@@ -46,22 +58,34 @@ class Converters {
         }
     }
 
+    /**
+     * Turn array into string
+     */
     @TypeConverter
     fun stringArrayToString(array: Array<String>): String {
         return array.joinToString(",")
     }
 
+    /**
+     * Turn string into array
+     */
     @TypeConverter
     fun stringToStringArray(string: String): Array<String> {
         return string.split(",", ignoreCase = true).map { a -> a.trim() }.toTypedArray()
     }
 
+    /**
+     * Only save the coordinates in the database
+     */
     @TypeConverter
     fun locationToString(location: Location): String {
         val coords = "${location.coordinates[0]},${location.coordinates[1]},"
         return coords
     }
 
+    /**
+     * Get the coordinates to a location from the database
+     */
     @TypeConverter
     fun stringToLocation(string: String): Location {
         val coords = string.split(",").filter { !it.isEmpty() }.map { it.toDouble() }.toDoubleArray()

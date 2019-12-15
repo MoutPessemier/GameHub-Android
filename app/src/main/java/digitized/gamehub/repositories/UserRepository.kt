@@ -26,6 +26,9 @@ class UserRepository(private val database: GameHubDatabase) {
         }
     }
 
+    /**
+     * Updates the user's account
+     */
     suspend fun updateAccount(user: User) {
         withContext(Dispatchers.IO) {
             try {
@@ -36,21 +39,6 @@ class UserRepository(private val database: GameHubDatabase) {
                 val usr = GameHubAPI.service.updateUser(user).await()
                 val entityUser = usr.asDatabaseModel()
                 database.userDao.update(entityUser)
-            } catch (e: Exception) {
-                Timber.d(e)
-                e.printStackTrace()
-            }
-        }
-    }
-
-    suspend fun deleteAccount(id: String) {
-        withContext(Dispatchers.IO) {
-            try {
-                GameHubAPI.service.deleteUser(id).await()
-                database.userDao.clear()
-            } catch (e: SocketTimeoutException) {
-                GameHubAPI.service.deleteUser(id).await()
-                database.userDao.clear()
             } catch (e: Exception) {
                 Timber.d(e)
                 e.printStackTrace()

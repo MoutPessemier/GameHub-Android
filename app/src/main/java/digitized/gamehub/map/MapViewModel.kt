@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.lang.Exception
 
 class MapViewModel(application: Application) : AndroidViewModel(application) {
@@ -25,13 +26,18 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
 
     val parties = partyRepository.joinedParties
 
-    fun updateUserLocation(lat: Double?, long: Double?) {
+    /**
+     * Writes the new location to the database
+     */
+    fun updateUserLocation(latitude: Double?, longitude: Double?) {
         coroutineScope.launch {
             try {
-                val user = userRepository.user!!.value!!
-                //userRepository.updateAccount(user, lat, long)
+                var user = userRepository.user!!.value!!
+                user.latitude = latitude
+                user.longitude = longitude
+                userRepository.updateAccount(user)
             } catch (e: Exception) {
-
+                Timber.d(e)
             }
         }
     }

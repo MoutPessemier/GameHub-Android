@@ -63,18 +63,22 @@ class PartyDaoTest {
 
     private val user = UserEntity(
         id = "5db8838eaffe445c66076a88",
+        firstName = "test",
+        lastName = "User",
         email = "testUser@email.com",
-        maxDistance = 10
-        //lat = 51.0538286,
-        //long = 3.7250121
+        maxDistance = 10,
+        latitude = 51.0538286,
+        longitude = 3.7250121
     )
 
     private val user2 = UserEntity(
         id = "5db8838eaffe445c66076a99",
+        firstName = "test",
+        lastName = "User2",
         email = "testUser2@email.com",
-        maxDistance = 25
-        //lat = 51.0538286,
-        //long = 3.7250121
+        maxDistance = 25,
+        latitude = 51.0538286,
+        longitude = 3.7250121
     )
 
     @get:Rule
@@ -131,7 +135,7 @@ class PartyDaoTest {
 
     @Test
     fun testJoinParty() {
-        party1.participants.plus("5db8838eaffe445c66076a99")
+        party1.participants = party1.participants.plus("5db8838eaffe445c66076a99")
         partyDao.update(party1)
         val party = getValue(partyDao.getParty(party1.id))
         Assert.assertThat(party.participants.size, Matchers.equalTo(2))
@@ -141,11 +145,11 @@ class PartyDaoTest {
 
     @Test
     fun testDeclineParty() {
-        party1.declines.plus("5db8838eaffe445c66076a99")
+        party1.declines[0] = "5db8838eaffe445c66076a99"
         partyDao.update(party1)
         val party = getValue(partyDao.getParty(party1.id))
         Assert.assertThat(party.participants.size, Matchers.equalTo(1))
-        Assert.assertThat(party.participants[0], Matchers.equalTo("5db8838eaffe445c66076a99"))
+        Assert.assertThat(party.declines[0], Matchers.equalTo("5db8838eaffe445c66076a99"))
     }
 
     @Test

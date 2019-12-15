@@ -41,7 +41,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     private lateinit var viewModel: MapViewModel
     private lateinit var locationManager: LocationManager
 
-
+    /**
+     * The permission request code needed to let google maps function
+     */
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
@@ -87,6 +89,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
     }
 
+    /**
+     * Called when the map is loaded in
+     */
     override fun onMapReady(map: GoogleMap?) {
         this.map = map!!
 
@@ -98,6 +103,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     }
 
 
+    /**
+     * Configures the map and asks for permissoin to use location
+     */
     private fun configureMap() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -124,6 +132,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         }
     }
 
+    /**
+     * Places different markers on the map using the coordinates of a party
+     */
     private fun placeMarkersOnMap(map: GoogleMap) {
         viewModel.parties.observe(this, Observer { it ->
             it.forEach {
@@ -137,20 +148,33 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         })
     }
 
-    // EXTRA: onclick --> navigate to detail screen
+
+    /**
+     * What happens if a marker is tapped and if it is supported
+     * default = false
+     * false = show name of marker on tap
+     */
     override fun onMarkerClick(p0: Marker?) = false
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
         //deprecated
     }
 
+    /**
+     * Called if permission is granted to use location service
+     */
     override fun onProviderEnabled(provider: String?) {}
 
+    /**
+     * Called if no permission is gratned to use location service
+     */
     override fun onProviderDisabled(provider: String?) {
         Toast.makeText(context, "Enable your location please.", Toast.LENGTH_LONG).show()
     }
 
-    // updates the position
+    /**
+     * Called each interval the location changes, updates user's current location
+     */
     override fun onLocationChanged(location: Location?) {
         val currentLocationLat = location?.latitude
         val currentLocationLong = location?.longitude
