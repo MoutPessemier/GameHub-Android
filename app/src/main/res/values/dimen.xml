@@ -4,6 +4,11 @@
     <dimen name="title_width">350dp</dimen>
     <dimen name="title_height">95dp</dimen>
 
+    <dimen name="title_text_size_tablet">45sp</dimen>
+    <dimen name="title_width_tablet">500dp</dimen>
+    <dimen name="title_height_tablet">95dp</dimen>
+    <dimen name="margin_top_title_tablet">55dp</dimen>
+
     <dimen name="margin_top_large">48dp</dimen>
 
     <dimen name="subtitle_text_size">25sp</dimen>
@@ -12,37 +17,58 @@
 
     <dimen name="card_height">500dp</dimen>
     <dimen name="card_width">300dp</dimen>
+    <dimen name="card_height_tablet">800dp</dimen>
+    <dimen name="card_width_tablet">500dp</dimen>
     <dimen name="card_spacing">8dp</dimen>
     <dimen name="card_border_radius">20dp</dimen>
     <dimen name="card_margin_top">75dp</dimen>
 
     <dimen name="card_title_height">55dp</dimen>
+    <dimen name="card_title_height_tablet">95dp</dimen>
     <dimen name="card_title_text_size">25sp</dimen>
+    <dimen name="card_title_text_size_tablet">35sp</dimen>
     <dimen name="card_game_size">40dp</dimen>
+    <dimen name="card_game_size_tablet">60dp</dimen>
     <dimen name="card_game_text_size">25sp</dimen>
+    <dimen name="card_game_text_size_tablet">35sp</dimen>
     <dimen name="card_description_height">100dp</dimen>
+    <dimen name="card_description_height_tablet">150dp</dimen>
     <dimen name="card_description_text_size">20sp</dimen>
+    <dimen name="card_description_text_size_tablet">25sp</dimen>
     <dimen name="card_info_height">30dp</dimen>
+    <dimen name="card_info_height_tablet">50dp</dimen>
     <dimen name="card_info_text_size">15sp</dimen>
+    <dimen name="card_info_text_size_tablet">20sp</dimen>
 
     <dimen name="textfield_width">300dp</dimen>
     <dimen name="textfield_height">45dp</dimen>
     <dimen name="textfield_textsize">20sp</dimen>
 
+    <dimen name="textfield_width_tablet">500dp</dimen>
+    <dimen name="textfield_height_tablet">80dp</dimen>
+    <dimen name="textfield_textsize_tablet">35sp</dimen>
+
     <dimen name="button_width_large">200dp</dimen>
     <dimen name="button_height_large">45dp</dimen>
+    <dimen name="button_width_large_tablet">350dp</dimen>
+    <dimen name="button_height_large_tablet">50dp</dimen>
     <dimen name="button_width_medium">150dp</dimen>
     <dimen name="button_width_small">100dp</dimen>
 
     <dimen name="margin_top_general">15dp</dimen>
     <dimen name="margin_top_title">35dp</dimen>
     <dimen name="margin_top_label">8dp</dimen>
+    <dimen name="margin_top_label_tablet">16dp</dimen>
     <dimen name="margin_top_subtitle">20dp</dimen>
     <dimen name="margin_bottom_general">20dp</dimen>
     <dimen name="label_space">5dp</dimen>
+    <dimen name="label_space_tablet">12dp</dimen>
 
     <dimen name="spinner_width">300dp</dimen>
     <dimen name="spinner_height">45dp</dimen>
+
+    <dimen name="spinner_width_tablet">500dp</dimen>
+    <dimen name="spinner_height_tablet">80dp</dimen>
 
     <dimen name="card_item_margin">4dp</dimen>
     <dimen name="card_item_text_margin">8dp</dimen>

@@ -67,4 +67,63 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
+    <style name="txt_field_tablet" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:layout_width">@dimen/textfield_width_tablet</item>
+        <item name="android:layout_height">@dimen/textfield_height_tablet</item>
+        <item name="android:textSize">@dimen/textfield_textsize_tablet</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="txt_label_tablet" parent="@style/Widget.AppCompat.TextView" >
+        <item name="android:layout_width">@dimen/textfield_width_tablet</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/label_space_tablet</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_label_tablet</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="btn_large_primary_tablet" parent="@style/Widget.AppCompat.Button">
+        <item name="android:layout_width">@dimen/button_width_large_tablet</item>
+        <item name="android:layout_height">@dimen/button_height_large_tablet</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/snow_white</item>
+        <item name="android:radius">@dimen/card_border_radius</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="txt_validation_tablet" parent="txt_label">
+        <item name="android:layout_marginTop">@dimen/label_space</item>
+        <item name="android:textColor">@color/ruby_red</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="txt_title_tablet" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_width">@dimen/title_width_tablet</item>
+        <item name="android:layout_height">@dimen/title_height_tablet</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/title_text_size_tablet</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_title_tablet</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="txt_subtitle_tablet" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_width">@dimen/subtitle_width</item>
+        <item name="android:layout_height">@dimen/subtitle_height</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/subtitle_text_size</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_subtitle</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="custom_spinner_tablet" parent="@style/Widget.AppCompat.Spinner">
+        <item name="android:layout_width">@dimen/spinner_width_tablet</item>
+        <item name="android:layout_height">@dimen/spinner_height_tablet</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>

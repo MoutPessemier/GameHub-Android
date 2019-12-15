@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="digitized.gamehub.accountSettings.AccountSettingsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/account_settings_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/txt_label_tablet"
+                    android:text="@string/firstName" />
+
+                <EditText
+                    android:id="@+id/txt_firstName"
+                    style="@style/txt_field_tablet"
+                    android:layout_gravity="center_horizontal"
+                    android:autofillHints="@string/firstName"
+                    android:inputType="text" />
+
+                <TextView
+                    style="@style/txt_label_tablet"
+                    android:text="@string/lastName" />
+
+                <EditText
+                    android:id="@+id/txt_lastName"
+                    style="@style/txt_field_tablet"
+                    android:layout_gravity="center_horizontal"
+                    android:autofillHints="@string/lastName"
+                    android:inputType="text" />
+
+                <TextView
+                    style="@style/txt_label_tablet"
+                    android:text="@string/hint_user_email" />
+
+                <EditText
+                    android:id="@+id/txt_user_email"
+                    style="@style/txt_field_tablet"
+                    android:layout_gravity="center_horizontal"
+                    android:autofillHints="@string/hint_user_email"
+                    android:inputType="textEmailAddress" />
+
+                <TextView
+                    style="@style/txt_label_tablet"
+                    android:text="@string/max_distance" />
+
+                <LinearLayout
+                    android:layout_width="450dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_2"
+                        android:textAlignment="viewEnd" />
+
+                    <SeekBar
+                        android:id="@+id/maxDistance"
+                        android:layout_width="360dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:max="100"
+                        android:min="2" />
+
+                    <TextView
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_100" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_save_updates"
+                    style="@style/btn_large_primary_tablet"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_top_large"
+                    android:background="@drawable/custom_button_green"
+                    android:text="@string/save_changes" />
+
+                <Button
+                    android:id="@+id/btn_logout"
+                    style="@style/btn_large_primary_tablet"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_top_general"
+                    android:background="@drawable/custom_button_green"
+                    android:text="@string/logout" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
