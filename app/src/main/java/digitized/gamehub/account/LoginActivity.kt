@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.auth0.android.Auth0
+import androidx.lifecycle.ViewModelProviders
 import com.auth0.android.Auth0Exception
 import com.auth0.android.authentication.AuthenticationException
+import com.auth0.android.authentication.storage.CredentialsManagerException
+import com.auth0.android.callback.BaseCallback
 import com.auth0.android.provider.AuthCallback
 import com.auth0.android.provider.VoidCallback
 import com.auth0.android.provider.WebAuthProvider
@@ -16,27 +18,60 @@ import com.auth0.android.result.Credentials
 import digitized.gamehub.MainActivity
 import digitized.gamehub.R
 import digitized.gamehub.databinding.ActivityLoginBinding
+import digitized.gamehub.repositories.LoginRepository
 import timber.log.Timber
 
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var auth0: Auth0
+    private lateinit var loginRepository: LoginRepository
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding =
-            DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
-        auth0 = Auth0(this)
-        auth0.isOIDCConformant = true
-        login()
+        binding =
+            DataBindingUtil.setContentView(this, R.layout.activity_login)
+        loginRepository = LoginRepository(this)
+        viewModel = ViewModelProviders.of(this, LoginViewModel.LoginViewModelFactory(application))
+            .get(LoginViewModel::class.java)
+
+        if (intent.getBooleanExtra("CLEAR_CREDENTIALS", false)) {
+            logout()
+            return
+        }
+
+        if (viewModel.hasValidCredentials()) {
+            goToMainActivity()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
         binding.btnSignup.setOnClickListener {
             login()
         }
     }
 
+    private fun goToMainActivity() {
+        viewModel.credentialsManager.getCredentials(object :
+            BaseCallback<Credentials, CredentialsManagerException> {
+
+            override fun onSuccess(credentials: Credentials?) {
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                intent.putExtra("ACCESS_TOKEN", credentials!!.accessToken)
+                startActivity(intent)
+                finish()
+            }
+
+            override fun onFailure(error: CredentialsManagerException?) {
+                finish()
+            }
+        })
+    }
+
     private fun login() {
-        WebAuthProvider.login(auth0)
+        WebAuthProvider.login(viewModel.auth0)
             .withScheme("demo")
             .withAudience(
                 String.format(
@@ -66,36 +101,31 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onSuccess(credentials: Credentials) {
-                    // Store credentials
-                    Timber.d(credentials.accessToken)
-                    Timber.d(credentials.idToken)
-                    Timber.d(credentials.refreshToken)
-                    Timber.d(credentials.scope)
-                    Timber.d(credentials.type)
-                    val mainActivityIntent = Intent(application, MainActivity::class.java)
-                    startActivity(mainActivityIntent)
-                    runOnUiThread {
-                        Toast.makeText(
-                            applicationContext,
-                            "Succesfully Logged In!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    try {
+                        loginRepository.login(credentials.accessToken!!)
+                        viewModel.credentialsManager.saveCredentials(credentials)
+                        goToMainActivity()
+                    } catch (e: Exception) {
+                        Timber.d(e)
                     }
                 }
             })
     }
 
     private fun logout() {
-        WebAuthProvider.logout(auth0)
+        WebAuthProvider.logout(viewModel.auth0)
             .withScheme("demo")
             .start(this, object : VoidCallback {
-                override fun onSuccess(payload: Void) {}
+                override fun onSuccess(payload: Void?) {
+                    viewModel.credentialsManager.clearCredentials()
+                }
+
                 override fun onFailure(error: Auth0Exception) {
                     // Show error to user
+                    Toast.makeText(applicationContext, "failed to log user out", Toast.LENGTH_LONG)
+                        .show()
+                    goToMainActivity()
                 }
             })
     }
-
-
 }
-

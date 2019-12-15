@@ -14,6 +14,7 @@ import com.auth0.android.Auth0
 import com.auth0.android.Auth0Exception
 import com.auth0.android.provider.VoidCallback
 import com.auth0.android.provider.WebAuthProvider
+import digitized.gamehub.MainActivity
 import digitized.gamehub.R
 import digitized.gamehub.account.LoginActivity
 import digitized.gamehub.databinding.AccountSettingsFragmentBinding
@@ -60,30 +61,13 @@ class AccountSettingsFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            logout()
+            viewModel.loginRepository.logout()
+
+            val loginActivity = Intent(activity, LoginActivity::class.java)
+            loginActivity.putExtra("CLEAR_CREDENTIALS",true)
+            startActivity(loginActivity)
+
+            (activity as MainActivity).finish()
         }
-
-        binding.btnRemoveAccount.setOnClickListener {
-            viewModel.deleteAccount()
-            logout()
-        }
-    }
-
-    private fun logout() {
-        WebAuthProvider.logout(auth0)
-            .withScheme("demo")
-            .start(context, object : VoidCallback {
-                override fun onSuccess(payload: Void) {
-                    //Timber.d(payload.toString())
-                    val intent = Intent(context, LoginActivity::class.java)
-                    startActivity(intent)
-                }
-
-                override fun onFailure(error: Auth0Exception) {
-                    // Show error to user
-                    Timber.d(error)
-                    Toast.makeText(context, error.message, Toast.LENGTH_LONG).show()
-                }
-            })
     }
 }

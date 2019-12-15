@@ -102,14 +102,6 @@
                 android:background="@drawable/custom_button_green"
                 android:text="@string/logout" />
 
-            <Button
-                android:id="@+id/btn_remove_account"
-                style="@style/btn_large_primary"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_top_general"
-                android:layout_marginBottom="@dimen/margin_bottom_general"
-                android:background="@drawable/custom_button_green"
-                android:text="@string/remove_account" />
         </LinearLayout>
     </ScrollView>
 </layout>

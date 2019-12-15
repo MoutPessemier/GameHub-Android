@@ -1,4 +1,4 @@
-package digitized.gamehub.network
+package digitized.gamehub.network.DTO
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
