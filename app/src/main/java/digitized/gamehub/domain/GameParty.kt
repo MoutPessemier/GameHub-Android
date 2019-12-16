@@ -1,6 +1,7 @@
 package digitized.gamehub.domain
 
 import android.os.Parcelable
+import digitized.gamehub.database.PartyEntity
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -15,3 +16,7 @@ data class GameParty(
     val gameId: String,
     val location: Location
 ) : Parcelable
+
+fun GameParty.asDatabaseModel(): PartyEntity {
+    return PartyEntity(id!!, name, date, maxSize, participants, declines, gameId, location)
+}

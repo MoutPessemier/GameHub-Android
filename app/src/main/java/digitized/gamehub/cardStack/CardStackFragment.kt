@@ -91,7 +91,7 @@ class CardStackFragment : Fragment(), CardStackListener {
         if (direction?.name == "right") {
             //viewModel.joinParty()
         }
-        if (manager.topPosition == 5) {
+        if (manager.topPosition == adapter.itemCount - 5) {
             //paginate()
         }
     }
@@ -163,7 +163,7 @@ class CardStackFragment : Fragment(), CardStackListener {
         manager.setScaleInterval(0.95f)
         manager.setSwipeThreshold(0.3f)
         manager.setMaxDegree(20.0f)
-        manager.setDirections(Direction.FREEDOM)
+        manager.setDirections(Direction.HORIZONTAL)
         manager.setCanScrollHorizontal(true)
         manager.setCanScrollVertical(true)
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
@@ -180,7 +180,7 @@ class CardStackFragment : Fragment(), CardStackListener {
      */
     private fun paginate() {
         var old = adapter.getParties()
-        viewModel.refreshPartiesNearYou()
+        //viewModel.refreshPartiesNearYou()
         val new = old.plus(adapter.getParties())
         val callback = PartyDiffCallback(old, new)
         val result = DiffUtil.calculateDiff(callback)

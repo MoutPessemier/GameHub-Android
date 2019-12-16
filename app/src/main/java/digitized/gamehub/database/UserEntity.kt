@@ -17,3 +17,9 @@ data class UserEntity(
     var latitude: Double?,
     var longitude: Double?
 )
+
+fun UserEntity.asDomainModel(): User {
+    return User(
+        id, firstName, lastName, email, maxDistance, latitude, longitude
+    )
+}

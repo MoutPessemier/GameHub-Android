@@ -164,4 +164,10 @@ class PartyRepository(private val database: GameHubDatabase) {
             }
         }
     }
+
+    suspend fun clearDb() {
+        withContext(Dispatchers.IO) {
+            database.partyDao.clearAll()
+        }
+    }
 }

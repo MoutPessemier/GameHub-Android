@@ -57,7 +57,6 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
                 doubleArrayOf(currentLocation.latitude, currentLocation.longitude)
             )
         )
-        Timber.d(createdParty.toString())
         try {
             coroutineScope.launch {
                 _status.value = ApiStatus.LOADING

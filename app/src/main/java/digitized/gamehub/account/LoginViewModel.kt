@@ -1,6 +1,5 @@
 package digitized.gamehub.account
 
-import digitized.gamehub.repositories.LoginRepository
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -8,12 +7,15 @@ import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationAPIClient
 import com.auth0.android.authentication.storage.SecureCredentialsManager
 import com.auth0.android.authentication.storage.SharedPreferencesStorage
+import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
+import digitized.gamehub.repositories.LoginRepository
 
 class LoginViewModel(val application: Application): ViewModel(){
 
-    var loginRepository: LoginRepository = LoginRepository(application)
     var auth0: Auth0 = Auth0(application)
     var credentialsManager: SecureCredentialsManager
+    private val database = getInstance(application)
+    private var loginRepository =  LoginRepository(application,database)
 
     init {
 
@@ -32,6 +34,10 @@ class LoginViewModel(val application: Application): ViewModel(){
      */
     fun hasValidCredentials(): Boolean{
         return credentialsManager.hasValidCredentials()
+    }
+
+    fun login(accessToken: String) {
+        loginRepository.login(accessToken)
     }
 
     class LoginViewModelFactory(private val application: Application) : ViewModelProvider.Factory {

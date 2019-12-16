@@ -50,4 +50,5 @@
     <string name="save_changes">Save Changes</string>
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>
+    <string name="date_format">Conform to the format of yyyy-mm-dd</string>
 </resources>

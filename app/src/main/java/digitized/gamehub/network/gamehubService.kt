@@ -27,14 +27,12 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface GameHubAPIService {
-    // Game
     /**
      * Gets all the games
      */
     @GET("games")
     fun getAllGames(): Deferred<NetworkGameContainer>
 
-    // Party
     /**
      * Gets all parties near logged in user
      */
@@ -70,7 +68,6 @@ interface GameHubAPIService {
     @POST
     fun declineParty(@Body partyInteractionDTO: PartyInteractionDTO): Deferred<NetworkParty>
 
-    // User
     /**
      * Checks if the user already exists
      */

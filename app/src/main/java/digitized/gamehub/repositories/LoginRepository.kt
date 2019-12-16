@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import digitized.gamehub.R
+import digitized.gamehub.database.GameHubDatabase
 import digitized.gamehub.domain.User
 import digitized.gamehub.network.AccessTokenRequest
 import digitized.gamehub.network.Auth0API
@@ -12,19 +13,20 @@ import digitized.gamehub.network.DTO.RegisterDTO
 import digitized.gamehub.network.DTO.asDomainModel
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.asDomainModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.lang.Exception
 import java.net.SocketTimeoutException
 
-class LoginRepository(val context: Context) {
-
-    var user: User? = null
-        private set
+class LoginRepository(val context: Context, val database: GameHubDatabase) {
 
     var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     var editor: SharedPreferences.Editor = sharedPreferences.edit()
+    private val userRepository = UserRepository(database)
+    private val gameRepository = GameRepository(database)
+    private val partyRepository = PartyRepository(database)
 
     /**
      * Log the user in, get his metadata and register or log him in into my backend
@@ -42,7 +44,8 @@ class LoginRepository(val context: Context) {
 
             var accessJWT = Auth0API.service.getAccessToken("application/json", body).await()
 
-            var currentUser = Auth0API.service.getUser("Bearer " + accessJWT.access_token, auth0id.sub).await()
+            var currentUser =
+                Auth0API.service.getUser("Bearer " + accessJWT.access_token, auth0id.sub).await()
 
             val user = currentUser.asDomainModel()
 
@@ -61,9 +64,11 @@ class LoginRepository(val context: Context) {
                 try {
                     val nwuser = GameHubAPI.service.login(loginDTO).await()
                     setLoggedInUser(nwuser.asDomainModel())
+                    // userRepository.insertUser(nwuser.asDomainModel())
                 } catch (e: SocketTimeoutException) {
                     val nwuser = GameHubAPI.service.login(loginDTO).await()
                     setLoggedInUser(nwuser.asDomainModel())
+                    // userRepository.insertUser(nwuser.asDomainModel())
                 } catch (e: Exception) {
                     Timber.d(e)
                     e.printStackTrace()
@@ -78,6 +83,7 @@ class LoginRepository(val context: Context) {
                         )
                     ).await()
                     setLoggedInUser(nwuser.asDomainModel())
+                    // userRepository.insertUser(nwuser.asDomainModel())
                 } catch (e: SocketTimeoutException) {
                     val nwuser = GameHubAPI.service.register(
                         RegisterDTO(
@@ -87,6 +93,7 @@ class LoginRepository(val context: Context) {
                         )
                     ).await()
                     setLoggedInUser(nwuser.asDomainModel())
+                    // userRepository.insertUser(nwuser.asDomainModel())
                 } catch (e: Exception) {
                     Timber.d(e)
                     e.printStackTrace()
@@ -100,7 +107,11 @@ class LoginRepository(val context: Context) {
      * Deletes the content of the logged in user
      */
     fun logout() {
-        user = null
+        runBlocking {
+            userRepository.clearDb()
+            partyRepository.clearDb()
+            gameRepository.clearDb()
+        }
         editor.apply {
             putString("userId", "")
             putString("displayName", "")
@@ -112,7 +123,6 @@ class LoginRepository(val context: Context) {
      * Sets the content of the logged in user
      */
     private fun setLoggedInUser(user: User) {
-        this.user = user
         editor.apply {
             putBoolean("loggedIn", true)
             putString("userId", user.id)

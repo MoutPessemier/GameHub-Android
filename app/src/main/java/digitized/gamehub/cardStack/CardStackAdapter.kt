@@ -22,14 +22,12 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Timber.i("Created a ViewHolder")
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.card_stack_card_item, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        Timber.i("Size ${parties.size}")
         return parties.size
     }
 
@@ -45,11 +43,11 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     }
     
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val gameImage: ImageView = view.findViewById(R.id.img_game)
-        val gameName: TextView = view.findViewById(R.id.txt_party_name)
-        val gameDescription: TextView = view.findViewById(R.id.txt_game_description)
-        val partyWhen: TextView = view.findViewById(R.id.txt_party_when)
-        // val partyWhere: TextView = view.findViewById(R.id.txt_party_where)
+        //val gameImage: ImageView = view.findViewById(R.id.img_game_card)
+        val gameName: TextView = view.findViewById(R.id.txt_party_name_card)
+        val gameDescription: TextView = view.findViewById(R.id.txt_game_description_card)
+        val partyWhen: TextView = view.findViewById(R.id.txt_party_when_card)
+        // val partyWhere: TextView = view.findViewById(R.id.txt_party_where_card)
     }
 
     fun setParties(parties: List<GameParty>) {

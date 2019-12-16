@@ -2,7 +2,9 @@ package digitized.gamehub.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import digitized.gamehub.database.GameHubDatabase
+import digitized.gamehub.database.asDomainModel
 import digitized.gamehub.domain.User
 import digitized.gamehub.domain.asDatabaseModel
 import digitized.gamehub.network.GameHubAPI
@@ -15,10 +17,13 @@ import java.net.SocketTimeoutException
 
 class UserRepository(private val database: GameHubDatabase) {
 
-    private var _user: MutableLiveData<User>? = null
-    val user: LiveData<User>?
-        get() = _user
+    val user = Transformations.map(database.userDao.getUser()) {
+        it.asDomainModel()
+    }
 
+    /**
+     * Inserts the logged in user into the database
+     */
     suspend fun insertUser(user: User) {
         withContext(Dispatchers.IO) {
             val entityUser = user.asDatabaseModel()
@@ -43,6 +48,12 @@ class UserRepository(private val database: GameHubDatabase) {
                 Timber.d(e)
                 e.printStackTrace()
             }
+        }
+    }
+
+    suspend fun clearDb() {
+        withContext(Dispatchers.IO) {
+            database.userDao.clear()
         }
     }
 }

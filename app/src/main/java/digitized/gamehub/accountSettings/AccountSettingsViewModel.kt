@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class AccountSettingsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,20 +24,20 @@ class AccountSettingsViewModel(application: Application) : AndroidViewModel(appl
 
     private val database = getInstance(application)
     private val userRepository = UserRepository(database)
-    private var loginRepository= LoginRepository(application)
-
-    //var user = loginRepository.user!!
+    private var loginRepository= LoginRepository(application, database)
+    val user = userRepository.user
+    var usr: User? = null
 
     /**
      * Updates the user account
      */
-    fun updateAccount(fistName:String, lastName: String, email:String, maxDistance: Int){
+    fun updateAccount(firstName:String, lastName: String, email:String, maxDistance: Int){
         coroutineScope.launch {
-            loginRepository.user!!.firstName = fistName
-            loginRepository.user!!.lastName = lastName
-            loginRepository.user!!.email = email
-            loginRepository.user!!.maxDistance = maxDistance
-            userRepository.updateAccount(loginRepository.user!!)
+            usr!!.firstName = firstName
+            usr!!.lastName = lastName
+            usr!!.email = email
+            usr!!.maxDistance = maxDistance
+            userRepository.updateAccount(usr!!)
         }
     }
 

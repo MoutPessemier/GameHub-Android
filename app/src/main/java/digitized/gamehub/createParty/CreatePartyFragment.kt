@@ -98,7 +98,7 @@ class CreatePartyFragment : Fragment() {
             spinnerAdapter.addAll(it.map { game -> game.name })
         })
 
-        binding.btnCreateGamParty.setOnClickListener { view: View ->
+        binding.btnCreateGameParty.setOnClickListener { view: View ->
             val succes = viewModel.createParty(
                 binding.txtPartyName.text.toString(),
                 SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(binding.txtPartyDate.text.toString())!!,

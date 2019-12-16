@@ -83,12 +83,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_party_date_label" />
 
             <TextView
+                android:id="@+id/subscript"
+                style="@style/txt_subscript_tablet"
+                android:text="@string/date_format"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_party_date" />
+
+            <TextView
                 android:id="@+id/txt_max_size_label"
                 style="@style/txt_label_tablet"
                 android:text="@string/max_party_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_date" />
+                app:layout_constraintTop_toBottomOf="@+id/subscript" />
 
             <EditText
                 android:id="@+id/txt_max_size"
@@ -119,7 +127,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_party_where_label" />
 
             <Button
-                android:id="@+id/btn_create_gam_party"
+                android:id="@+id/btn_create_game_party"
                 style="@style/btn_large_primary_tablet"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"

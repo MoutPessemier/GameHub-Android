@@ -28,7 +28,8 @@
                 style="@style/txt_field"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/firstName"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="16sp" />
 
             <TextView
                 style="@style/txt_label"
@@ -39,7 +40,8 @@
                 style="@style/txt_field"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/lastName"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="16sp" />
 
             <TextView
                 style="@style/txt_label"
@@ -50,7 +52,8 @@
                 style="@style/txt_field"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="@string/hint_user_email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textSize="16sp" />
 
             <TextView
                 style="@style/txt_label"

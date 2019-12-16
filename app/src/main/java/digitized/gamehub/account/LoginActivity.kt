@@ -24,7 +24,6 @@ import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var loginRepository: LoginRepository
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
 
@@ -32,7 +31,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =
             DataBindingUtil.setContentView(this, R.layout.activity_login)
-        loginRepository = LoginRepository(this)
         viewModel = ViewModelProviders.of(this, LoginViewModel.LoginViewModelFactory(application))
             .get(LoginViewModel::class.java)
 
@@ -108,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onSuccess(credentials: Credentials) {
                     try {
-                        loginRepository.login(credentials.accessToken!!)
+                        viewModel.login(credentials.accessToken!!)
                         viewModel.credentialsManager.saveCredentials(credentials)
                         goToMainActivity()
                     } catch (e: Exception) {

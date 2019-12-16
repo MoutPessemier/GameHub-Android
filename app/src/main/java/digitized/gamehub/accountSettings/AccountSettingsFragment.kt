@@ -2,12 +2,14 @@ package digitized.gamehub.accountSettings
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.auth0.android.Auth0
@@ -18,6 +20,7 @@ import digitized.gamehub.MainActivity
 import digitized.gamehub.R
 import digitized.gamehub.account.LoginActivity
 import digitized.gamehub.databinding.AccountSettingsFragmentBinding
+import digitized.gamehub.domain.User
 import timber.log.Timber
 
 class AccountSettingsFragment : Fragment() {
@@ -59,6 +62,11 @@ class AccountSettingsFragment : Fragment() {
                 .navigate(AccountSettingsFragmentDirections.actionAccountSettingsFragmentToCardStackFragment())
         }
 
+        viewModel.user.observe(this, Observer {
+            viewModel.usr = it
+            updateUI(it)
+        })
+
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
 
@@ -68,5 +76,12 @@ class AccountSettingsFragment : Fragment() {
 
             (activity as MainActivity).finish()
         }
+    }
+
+    private fun updateUI(user: User) {
+        binding.txtFirstName.text = Editable.Factory().newEditable(user.firstName)
+        binding.txtLastName.text = Editable.Factory().newEditable(user.lastName)
+        binding.txtUserEmail.text = Editable.Factory().newEditable(user.email)
+        binding.maxDistance.progress = user.maxDistance
     }
 }

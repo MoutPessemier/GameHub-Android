@@ -19,9 +19,9 @@ data class User(
 fun User.asDatabaseModel(): UserEntity {
     return UserEntity(
         id,
-        email,
         firstName,
         lastName,
+        email,
         maxDistance,
         latitude,
         longitude

@@ -39,4 +39,10 @@ class GameRepository(private val database: GameHubDatabase) {
             }
         }
     }
+
+    suspend fun clearDb() {
+        withContext(Dispatchers.IO) {
+            database.gameDao.clearAll()
+        }
+    }
 }

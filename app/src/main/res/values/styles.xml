@@ -42,6 +42,14 @@
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
+    <style name="txt_subscript" parent="txt_label">
+        <item name="android:layout_width">@dimen/textfield_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:layout_marginTop">@dimen/label_space</item>
+        <item name="android:textSize">@dimen/subscript_text_size</item>
+    </style>
+
     <style name="txt_title" parent="@style/Widget.AppCompat.TextView">
         <item name="android:layout_width">@dimen/title_width</item>
         <item name="android:layout_height">@dimen/title_height</item>
@@ -124,6 +132,14 @@
         <item name="android:layout_width">@dimen/spinner_width_tablet</item>
         <item name="android:layout_height">@dimen/spinner_height_tablet</item>
         <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="txt_subscript_tablet" parent="txt_label">
+        <item name="android:layout_width">@dimen/textfield_width_tablet</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:layout_marginTop">@dimen/label_space_tablet</item>
+        <item name="android:textSize">@dimen/subscript_text_size_tablet</item>
     </style>
 
 </resources>

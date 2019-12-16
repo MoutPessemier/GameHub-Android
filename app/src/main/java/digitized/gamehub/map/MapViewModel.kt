@@ -32,7 +32,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
     fun updateUserLocation(latitude: Double?, longitude: Double?) {
         coroutineScope.launch {
             try {
-                var user = userRepository.user!!.value!!
+                var user = userRepository.user.value!!
                 user.latitude = latitude
                 user.longitude = longitude
                 userRepository.updateAccount(user)
