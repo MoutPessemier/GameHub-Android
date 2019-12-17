@@ -25,6 +25,7 @@ class UserRepository(private val database: GameHubDatabase) {
     suspend fun insertUser(user: User) {
         withContext(Dispatchers.IO) {
             val entityUser = user.asDatabaseModel()
+            database.userDao.clear()
             database.userDao.insertUser(entityUser)
         }
     }
