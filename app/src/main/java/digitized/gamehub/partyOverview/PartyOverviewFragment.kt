@@ -56,5 +56,9 @@ class PartyOverviewFragment : Fragment() {
                 adapter.games = it
             }
         })
+
+        viewModel.user.observe(this, Observer {
+            viewModel.getJoinedParties(it.id)
+        })
     }
 }

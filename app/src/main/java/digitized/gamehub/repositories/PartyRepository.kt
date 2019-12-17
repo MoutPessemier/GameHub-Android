@@ -45,6 +45,21 @@ class PartyRepository(private val database: GameHubDatabase) {
         }
     }
 
+    suspend fun getJoinedParties(userId: String) {
+        withContext(Dispatchers.IO) {
+            try {
+                val parties = GameHubAPI.service.getJoinedParties(userId).await()
+                database.partyDao.insertAll(*parties.asDatabaseModel())
+            } catch (e: SocketTimeoutException) {
+                val parties = GameHubAPI.service.getJoinedParties(userId).await()
+                database.partyDao.insertAll(*parties.asDatabaseModel())
+            } catch (e: Exception) {
+                Timber.d(e)
+                e.printStackTrace()
+            }
+        }
+    }
+
     /**
      * Creates a new party
      */

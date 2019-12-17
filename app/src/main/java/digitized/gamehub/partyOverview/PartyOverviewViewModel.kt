@@ -8,6 +8,7 @@ import digitized.gamehub.createParty.CreatePartyViewModel
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
+import digitized.gamehub.repositories.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -21,22 +22,23 @@ class PartyOverviewViewModel(application: Application) : AndroidViewModel(applic
     private val database = getInstance(application)
 
     private val partyRepository = PartyRepository(database)
-    val parties = partyRepository.parties
+    val parties = partyRepository.joinedParties
 
     private val gameRepository = GameRepository(database)
     val games = gameRepository.games
 
-    init {
-        coroutineScope.launch {
-            partyRepository.getPartiesNearYou(1000, 51.0538286, 3.7250121, "5db8838eaffe445c66076a89")
-            gameRepository.getGames()
-        }
-
-    }
+    private val userRepository = UserRepository(database)
+    val user = userRepository.user
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun getJoinedParties(userId: String) {
+        coroutineScope.launch {
+            partyRepository.getJoinedParties(userId)
+        }
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
