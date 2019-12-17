@@ -28,7 +28,7 @@
             android:id="@+id/txt_error"
             style="@style/txt_subscript"
             android:text="@string/fields_empty_error"
-            android:textSize=""
+            android:textSize="12sp"
             android:textColor="@color/ruby_red"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
