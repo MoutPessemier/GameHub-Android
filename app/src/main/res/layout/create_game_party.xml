@@ -154,7 +154,7 @@
         <Button
             android:id="@+id/btn_create_game_party"
             style="@style/btn_large_primary"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/custom_button_green"
             android:text="@string/create_game_party"
             app:layout_constraintEnd_toEndOf="parent"
