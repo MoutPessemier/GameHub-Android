@@ -108,7 +108,6 @@ class LoginRepository(val context: Context, val database: GameHubDatabase) {
      */
     fun logout() {
         runBlocking {
-            userRepository.clearDb()
             partyRepository.clearDb()
             gameRepository.clearDb()
         }
