@@ -6,6 +6,8 @@ import android.preference.PreferenceManager
 import androidx.lifecycle.*
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
+import digitized.gamehub.domain.GameParty
+import digitized.gamehub.domain.User
 import digitized.gamehub.network.DTO.LoginDTO
 import digitized.gamehub.network.DTO.PartyInteractionDTO
 import digitized.gamehub.network.GameHubAPI
@@ -36,13 +38,16 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
 
     val parties = partyRepository.parties
     val games = gameRepository.games
+    val user = userRepository.user
+
+    var usr: User? = null
+    var currentParty: GameParty? = null
 
 
     init {
         coroutineScope.launch {
-            getPartiesNearYou(1000, 51.0538286, 3.7250121, "5db8838eaffe445c66076a89")
-            gameRepository.getGames()
             getUser()
+            gameRepository.getGames()
         }
     }
 
@@ -50,11 +55,12 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
      * Gets the parties for a user that are not yet declined or joined by him
      * and within the max distance given up by the user
      */
-    fun getPartiesNearYou(distance: Int, lat: Double, long: Double, userId: String) {
+    // distance: Int, lat: Double, long: Double, userId: String
+    fun getPartiesNearYou() {
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
             try {
-                partyRepository.getPartiesNearYou(distance, lat, long, userId)
+                partyRepository.getPartiesNearYou(usr!!.maxDistance, usr!!.latitude!!, usr!!.longitude!!, usr!!.id)
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
@@ -66,7 +72,9 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
     /**
      * Join a party
      */
-    fun joinParty() {
+    fun joinParty(partyId: String, userId: String) {
+        Timber.i(partyId)
+        Timber.i(userId)
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
             try {
@@ -82,7 +90,9 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
     /**
      * Decline a party
      */
-    fun declineParty() {
+    fun declineParty(partyId: String, userId: String) {
+        Timber.i(partyId)
+        Timber.i(userId)
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
             try {
@@ -106,6 +116,18 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
             withContext(Dispatchers.IO) {
                 val user = GameHubAPI.service.login(LoginDTO(email)).await()
                 userRepository.insertUser(user.asDomainModel())
+            }
+        }
+    }
+
+    fun updateUserLocation(latitude: Double?, longitude: Double?) {
+        coroutineScope.launch {
+            try {
+                usr!!.latitude = latitude
+                usr!!.longitude = longitude
+                userRepository.updateAccount(usr!!)
+            } catch (e: Exception) {
+                Timber.d(e)
             }
         }
     }

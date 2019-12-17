@@ -1,29 +1,47 @@
 package digitized.gamehub.cardStack
 
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.yuyakaido.android.cardstackview.*
 import digitized.gamehub.R
 import digitized.gamehub.databinding.CardStackFragmentBinding
 import timber.log.Timber
 
-class CardStackFragment : Fragment(), CardStackListener {
+class CardStackFragment : Fragment(), CardStackListener, LocationListener {
 
     private lateinit var binding: CardStackFragmentBinding
     private lateinit var viewModel: CardStackViewModel
     private lateinit var cardStackView: CardStackView
     private lateinit var manager: CardStackLayoutManager
     private lateinit var adapter: CardStackAdapter
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationManager: LocationManager
+
+    /**
+     * The permission request code needed to let google maps function
+     */
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,21 +63,54 @@ class CardStackFragment : Fragment(), CardStackListener {
         cardStackView = binding.cardStackView
         initializeCardStackView()
 
+        fusedLocationClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { newLocation ->
+            if (newLocation != null) {
+                viewModel.updateUserLocation(newLocation.latitude, newLocation.longitude)
+            }
+        }
+
+        try {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3, 100f, this)
+        } catch (e: SecurityException) {
+            Timber.d(e.localizedMessage)
+        }
+
+        viewModel.getPartiesNearYou()
+
+        viewModel.games.observe(this, Observer {
+            adapter.games = it
+        })
+
         viewModel.parties.observe(this, Observer {
             adapter.setParties(it)
             var callback = PartyDiffCallback(listOf(), it)
             var result = DiffUtil.calculateDiff(callback)
             result.dispatchUpdatesTo(adapter)
 
-        })
-
-        viewModel.games.observe(this, Observer {
-            adapter.games = it
         })
 
         setupButtons()
@@ -86,10 +137,10 @@ class CardStackFragment : Fragment(), CardStackListener {
         Timber.d("onCardDragging: d = ${direction?.name}")
         Timber.d("listSize: ${adapter.getParties().size}")
         if (direction?.name == "left") {
-            //viewModel.declineParty()
+            viewModel.declineParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
         }
         if (direction?.name == "right") {
-            //viewModel.joinParty()
+            viewModel.joinParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
         }
         if (manager.topPosition == adapter.itemCount - 5) {
             //paginate()
@@ -108,6 +159,7 @@ class CardStackFragment : Fragment(), CardStackListener {
      */
     override fun onCardAppeared(view: View?, position: Int) {
         Timber.d("position = $position")
+        viewModel.currentParty = adapter.getParties()[position]
     }
 
     /**
@@ -129,7 +181,7 @@ class CardStackFragment : Fragment(), CardStackListener {
                 .setInterpolator(AccelerateInterpolator())
                 .build()
             manager.setSwipeAnimationSetting(setting)
-            //viewModel.declineParty()
+            viewModel.declineParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
             cardStackView.swipe()
         }
 
@@ -141,7 +193,7 @@ class CardStackFragment : Fragment(), CardStackListener {
                 .setInterpolator(AccelerateInterpolator())
                 .build()
             manager.setSwipeAnimationSetting(setting)
-            //viewModel.joinParty()
+            viewModel.joinParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
             cardStackView.swipe()
         }
     }
@@ -186,5 +238,30 @@ class CardStackFragment : Fragment(), CardStackListener {
         val result = DiffUtil.calculateDiff(callback)
         //adapter.setParties(new)
         //result.dispatchUpdatesTo(adapter)
+    }
+
+    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+        //deprecated
+    }
+
+    /**
+     * Called if permission is granted to use location service
+     */
+    override fun onProviderEnabled(provider: String?) {}
+
+    /**
+     * Called if no permission is gratned to use location service
+     */
+    override fun onProviderDisabled(provider: String?) {
+        Toast.makeText(context, "Enable your location please.", Toast.LENGTH_LONG).show()
+    }
+
+    /**
+     * Called each interval the location changes, updates user's current location
+     */
+    override fun onLocationChanged(location: Location?) {
+        val currentLocationLat = location?.latitude
+        val currentLocationLong = location?.longitude
+        viewModel.updateUserLocation(currentLocationLat, currentLocationLong)
     }
 }
