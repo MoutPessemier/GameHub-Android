@@ -32,13 +32,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/txt_error"
+                style="@style/txt_subscript_tablet"
+                android:text="@string/fields_empty_error"
+                android:textColor="@color/ruby_red"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+            <TextView
                 android:id="@+id/txt_party_name_label"
                 style="@style/txt_label_tablet"
                 android:autofillHints="@string/party_name"
                 android:text="@string/party_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_error" />
 
             <EditText
                 android:id="@+id/txt_party_name"

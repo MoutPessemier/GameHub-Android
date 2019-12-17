@@ -29,6 +29,7 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import digitized.gamehub.R
 import digitized.gamehub.databinding.CreateGamePartyBinding
 import timber.log.Timber
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -99,18 +100,34 @@ class CreatePartyFragment : Fragment() {
         })
 
         binding.btnCreateGameParty.setOnClickListener { view: View ->
-            val succes = viewModel.createParty(
-                binding.txtPartyName.text.toString(),
-                SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(binding.txtPartyDate.text.toString())!!,
-                binding.txtMaxSize.text.toString().toInt()
-            )
-            if (succes) {
-                binding.txtPartyName.text.clear()
-                binding.txtMaxSize.text.clear()
-                binding.txtPartyDate.text.clear()
-                view.findNavController()
-                    .navigate(CreatePartyFragmentDirections.actionCreatePartyFragmentToCardStackFragment())
+            if (binding.txtPartyName.text.toString() == "" ||
+                binding.txtMaxSize.text.toString() == "" ||
+                binding.txtPartyDate.text.toString() == ""
+            ) {
+                binding.txtError.visibility = View.VISIBLE
+            } else {
+                try {
+                    val succes = viewModel.createParty(
+                        binding.txtPartyName.text.toString(),
+                        SimpleDateFormat(
+                            "yyyy-MM-dd",
+                            Locale.ENGLISH
+                        ).parse(binding.txtPartyDate.text.toString())!!,
+                        binding.txtMaxSize.text.toString().toInt()
+                    )
+                    if (succes) {
+                        binding.txtPartyName.text.clear()
+                        binding.txtMaxSize.text.clear()
+                        binding.txtPartyDate.text.clear()
+                        view.findNavController()
+                            .navigate(CreatePartyFragmentDirections.actionCreatePartyFragmentToCardStackFragment())
+                    }
+                } catch (e: ParseException) {
+                    binding.subscript.setTextColor(resources.getColor(R.color.ruby_red))
+                }
             }
         }
     }
 }
+
+
