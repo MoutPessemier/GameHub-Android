@@ -1,6 +1,19 @@
-# Gamehub - Android version
+<p align="center"><img src="./Screenshots/logo.png" width="100" />
+<h1 align="center">Gamehub - Android version</h1>
 
 This app is made for those who like to play (board)games but need others to play with them. As a user you will be able to create a game party to play with others or join an already existing party. In doing so, you will meet new people and have lots of fun!
+
+## Screenshots
+<p align="center">
+  <img src="./Screenshots/startscreen.png" width="250" />
+  <img src="./Screenshots/login.png" width="250" />
+  <img src="./Screenshots/register.png" width="250" />
+  <img src="./Screenshots/cardstack.png" width="250" />
+  <img src="./Screenshots/map.png" width="250" />
+  <img src="./Screenshots/overview.png" width="250" />
+  <img src="./Screenshots/createparty.png" width="250" />
+  <img src="./Screenshots/settings.png" width="250" />
+</p>
 
 ## Installation
 Clone this repository and import into **Android Studio**
@@ -23,7 +36,7 @@ This is normal, since I'm using the free hosting platform of [Heroku](https://ww
  - Frontend: Android (Kotlin 1.3.50, Android Studio 3.5)
  - Backend: Node.JS with an Express layer
  - Database: MongoDB (mongoose)
- 
+
 ## Usage:
 
 1. Have a **virtual machine** installed / **physical device** on which you can install the apk
