@@ -37,11 +37,15 @@ class UserRepository(private val database: GameHubDatabase) {
         withContext(Dispatchers.IO) {
             try {
                 val usr = GameHubAPI.service.updateUser(user).await()
-                val entityUser = usr.asDatabaseModel()
+                var entityUser = usr.asDatabaseModel()
+                entityUser.latitude = user.latitude
+                entityUser.longitude = user.longitude
                 database.userDao.update(entityUser)
             } catch (e: SocketTimeoutException) {
                 val usr = GameHubAPI.service.updateUser(user).await()
                 val entityUser = usr.asDatabaseModel()
+                entityUser.latitude = user.latitude
+                entityUser.longitude = user.longitude
                 database.userDao.update(entityUser)
             } catch (e: Exception) {
                 Timber.d(e)

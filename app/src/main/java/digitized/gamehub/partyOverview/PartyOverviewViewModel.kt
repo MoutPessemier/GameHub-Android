@@ -1,6 +1,7 @@
 package digitized.gamehub.partyOverview
 
 import android.app.Application
+import android.preference.PreferenceManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +20,11 @@ class PartyOverviewViewModel(application: Application) : AndroidViewModel(applic
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
+
     private val database = getInstance(application)
 
-    private val partyRepository = PartyRepository(database)
+    private val partyRepository = PartyRepository(database, sharedPreferences.getString("userId", "")!!)
     val parties = partyRepository.joinedParties
 
     private val gameRepository = GameRepository(database)

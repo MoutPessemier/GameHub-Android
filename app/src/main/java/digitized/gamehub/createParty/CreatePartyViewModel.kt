@@ -1,6 +1,7 @@
 package digitized.gamehub.createParty
 
 import android.app.Application
+import android.preference.PreferenceManager
 import androidx.lifecycle.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
@@ -30,9 +31,11 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
     val status: LiveData<ApiStatus>
         get() = _status
 
+    var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
+
     private val database = getInstance(application)
     private val gameRepository = GameRepository(database)
-    private val partyRepository = PartyRepository(database)
+    private val partyRepository = PartyRepository(database, sharedPreferences.getString("userId", "")!!)
 
     val games = gameRepository.games
 

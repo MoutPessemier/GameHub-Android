@@ -17,7 +17,11 @@ data class PartyEntity(
     var declines: Array<String>,
     var gameId: String,
     var location: Location
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+}
 
 fun List<PartyEntity>.asDomainModel(): List<GameParty> {
     return map {

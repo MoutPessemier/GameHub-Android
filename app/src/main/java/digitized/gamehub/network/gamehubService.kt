@@ -13,7 +13,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "https://game-hub-backend.herokuapp.com/"
+// private const val BASE_URL = "https://game-hub-backend.herokuapp.com/"
+private const val BASE_URL = "https://92a97551.ngrok.io/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

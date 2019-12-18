@@ -89,7 +89,10 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
 
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { newLocation ->
             if (newLocation != null) {
-                viewModel.updateUserLocation(newLocation.latitude, newLocation.longitude)
+                viewModel.currentLocation = newLocation
+                if(viewModel.usr != null) {
+                    viewModel.updateUserLocation(newLocation.latitude, newLocation.longitude)
+                }
             }
         }
 
@@ -99,7 +102,12 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
             Timber.d(e.localizedMessage)
         }
 
-        viewModel.getPartiesNearYou()
+        viewModel.user.observe(this, Observer {
+            viewModel.usr = it
+            if(viewModel.usr!!.latitude != null && viewModel.usr!!.longitude != null) {
+                viewModel.getPartiesNearYou()
+            }
+        })
 
         viewModel.games.observe(this, Observer {
             adapter.games = it
@@ -137,10 +145,10 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
         Timber.d("onCardDragging: d = ${direction?.name}")
         Timber.d("listSize: ${adapter.getParties().size}")
         if (direction?.name == "left") {
-            viewModel.declineParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
+            viewModel.declineParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
         }
         if (direction?.name == "right") {
-            viewModel.joinParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
+            viewModel.joinParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
         }
         if (manager.topPosition == adapter.itemCount - 5) {
             //paginate()
@@ -159,7 +167,6 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
      */
     override fun onCardAppeared(view: View?, position: Int) {
         Timber.d("position = $position")
-        viewModel.currentParty = adapter.getParties()[position]
     }
 
     /**
@@ -181,7 +188,7 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
                 .setInterpolator(AccelerateInterpolator())
                 .build()
             manager.setSwipeAnimationSetting(setting)
-            viewModel.declineParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
+            viewModel.declineParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
             cardStackView.swipe()
         }
 
@@ -193,7 +200,7 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
                 .setInterpolator(AccelerateInterpolator())
                 .build()
             manager.setSwipeAnimationSetting(setting)
-            viewModel.joinParty(viewModel.currentParty!!.id!!, viewModel.usr!!.id)
+            viewModel.joinParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
             cardStackView.swipe()
         }
     }

@@ -2,6 +2,7 @@ package digitized.gamehub.cardStack
 
 import android.app.Application
 import android.content.SharedPreferences
+import android.location.Location
 import android.preference.PreferenceManager
 import androidx.lifecycle.*
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
@@ -33,15 +34,16 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val database = getInstance(application)
     private val gameRepository = GameRepository(database)
-    private val partyRepository = PartyRepository(database)
+    private val partyRepository = PartyRepository(database, sharedPreferences.getString("userId", "")!!)
     private val userRepository = UserRepository(database)
 
-    val parties = partyRepository.parties
+    val parties = partyRepository.newParties
     val games = gameRepository.games
     val user = userRepository.user
 
     var usr: User? = null
     var currentParty: GameParty? = null
+    var currentLocation: Location? = null
 
 
     init {
@@ -73,12 +75,10 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
      * Join a party
      */
     fun joinParty(partyId: String, userId: String) {
-        Timber.i(partyId)
-        Timber.i(userId)
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
             try {
-                partyRepository.joinParty(PartyInteractionDTO("", ""))
+                partyRepository.joinParty(PartyInteractionDTO(partyId, userId))
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
@@ -91,15 +91,13 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
      * Decline a party
      */
     fun declineParty(partyId: String, userId: String) {
-        Timber.i(partyId)
-        Timber.i(userId)
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
             try {
                 partyRepository.declineParty(
                     PartyInteractionDTO(
-                        "",
-                        ""
+                        partyId,
+                        userId
                     )
                 )
                 _status.value = ApiStatus.DONE
