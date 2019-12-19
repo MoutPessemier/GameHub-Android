@@ -14,14 +14,19 @@ import timber.log.Timber
 import java.lang.Exception
 import java.net.SocketTimeoutException
 
-class PartyRepository(private val database: GameHubDatabase) {
+class PartyRepository(private val database: GameHubDatabase, private val userId: String) {
 
     val parties = Transformations.map(database.partyDao.getParties()) {
         it.asDomainModel()
     }
 
     val joinedParties: LiveData<List<GameParty>> =
-        Transformations.map(database.partyDao.getJoinedParties("5db8838eaffe445c66076a88")) {
+        Transformations.map(database.partyDao.getJoinedParties(userId)) {
+            it.asDomainModel()
+        }
+
+    val newParties =
+        Transformations.map(database.partyDao.getNewParties(userId)) {
             it.asDomainModel()
         }
 

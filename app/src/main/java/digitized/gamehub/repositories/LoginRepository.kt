@@ -26,7 +26,8 @@ class LoginRepository(val context: Context, val database: GameHubDatabase) {
     var editor: SharedPreferences.Editor = sharedPreferences.edit()
     private val userRepository = UserRepository(database)
     private val gameRepository = GameRepository(database)
-    private val partyRepository = PartyRepository(database)
+    // userid not needed here
+    private val partyRepository = PartyRepository(database, "")
 
     /**
      * Log the user in, get his metadata and register or log him in into my backend
@@ -113,7 +114,7 @@ class LoginRepository(val context: Context, val database: GameHubDatabase) {
         }
         editor.apply {
             putString("userId", "")
-            putString("displayName", "")
+            putString("email", "")
         }
         editor.commit()
     }
@@ -123,7 +124,6 @@ class LoginRepository(val context: Context, val database: GameHubDatabase) {
      */
     private fun setLoggedInUser(user: User) {
         editor.apply {
-            putBoolean("loggedIn", true)
             putString("userId", user.id)
             putString("email", user.email)
         }

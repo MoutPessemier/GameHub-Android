@@ -1,6 +1,7 @@
 package digitized.gamehub.map
 
 import android.app.Application
+import android.preference.PreferenceManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -20,9 +21,11 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
+
     private val database = GameHubDatabase.getInstance(application)
     private val userRepository = UserRepository(database)
-    private val partyRepository = PartyRepository(database)
+    private val partyRepository = PartyRepository(database, sharedPreferences.getString("userId", "")!!)
 
     val parties = partyRepository.joinedParties
 
