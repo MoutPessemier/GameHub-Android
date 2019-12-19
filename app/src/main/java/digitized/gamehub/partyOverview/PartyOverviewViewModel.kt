@@ -40,6 +40,7 @@ class PartyOverviewViewModel(application: Application) : AndroidViewModel(applic
 
     fun getJoinedParties(userId: String) {
         coroutineScope.launch {
+            partyRepository.clearDb()
             partyRepository.getJoinedParties(userId)
         }
     }

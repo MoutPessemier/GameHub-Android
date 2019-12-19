@@ -1,6 +1,7 @@
 package digitized.gamehub.cardStack
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -63,10 +64,13 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
         cardStackView = binding.cardStackView
         initializeCardStackView()
 
+        // current location
         fusedLocationClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        // updating the location
+        locationManager =
+            requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         return binding.root
     }
@@ -74,6 +78,7 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
     override fun onStart() {
         super.onStart()
 
+        // check if location service is allowd, if not ask for permission
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION
@@ -87,32 +92,37 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
             return
         }
 
+        // get current (last) location and if the user exists, update this location
         fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { newLocation ->
             if (newLocation != null) {
                 viewModel.currentLocation = newLocation
-                if(viewModel.usr != null) {
+                if (viewModel.usr != null) {
                     viewModel.updateUserLocation(newLocation.latitude, newLocation.longitude)
                 }
             }
         }
 
+        // keep watching for new location updates every 3 minutes or 100 m
         try {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3, 100f, this)
         } catch (e: SecurityException) {
             Timber.d(e.localizedMessage)
         }
 
+        // if user exists (comes back from backend) and his location has been set, get his parties
         viewModel.user.observe(this, Observer {
             viewModel.usr = it
-            if(viewModel.usr!!.latitude != null && viewModel.usr!!.longitude != null) {
+            if (viewModel.usr!!.latitude != null && viewModel.usr!!.longitude != null) {
                 viewModel.getPartiesNearYou()
             }
         })
 
+        // get all games
         viewModel.games.observe(this, Observer {
             adapter.games = it
         })
 
+        // update the adapter to show the new parties
         viewModel.parties.observe(this, Observer {
             adapter.setParties(it)
             var callback = PartyDiffCallback(listOf(), it)
@@ -121,6 +131,7 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
 
         })
 
+        // set up the buttons (join and decline)
         setupButtons()
     }
 
@@ -128,7 +139,7 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
      * Called when card disappears
      */
     override fun onCardDisappeared(view: View?, position: Int) {
-        Timber.d("position = $position")
+        Timber.d("onCardDissapeared: position = $position")
     }
 
     /**
@@ -144,14 +155,38 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
     override fun onCardSwiped(direction: Direction?) {
         Timber.d("onCardDragging: d = ${direction?.name}")
         Timber.d("listSize: ${adapter.getParties().size}")
-        if (direction?.name == "left") {
+        if (direction?.name == "Left") {
             viewModel.declineParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
         }
-        if (direction?.name == "right") {
+        if (direction?.name == "Right") {
             viewModel.joinParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
         }
-        if (manager.topPosition == adapter.itemCount - 5) {
-            //paginate()
+    }
+
+    /**
+     * Sets up the function of the like and dislike button
+     */
+    private fun setupButtons() {
+        val skip = binding.skipButton
+        skip.setOnClickListener {
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Left)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            manager.setSwipeAnimationSetting(setting)
+            cardStackView.swipe()
+        }
+
+        val like = binding.likeButton
+        like.setOnClickListener {
+            val setting = SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Right)
+                .setDuration(Duration.Normal.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
+            manager.setSwipeAnimationSetting(setting)
+            cardStackView.swipe()
         }
     }
 
@@ -166,43 +201,14 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
      * Called when a card is drawn on the screen
      */
     override fun onCardAppeared(view: View?, position: Int) {
-        Timber.d("position = $position")
+        Timber.d("onCardAppeared: position = $position")
     }
 
     /**
      * Called when the rewound button is pressed
      */
     override fun onCardRewound() {
-        Timber.d("onCardCanceled: ${manager.topPosition}")
-    }
-
-    /**
-     * Sets up the function of the like and dislike button
-     */
-    private fun setupButtons() {
-        val skip = view!!.findViewById<View>(R.id.skip_button)
-        skip.setOnClickListener {
-            val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Left)
-                .setDuration(Duration.Normal.duration)
-                .setInterpolator(AccelerateInterpolator())
-                .build()
-            manager.setSwipeAnimationSetting(setting)
-            viewModel.declineParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
-            cardStackView.swipe()
-        }
-
-        val like = view!!.findViewById<View>(R.id.like_button)
-        like.setOnClickListener {
-            val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Right)
-                .setDuration(Duration.Normal.duration)
-                .setInterpolator(AccelerateInterpolator())
-                .build()
-            manager.setSwipeAnimationSetting(setting)
-            viewModel.joinParty(adapter.currentParty!!.id!!, viewModel.usr!!.id)
-            cardStackView.swipe()
-        }
+        Timber.d("onCardRewound: ${manager.topPosition}")
     }
 
 
@@ -232,19 +238,6 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
                 supportsChangeAnimations = false
             }
         }
-    }
-
-    /**
-     * If the cardstack is almost empty, this will fetch new parties and add them to the stack
-     */
-    private fun paginate() {
-        var old = adapter.getParties()
-        //viewModel.refreshPartiesNearYou()
-        val new = old.plus(adapter.getParties())
-        val callback = PartyDiffCallback(old, new)
-        val result = DiffUtil.calculateDiff(callback)
-        //adapter.setParties(new)
-        //result.dispatchUpdatesTo(adapter)
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
