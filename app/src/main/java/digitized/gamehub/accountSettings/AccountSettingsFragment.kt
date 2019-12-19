@@ -1,6 +1,7 @@
 package digitized.gamehub.accountSettings
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
@@ -44,6 +45,9 @@ class AccountSettingsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, AccountSettingsViewModel.Factory(application))
             .get(AccountSettingsViewModel::class.java)
         binding.viewModel = viewModel
+
+        // supported screen orientaion
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
         return binding.root
     }

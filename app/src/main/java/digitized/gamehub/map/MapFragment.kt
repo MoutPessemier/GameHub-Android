@@ -3,6 +3,7 @@ package digitized.gamehub.map
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.location.*
 import android.os.Bundle
@@ -66,6 +67,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
         // LocationManager
         locationManager = requireContext().getSystemService(LOCATION_SERVICE) as LocationManager
+
+        // supported screen orientaion
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         return binding.root
     }

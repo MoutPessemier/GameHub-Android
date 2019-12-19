@@ -1,5 +1,6 @@
 package  digitized.gamehub.createParty
 
+import android.content.pm.ActivityInfo
 import android.location.Location
 import android.location.LocationListener
 import android.os.Bundle
@@ -79,8 +80,10 @@ class CreatePartyFragment : Fragment() {
                 val game = viewModel.games.value!![position]
                 viewModel.game = game
             }
-
         }
+
+        // supported screen orientation
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
         return binding.root
     }

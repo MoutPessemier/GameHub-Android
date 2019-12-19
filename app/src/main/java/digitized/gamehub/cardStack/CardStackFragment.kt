@@ -72,6 +72,9 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
         locationManager =
             requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
+        // supported screen orientaion
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         return binding.root
     }
 

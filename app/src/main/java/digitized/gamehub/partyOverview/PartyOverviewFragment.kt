@@ -1,5 +1,6 @@
 package digitized.gamehub.partyOverview
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,9 @@ class PartyOverviewFragment : Fragment() {
 
         adapter = PartyOverviewAdapter()
         binding.listOverview.adapter = adapter
+
+        // supported screen orientation
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
         return binding.root
     }

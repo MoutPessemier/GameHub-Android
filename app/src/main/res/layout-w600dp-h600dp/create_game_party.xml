@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -9,145 +10,152 @@
             type="digitized.gamehub.createParty.CreatePartyViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:id="@+id/create_party_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:foregroundGravity="center">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/txt_title"
-                style="@style/txt_title_tablet"
-                android:text="@string/create_game_party"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/txt_error"
-                style="@style/txt_subscript_tablet"
-                android:text="@string/fields_empty_error"
-                android:textColor="@color/ruby_red"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+                <TextView
+                    android:id="@+id/txt_title"
+                    style="@style/txt_title_tablet"
+                    android:text="@string/create_game_party"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/txt_party_name_label"
-                style="@style/txt_label_tablet"
-                android:autofillHints="@string/party_name"
-                android:text="@string/party_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_error" />
+                <TextView
+                    android:id="@+id/txt_error"
+                    style="@style/txt_subscript_tablet"
+                    android:text="@string/fields_empty_error"
+                    android:textColor="@color/ruby_red"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title" />
 
-            <EditText
-                android:id="@+id/txt_party_name"
-                style="@style/txt_field_tablet"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_name_label" />
+                <TextView
+                    android:id="@+id/txt_party_name_label"
+                    style="@style/txt_label_tablet"
+                    android:autofillHints="@string/party_name"
+                    android:text="@string/party_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_error" />
 
-            <TextView
-                android:id="@+id/txt_party_game"
-                style="@style/txt_label_tablet"
-                android:text="@string/select_game"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_name" />
+                <EditText
+                    android:id="@+id/txt_party_name"
+                    style="@style/txt_field_tablet"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_party_name_label" />
 
-            <Spinner
-                android:id="@+id/spr_party_game"
-                style="@style/custom_spinner_tablet"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_game" />
+                <TextView
+                    android:id="@+id/txt_party_game"
+                    style="@style/txt_label_tablet"
+                    android:text="@string/select_game"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_party_name" />
 
-            <TextView
-                android:id="@+id/txt_party_date_label"
-                style="@style/txt_label_tablet"
-                android:text="@string/party_when"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spr_party_game" />
+                <Spinner
+                    android:id="@+id/spr_party_game"
+                    style="@style/custom_spinner_tablet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_party_game" />
 
-            <EditText
-                android:id="@+id/txt_party_date"
-                style="@style/txt_field_tablet"
-                android:autofillHints="@string/party_when"
-                android:ems="10"
-                android:inputType="date"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_date_label" />
+                <TextView
+                    android:id="@+id/txt_party_date_label"
+                    style="@style/txt_label_tablet"
+                    android:text="@string/party_when"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spr_party_game" />
 
-            <TextView
-                android:id="@+id/subscript"
-                style="@style/txt_subscript_tablet"
-                android:text="@string/date_format"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_date" />
+                <EditText
+                    android:id="@+id/txt_party_date"
+                    style="@style/txt_field_tablet"
+                    android:autofillHints="@string/party_when"
+                    android:ems="10"
+                    android:inputType="date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_party_date_label" />
 
-            <TextView
-                android:id="@+id/txt_max_size_label"
-                style="@style/txt_label_tablet"
-                android:text="@string/max_party_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subscript" />
+                <TextView
+                    android:id="@+id/subscript"
+                    style="@style/txt_subscript_tablet"
+                    android:text="@string/date_format"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_party_date" />
 
-            <EditText
-                android:id="@+id/txt_max_size"
-                style="@style/txt_field_tablet"
-                android:autofillHints="@string/max_size_hint"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_max_size_label" />
+                <TextView
+                    android:id="@+id/txt_max_size_label"
+                    style="@style/txt_label_tablet"
+                    android:text="@string/max_party_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subscript" />
 
-            <TextView
-                android:id="@+id/txt_party_where_label"
-                style="@style/txt_label_tablet"
-                android:text="@string/party_where"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_max_size" />
+                <EditText
+                    android:id="@+id/txt_max_size"
+                    style="@style/txt_field_tablet"
+                    android:autofillHints="@string/max_size_hint"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_max_size_label" />
 
-            <TextView
-                android:id="@+id/txt_party_where"
-                style="@style/txt_field_tablet"
-                android:text="@string/party_where_txt"
-                android:textSize="27sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_where_label" />
+                <TextView
+                    android:id="@+id/txt_party_where_label"
+                    style="@style/txt_label_tablet"
+                    android:text="@string/party_where"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.504"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_max_size" />
 
-            <Button
-                android:id="@+id/btn_create_game_party"
-                style="@style/btn_large_primary_tablet"
-                android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/custom_button_green"
-                android:text="@string/create_game_party"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_party_where" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_party_where"
+                    style="@style/txt_field_tablet"
+                    android:text="@string/party_where_txt"
+                    android:textSize="27sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_party_where_label" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/btn_create_game_party"
+                    style="@style/btn_large_primary_tablet"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/custom_button_green"
+                    android:text="@string/create_game_party"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_party_where" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
