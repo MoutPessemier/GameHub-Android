@@ -4,11 +4,17 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import digitized.gamehub.domain.GameType
-import digitized.gamehub.utilities.*
+import digitized.gamehub.utilities.gameEntity1
+import digitized.gamehub.utilities.gameEntity2
+import digitized.gamehub.utilities.gameEntity3
+import digitized.gamehub.utilities.getValue
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matchers
-import org.junit.*
+import org.junit.After
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)

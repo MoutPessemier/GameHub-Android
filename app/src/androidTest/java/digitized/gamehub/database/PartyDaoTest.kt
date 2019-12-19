@@ -4,14 +4,20 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import digitized.gamehub.domain.Location
-import digitized.gamehub.utilities.*
+import digitized.gamehub.utilities.getValue
+import digitized.gamehub.utilities.party1
+import digitized.gamehub.utilities.partyEntity1
+import digitized.gamehub.utilities.partyEntity2
+import digitized.gamehub.utilities.partyEntity3
+import digitized.gamehub.utilities.userEntity1
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.Matcher
 import org.hamcrest.Matchers
-import org.junit.*
+import org.junit.After
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
-import java.text.SimpleDateFormat
 
 @RunWith(AndroidJUnit4::class)
 class PartyDaoTest {
@@ -62,7 +68,7 @@ class PartyDaoTest {
     }
 
     @Test
-    fun testUpdateGame(){
+    fun testUpdateGame() {
         partyEntity1.maxSize = 5
         partyDao.update(partyEntity1)
         Assert.assertThat(partyEntity1.maxSize, Matchers.equalTo(5))

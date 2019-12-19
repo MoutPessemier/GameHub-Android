@@ -3,13 +3,13 @@ package digitized.gamehub.utilities
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 
-
 /**
  * Presents two ways for getting the value from a [LiveData] object during tests
  */
 
 fun <T> LiveData<T>.observeForTesting(
-    block: () -> Unit) {
+    block: () -> Unit
+) {
     val observer = Observer<T> { Unit }
     try {
         observeForever(observer)

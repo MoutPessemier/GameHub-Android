@@ -5,7 +5,6 @@ import digitized.gamehub.cardStack.CardStackViewModel
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.utilities.CoroutinesTestRule
 import io.mockk.clearMocks
-import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
@@ -30,7 +29,7 @@ class CardStackViewModelTest {
     @Before
     fun setup() {
         // Hoe krijg ik hier die application
-        //viewModel = CardStackViewModel()
+        // viewModel = CardStackViewModel()
     }
 
     @Test

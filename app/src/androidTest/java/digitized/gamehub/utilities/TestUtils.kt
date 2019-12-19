@@ -1,8 +1,12 @@
 package digitized.gamehub.utilities
 
-import digitized.gamehub.domain.*
+import digitized.gamehub.domain.Game
+import digitized.gamehub.domain.GameParty
+import digitized.gamehub.domain.GameType
+import digitized.gamehub.domain.Location
+import digitized.gamehub.domain.User
+import digitized.gamehub.domain.asDatabaseModel
 import java.text.SimpleDateFormat
-
 
 var game1 = Game(
     id = "5dd021b602611d001e968391",
@@ -39,7 +43,6 @@ var game3 = Game(
 )
 
 var gameEntity3 = game3.asDatabaseModel()
-
 
 var party1 = GameParty(
     id = "5dd0260102611d001e968395",

@@ -1,7 +1,8 @@
 package digitized.gamehub
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -14,7 +15,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class CreatePartyFragment  {
+class CreatePartyFragment {
 
     @get:Rule
     var activityRule = ActivityTestRule(MainActivity::class.java)
@@ -25,7 +26,7 @@ class CreatePartyFragment  {
         checkInput()
     }
 
-    private fun performInput(){
+    private fun performInput() {
         onView(withId(R.id.txt_party_name)).perform(typeText("Test"), closeSoftKeyboard())
         onView(withId(R.id.txt_party_date)).perform(typeText("2019-12-12"), closeSoftKeyboard())
         onView(withId(R.id.txt_max_size)).perform(typeText("4"), closeSoftKeyboard())

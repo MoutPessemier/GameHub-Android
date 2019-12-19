@@ -8,7 +8,11 @@ import digitized.gamehub.utilities.getValue
 import digitized.gamehub.utilities.userEntity1
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matchers
-import org.junit.*
+import org.junit.After
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
