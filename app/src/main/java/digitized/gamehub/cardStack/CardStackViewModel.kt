@@ -48,8 +48,8 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
 
     init {
         coroutineScope.launch {
-            getUser()
             gameRepository.getGames()
+            getUser()
         }
     }
 

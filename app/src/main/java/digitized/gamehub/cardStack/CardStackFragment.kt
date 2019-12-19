@@ -123,6 +123,9 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
         // get all games
         viewModel.games.observe(this, Observer {
             adapter.games = it
+            var callback = PartyDiffCallback(listOf(), listOf())
+            var result = DiffUtil.calculateDiff(callback)
+            result.dispatchUpdatesTo(adapter)
         })
 
         // update the adapter to show the new parties

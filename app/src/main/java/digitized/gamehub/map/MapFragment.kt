@@ -84,6 +84,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         fusedLocationClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
 
+        viewModel.user.observe(this, Observer {
+            viewModel.usr = it
+        })
+
         // asks for position updates
         try {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3, 100f, this)

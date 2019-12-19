@@ -36,11 +36,14 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val party = parties[position]
         currentParty = party
-        val game = games.first { g -> g.id == party.gameId }
+        if(games.isNotEmpty()) {
+            val game = games.first { g -> g.id == party.gameId }
+            holder.gameName.text = game.name
+            holder.gameDescription.text = game.description
+        }
         holder.partyName.text = party.name
         holder.partyWhen.text = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).format(party.date)
-        holder.gameName.text = game.name
-        holder.gameDescription.text = game.description
+
         // holder.partyWhere.text =
         // Glide.with(holder.gameImage).load().into(holder.gameImage)
 

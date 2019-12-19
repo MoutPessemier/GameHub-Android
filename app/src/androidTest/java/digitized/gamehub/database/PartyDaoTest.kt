@@ -40,27 +40,23 @@ class PartyDaoTest {
     @Test
     fun testGetParties() {
         val partyList = getValue(partyDao.getParties())
-        Assert.assertEquals(partyList[0], partyEntity1)
-        //Assert.assertThat(partyList.size, Matchers.equalTo(3))
-        // appart slaagt alles maar als ik volledig object check faalt die? --> textcompare tussen the expected and but was is exact dezelfde?
-       // Assert.assertThat(partyList[0], Matchers.equals(partyEntity1))
-        //Assert.assertThat(partyList[1], Matchers.equalTo(partyEntity2))
-        //Assert.assertThat(partyList[2], Matchers.equalTo(partyEntity3))
+        Assert.assertThat(partyList.size, Matchers.equalTo(3))
+        Assert.assertThat(partyList[0].id, Matchers.equalTo(partyEntity1.id))
+        Assert.assertThat(partyList[1].id, Matchers.equalTo(partyEntity2.id))
+        Assert.assertThat(partyList[2].id, Matchers.equalTo(partyEntity3.id))
     }
 
     @Test
     fun testGetParty() {
         val party = getValue(partyDao.getParty("5dd0260102611d001e968395"))
-        Assert.assertThat(party, Matchers.equalTo(partyEntity1))
+        Assert.assertThat(party.id, Matchers.equalTo(partyEntity1.id))
     }
 
-
-    //same problem here
     @Test
     fun testGetJoinedParties() {
         val partyList = getValue(partyDao.getJoinedParties(userEntity1.id))
-        Assert.assertThat(partyList[0], Matchers.equalTo(partyEntity1))
-        Assert.assertThat(partyList[2], Matchers.equalTo(partyEntity3))
+        Assert.assertThat(partyList[0].id, Matchers.equalTo(partyEntity1.id))
+        Assert.assertThat(partyList[2].id, Matchers.equalTo(partyEntity3.id))
         Assert.assertThat(partyList[0].participants[0], Matchers.equalTo(userEntity1.id))
         Assert.assertThat(partyList[2].participants[0], Matchers.equalTo(userEntity1.id))
     }

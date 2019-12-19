@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.auth0.android.result.UserIdentity
 import digitized.gamehub.createParty.CreatePartyViewModel
 import digitized.gamehub.database.GameHubDatabase
+import digitized.gamehub.domain.User
 import digitized.gamehub.repositories.PartyRepository
 import digitized.gamehub.repositories.UserRepository
 import kotlinx.coroutines.CoroutineScope
@@ -29,16 +30,20 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
 
     val parties = partyRepository.joinedParties
 
+    val user = userRepository.user
+    var usr: User? = null
+
     /**
      * Writes the new location to the database
      */
     fun updateUserLocation(latitude: Double?, longitude: Double?) {
         coroutineScope.launch {
             try {
-                var user = userRepository.user.value!!
-                user.latitude = latitude
-                user.longitude = longitude
-                userRepository.updateAccount(user)
+                if(usr != null) {
+                    usr!!.latitude = latitude
+                    usr!!.longitude = longitude
+                    userRepository.updateAccount(usr!!)
+                }
             } catch (e: Exception) {
                 Timber.d(e)
             }

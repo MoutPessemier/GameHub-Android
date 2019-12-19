@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        binding.btnSignup.isEnabled = true
         binding.btnSignup.setOnClickListener {
             login()
         }
