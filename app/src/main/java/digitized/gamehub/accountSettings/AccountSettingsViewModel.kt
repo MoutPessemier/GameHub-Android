@@ -1,7 +1,11 @@
 package digitized.gamehub.accountSettings
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.User
@@ -11,7 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class AccountSettingsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,14 +27,14 @@ class AccountSettingsViewModel(application: Application) : AndroidViewModel(appl
 
     private val database = getInstance(application)
     private val userRepository = UserRepository(database)
-    private var loginRepository= LoginRepository(application, database)
+    private var loginRepository = LoginRepository(application, database)
     val user = userRepository.user
     var usr: User? = null
 
     /**
      * Updates the user account
      */
-    fun updateAccount(firstName:String, lastName: String, email:String, maxDistance: Int){
+    fun updateAccount(firstName: String, lastName: String, email: String, maxDistance: Int) {
         coroutineScope.launch {
             usr!!.firstName = firstName
             usr!!.lastName = lastName

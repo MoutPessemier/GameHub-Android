@@ -22,7 +22,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.yuyakaido.android.cardstackview.*
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
+import com.yuyakaido.android.cardstackview.CardStackListener
+import com.yuyakaido.android.cardstackview.CardStackView
+import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.Duration
+import com.yuyakaido.android.cardstackview.StackFrom
+import com.yuyakaido.android.cardstackview.SwipeAnimationSetting
+import com.yuyakaido.android.cardstackview.SwipeableMethod
 import digitized.gamehub.R
 import digitized.gamehub.databinding.CardStackFragmentBinding
 import timber.log.Timber
@@ -45,7 +52,8 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreate(savedInstanceState)
@@ -116,6 +124,7 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
         viewModel.user.observe(this, Observer {
             viewModel.usr = it
             if (viewModel.usr!!.latitude != null && viewModel.usr!!.longitude != null) {
+                viewModel.cleardb()
                 viewModel.getPartiesNearYou()
             }
         })
@@ -123,9 +132,6 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
         // get all games
         viewModel.games.observe(this, Observer {
             adapter.games = it
-            var callback = PartyDiffCallback(listOf(), listOf())
-            var result = DiffUtil.calculateDiff(callback)
-            result.dispatchUpdatesTo(adapter)
         })
 
         // update the adapter to show the new parties
@@ -134,7 +140,6 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
             var callback = PartyDiffCallback(listOf(), it)
             var result = DiffUtil.calculateDiff(callback)
             result.dispatchUpdatesTo(adapter)
-
         })
 
         // set up the buttons (join and decline)
@@ -217,7 +222,6 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
         Timber.d("onCardRewound: ${manager.topPosition}")
     }
 
-
     /**
      * Sets up thje CardStackView. It adds the required dependencies
      * and sets up the Visuals for the component.
@@ -247,7 +251,7 @@ class CardStackFragment : Fragment(), CardStackListener, LocationListener {
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-        //deprecated
+        // deprecated
     }
 
     /**

@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import digitized.gamehub.database.PartyEntity
 import digitized.gamehub.domain.GameParty
 import digitized.gamehub.domain.Location
-import java.util.*
+import java.util.Date
 
 @JsonClass(generateAdapter = true)
 data class NetworkPartyContainer(val parties: List<NetworkParty>)
@@ -37,7 +37,7 @@ fun NetworkPartyContainer.asDatabaseModel(): Array<PartyEntity> {
     }.toTypedArray()
 }
 
-fun NetworkParty.asDomainModel(): GameParty{
+fun NetworkParty.asDomainModel(): GameParty {
     return GameParty(
         id,
         name,

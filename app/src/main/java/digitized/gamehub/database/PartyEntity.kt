@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import digitized.gamehub.domain.GameParty
 import digitized.gamehub.domain.Location
-import java.util.*
+import java.util.Date
 
 @Entity(tableName = "parties")
 data class PartyEntity(
@@ -17,11 +17,7 @@ data class PartyEntity(
     var declines: Array<String>,
     var gameId: String,
     var location: Location
-) {
-    override fun equals(other: Any?): Boolean {
-        return super.equals(other)
-    }
-}
+)
 
 fun List<PartyEntity>.asDomainModel(): List<GameParty> {
     return map {

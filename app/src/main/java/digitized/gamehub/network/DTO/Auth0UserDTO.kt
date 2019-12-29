@@ -9,7 +9,7 @@ data class Auth0UserDTO(
     var email: String,
     var user_metadata: UserMetaData,
     var user_id: String
-) {}
+)
 
 fun Auth0UserDTO.asDomainModel(): User {
     return User(

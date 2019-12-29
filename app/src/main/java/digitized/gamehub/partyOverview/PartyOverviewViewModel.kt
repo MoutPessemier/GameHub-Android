@@ -5,7 +5,6 @@ import android.preference.PreferenceManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import digitized.gamehub.createParty.CreatePartyViewModel
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
@@ -54,5 +53,4 @@ class PartyOverviewViewModel(application: Application) : AndroidViewModel(applic
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
     }
-
 }

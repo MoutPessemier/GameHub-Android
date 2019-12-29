@@ -7,11 +7,11 @@ import digitized.gamehub.domain.User
 import digitized.gamehub.domain.asDatabaseModel
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.asDatabaseModel
+import java.lang.Exception
+import java.net.SocketTimeoutException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.lang.Exception
-import java.net.SocketTimeoutException
 
 class UserRepository(private val database: GameHubDatabase) {
 

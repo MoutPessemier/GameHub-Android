@@ -5,18 +5,16 @@ import android.preference.PreferenceManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.auth0.android.result.UserIdentity
-import digitized.gamehub.createParty.CreatePartyViewModel
 import digitized.gamehub.database.GameHubDatabase
 import digitized.gamehub.domain.User
 import digitized.gamehub.repositories.PartyRepository
 import digitized.gamehub.repositories.UserRepository
+import java.lang.Exception
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.Exception
 
 class MapViewModel(application: Application) : AndroidViewModel(application) {
     private val viewModelJob = Job()
@@ -39,7 +37,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
     fun updateUserLocation(latitude: Double?, longitude: Double?) {
         coroutineScope.launch {
             try {
-                if(usr != null) {
+                if (usr != null) {
                     usr!!.latitude = latitude
                     usr!!.longitude = longitude
                     userRepository.updateAccount(usr!!)

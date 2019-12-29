@@ -1,13 +1,15 @@
 package digitized.gamehub.cardStack
 
 import android.app.Application
-import android.content.SharedPreferences
 import android.location.Location
 import android.preference.PreferenceManager
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
-import digitized.gamehub.domain.GameParty
 import digitized.gamehub.domain.User
 import digitized.gamehub.network.DTO.LoginDTO
 import digitized.gamehub.network.DTO.PartyInteractionDTO
@@ -16,17 +18,20 @@ import digitized.gamehub.network.asDomainModel
 import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
 import digitized.gamehub.repositories.UserRepository
-import kotlinx.coroutines.*
-import timber.log.Timber
 import java.lang.Exception
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class CardStackViewModel(application: Application) : AndroidViewModel(application) {
 
     private val viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    var sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
-    var editor: SharedPreferences.Editor = sharedPreferences.edit()
+    private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application)
 
     private val _status = MutableLiveData<ApiStatus>()
     val status: LiveData<ApiStatus>
@@ -34,7 +39,8 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val database = getInstance(application)
     private val gameRepository = GameRepository(database)
-    private val partyRepository = PartyRepository(database, sharedPreferences.getString("userId", "")!!)
+    private val partyRepository =
+        PartyRepository(database, sharedPreferences.getString("userId", "")!!)
     private val userRepository = UserRepository(database)
 
     val parties = partyRepository.newParties
@@ -42,9 +48,7 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
     val user = userRepository.user
 
     var usr: User? = null
-    var currentParty: GameParty? = null
     var currentLocation: Location? = null
-
 
     init {
         coroutineScope.launch {
@@ -57,12 +61,16 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
      * Gets the parties for a user that are not yet declined or joined by him
      * and within the max distance given up by the user
      */
-    // distance: Int, lat: Double, long: Double, userId: String
     fun getPartiesNearYou() {
         coroutineScope.launch {
             _status.value = ApiStatus.LOADING
             try {
-                partyRepository.getPartiesNearYou(usr!!.maxDistance, usr!!.latitude!!, usr!!.longitude!!, usr!!.id)
+                partyRepository.getPartiesNearYou(
+                    usr!!.maxDistance,
+                    usr!!.latitude!!,
+                    usr!!.longitude!!,
+                    usr!!.id
+                )
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
@@ -130,6 +138,11 @@ class CardStackViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    fun cleardb() {
+        coroutineScope.launch {
+            partyRepository.clearDb()
+        }
+    }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

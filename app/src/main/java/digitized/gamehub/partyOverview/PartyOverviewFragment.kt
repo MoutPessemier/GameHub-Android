@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import digitized.gamehub.R
 import digitized.gamehub.databinding.PartyOverviewFragmentBinding
-import timber.log.Timber
 
 class PartyOverviewFragment : Fragment() {
 
@@ -53,7 +52,6 @@ class PartyOverviewFragment : Fragment() {
             it?.let {
                 adapter.submitList(it)
             }
-
         })
         viewModel.games.observe(viewLifecycleOwner, Observer {
             it?.let {

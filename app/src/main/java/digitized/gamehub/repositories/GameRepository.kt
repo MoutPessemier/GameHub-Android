@@ -1,20 +1,17 @@
 package digitized.gamehub.repositories
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import digitized.gamehub.database.GameEntity
 import digitized.gamehub.database.GameHubDatabase
 import digitized.gamehub.database.asDomainModel
-import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.Game
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.asDatabaseModel
+import java.lang.Exception
+import java.net.SocketTimeoutException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.lang.Exception
-import java.net.SocketTimeoutException
 
 class GameRepository(private val database: GameHubDatabase) {
 

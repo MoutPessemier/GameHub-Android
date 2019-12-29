@@ -1,39 +1,25 @@
-package  digitized.gamehub.createParty
+package digitized.gamehub.createParty
 
 import android.content.pm.ActivityInfo
-import android.location.Location
-import android.location.LocationListener
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.model.TypeFilter
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import digitized.gamehub.R
 import digitized.gamehub.databinding.CreateGamePartyBinding
-import timber.log.Timber
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
-
+import java.util.Locale
 
 class CreatePartyFragment : Fragment() {
     private lateinit var viewModel: CreatePartyViewModel
@@ -132,5 +118,3 @@ class CreatePartyFragment : Fragment() {
         }
     }
 }
-
-

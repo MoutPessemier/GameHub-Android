@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class LoginDTO(var email: String):Parcelable {}
+data class LoginDTO(var email: String) : Parcelable

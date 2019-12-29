@@ -18,10 +18,7 @@ import com.auth0.android.result.Credentials
 import digitized.gamehub.MainActivity
 import digitized.gamehub.R
 import digitized.gamehub.databinding.ActivityLoginBinding
-import digitized.gamehub.repositories.LoginRepository
-import kotlinx.coroutines.coroutineScope
 import timber.log.Timber
-
 
 class LoginActivity : AppCompatActivity() {
 

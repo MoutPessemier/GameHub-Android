@@ -108,6 +108,9 @@ dependencies {
     // Live Data
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_live_data"
 
+    // Stetho
+    implementation "com.facebook.stetho:stetho:$version_stetho"
+
     // Testing
     testImplementation "junit:junit:$version_junit"
     testImplementation "io.mockk:mockk:$version_mockk"

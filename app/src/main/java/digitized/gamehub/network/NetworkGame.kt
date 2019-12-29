@@ -3,12 +3,10 @@ package digitized.gamehub.network
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import digitized.gamehub.database.GameEntity
-import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameType
 
 @JsonClass(generateAdapter = true)
 data class NetworkGameContainer(val games: List<NetworkGame>)
-
 
 @JsonClass(generateAdapter = true)
 data class NetworkGame(
@@ -34,4 +32,3 @@ fun NetworkGameContainer.asDatabaseModel(): Array<GameEntity> {
         )
     }.toTypedArray()
 }
-

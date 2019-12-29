@@ -6,13 +6,14 @@ import digitized.gamehub.database.GameHubDatabase
 import digitized.gamehub.database.PartyEntity
 import digitized.gamehub.database.asDomainModel
 import digitized.gamehub.domain.GameParty
-import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.DTO.PartyInteractionDTO
+import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.asDatabaseModel
-import kotlinx.coroutines.*
-import timber.log.Timber
 import java.lang.Exception
 import java.net.SocketTimeoutException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class PartyRepository(private val database: GameHubDatabase, private val userId: String) {
 

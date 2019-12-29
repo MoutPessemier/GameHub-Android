@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Location(
     val type: String,
     val coordinates: DoubleArray
-): Parcelable{
+) : Parcelable {
     override fun equals(other: Any?): Boolean {
         return this.coordinates[0] == (other as Location).coordinates[0] && this.coordinates[1] == (other as Location).coordinates[1]
     }

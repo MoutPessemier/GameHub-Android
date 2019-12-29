@@ -2,25 +2,27 @@ package digitized.gamehub.createParty
 
 import android.app.Application
 import android.preference.PreferenceManager
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.libraries.places.api.model.Place
 import digitized.gamehub.database.GameHubDatabase.Companion.getInstance
 import digitized.gamehub.domain.ApiStatus
 import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameParty
-import digitized.gamehub.repositories.GameRepository
-import java.util.*
 import digitized.gamehub.domain.Location
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.asDomainModel
+import digitized.gamehub.repositories.GameRepository
 import digitized.gamehub.repositories.PartyRepository
+import java.lang.Exception
+import java.util.Date
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import timber.log.Timber
-import java.lang.Exception
 
 class CreatePartyViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -41,7 +43,6 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
 
     var game: Game? = null
     var currentLocation = LatLng(0.0, 0.0)
-//    var place: Place? = null
 
     /**
      * Creates a new party
@@ -84,4 +85,3 @@ class CreatePartyViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 }
-

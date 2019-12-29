@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
 
-class GameTypeAdapter: JsonAdapter<GameType>() {
+class GameTypeAdapter : JsonAdapter<GameType>() {
     @FromJson
     override fun fromJson(reader: JsonReader): GameType? {
         return when (reader.nextString()) {
@@ -22,7 +22,4 @@ class GameTypeAdapter: JsonAdapter<GameType>() {
     override fun toJson(writer: JsonWriter, value: GameType?) {
         writer.value(value.toString())
     }
-
 }
-
-

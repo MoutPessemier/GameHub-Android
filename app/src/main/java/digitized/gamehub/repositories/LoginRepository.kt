@@ -13,12 +13,10 @@ import digitized.gamehub.network.DTO.RegisterDTO
 import digitized.gamehub.network.DTO.asDomainModel
 import digitized.gamehub.network.GameHubAPI
 import digitized.gamehub.network.asDomainModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 import java.lang.Exception
 import java.net.SocketTimeoutException
+import kotlinx.coroutines.runBlocking
+import timber.log.Timber
 
 class LoginRepository(val context: Context, val database: GameHubDatabase) {
 
@@ -100,7 +98,6 @@ class LoginRepository(val context: Context, val database: GameHubDatabase) {
                     e.printStackTrace()
                 }
             }
-
         }
     }
 

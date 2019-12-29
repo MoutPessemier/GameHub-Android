@@ -7,22 +7,16 @@ import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.auth0.android.Auth0
-import com.auth0.android.Auth0Exception
-import com.auth0.android.provider.VoidCallback
-import com.auth0.android.provider.WebAuthProvider
 import digitized.gamehub.MainActivity
 import digitized.gamehub.R
 import digitized.gamehub.account.LoginActivity
 import digitized.gamehub.databinding.AccountSettingsFragmentBinding
 import digitized.gamehub.domain.User
-import timber.log.Timber
 
 class AccountSettingsFragment : Fragment() {
 

@@ -3,11 +3,9 @@ package digitized.gamehub.database
 import androidx.room.TypeConverter
 import digitized.gamehub.domain.GameType
 import digitized.gamehub.domain.Location
-import digitized.gamehub.domain.User
-import digitized.gamehub.domain.UserRole
-import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class Converters {
     /**

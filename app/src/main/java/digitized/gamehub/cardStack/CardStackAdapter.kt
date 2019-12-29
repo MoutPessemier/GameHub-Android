@@ -3,15 +3,13 @@ package digitized.gamehub.cardStack
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import digitized.gamehub.R
 import digitized.gamehub.domain.Game
 import digitized.gamehub.domain.GameParty
-import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
@@ -19,6 +17,7 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     var games = listOf<Game>()
         set(value) {
             field = value
+            notifyDataSetChanged()
         }
 
     var currentParty: GameParty? = null
@@ -34,28 +33,21 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val party = parties[position]
-        currentParty = party
-        if(games.isNotEmpty()) {
-            val game = games.first { g -> g.id == party.gameId }
+        currentParty = parties[position]
+        if (games.isNotEmpty()) {
+            val game = games.first { g -> g.id == currentParty!!.gameId }
             holder.gameName.text = game.name
             holder.gameDescription.text = game.description
         }
-        holder.partyName.text = party.name
-        holder.partyWhen.text = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).format(party.date)
-
-        // holder.partyWhere.text =
-        // Glide.with(holder.gameImage).load().into(holder.gameImage)
-
+        holder.partyName.text = currentParty!!.name
+        holder.partyWhen.text = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH).format(currentParty!!.date)
     }
-    
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //val gameImage: ImageView = view.findViewById(R.id.img_game_card)
         val partyName: TextView = view.findViewById(R.id.txt_party_name_card)
         val gameName: TextView = view.findViewById(R.id.txt_game_name_card)
         val gameDescription: TextView = view.findViewById(R.id.txt_game_description_card)
         val partyWhen: TextView = view.findViewById(R.id.txt_party_when_card)
-        // val partyWhere: TextView = view.findViewById(R.id.txt_party_where_card)
     }
 
     fun setParties(parties: List<GameParty>) {
@@ -65,5 +57,4 @@ class CardStackAdapter(private var parties: List<GameParty> = emptyList()) :
     fun getParties(): List<GameParty> {
         return parties
     }
-
 }

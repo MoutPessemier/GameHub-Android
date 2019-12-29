@@ -5,7 +5,6 @@ import com.squareup.moshi.JsonClass
 import digitized.gamehub.database.UserEntity
 import digitized.gamehub.domain.User
 import digitized.gamehub.domain.UserRole
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class NetworkUserContainer(val user: NetworkUser)
@@ -43,4 +42,3 @@ fun NetworkUserContainer.asDatabaseModel(): UserEntity {
         null
     )
 }
-

@@ -1,7 +1,10 @@
 package digitized.gamehub.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 
 @Dao
 interface GameDao {
@@ -12,7 +15,7 @@ interface GameDao {
     fun getGames(): LiveData<List<GameEntity>>
 
     @Query("select * from games where id = :id")
-    fun getGame(id:String): LiveData<GameEntity>
+    fun getGame(id: String): LiveData<GameEntity>
 
     @Query("delete from games")
     fun clearAll()

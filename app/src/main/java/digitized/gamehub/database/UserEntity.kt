@@ -3,8 +3,6 @@ package digitized.gamehub.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import digitized.gamehub.domain.User
-import digitized.gamehub.domain.UserRole
-import java.util.*
 
 @Entity(tableName = "user")
 data class UserEntity(

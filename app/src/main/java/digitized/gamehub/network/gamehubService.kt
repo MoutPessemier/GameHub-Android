@@ -3,7 +3,8 @@ package digitized.gamehub.network
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import digitized.gamehub.domain.*
+import digitized.gamehub.domain.GameParty
+import digitized.gamehub.domain.User
 import digitized.gamehub.network.DTO.LoginDTO
 import digitized.gamehub.network.DTO.PartyInteractionDTO
 import digitized.gamehub.network.DTO.RegisterDTO
@@ -11,10 +12,13 @@ import digitized.gamehub.repositories.DateAdapter
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Query
 
-// private const val BASE_URL = "https://game-hub-backend.herokuapp.com/"
-private const val BASE_URL = "https://92a97551.ngrok.io/"
+private const val BASE_URL = "https://game-hub-backend.herokuapp.com/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

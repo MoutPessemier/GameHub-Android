@@ -1,20 +1,17 @@
 package digitized.gamehub.map
 
-import android.content.Context
 import android.content.Context.LOCATION_SERVICE
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import android.location.*
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -94,7 +91,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         } catch (e: SecurityException) {
             Timber.d(e.localizedMessage)
         }
-
     }
 
     /**
@@ -109,7 +105,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         configureMap()
         placeMarkersOnMap(map)
     }
-
 
     /**
      * Configures the map and asks for permissoin to use location
@@ -156,7 +151,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         })
     }
 
-
     /**
      * What happens if a marker is tapped and if it is supported
      * default = false
@@ -165,7 +159,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
     override fun onMarkerClick(p0: Marker?) = false
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-        //deprecated
+        // deprecated
     }
 
     /**
@@ -193,6 +187,4 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         super.onStop()
         locationManager.removeUpdates(this)
     }
-
-
 }

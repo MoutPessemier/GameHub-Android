@@ -1,15 +1,15 @@
 package digitized.gamehub.partyOverview
 
-import digitized.gamehub.databinding.PartyOverviewListItemBinding
-import digitized.gamehub.domain.GameParty
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import digitized.gamehub.databinding.PartyOverviewListItemBinding
 import digitized.gamehub.domain.Game
+import digitized.gamehub.domain.GameParty
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 class PartyOverviewAdapter : ListAdapter<GameParty,
         PartyOverviewAdapter.ViewHolder>(PartyDiffCallback()) {
@@ -54,5 +54,4 @@ class PartyDiffCallback : DiffUtil.ItemCallback<GameParty>() {
     override fun areContentsTheSame(oldItem: GameParty, newItem: GameParty): Boolean {
         return oldItem == newItem
     }
-
 }
