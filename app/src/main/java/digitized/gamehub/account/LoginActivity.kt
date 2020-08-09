@@ -74,9 +74,11 @@ class LoginActivity : AppCompatActivity() {
      * Login method used to log a user in using Auth0
      */
     private fun login() {
-        binding.btnSignup.isEnabled = false
-        binding.btnSignup.isClickable = false
-        binding.btnSignup.background = resources.getDrawable(R.drawable.disabled_button)
+        runOnUiThread {
+            binding.btnSignup.isEnabled = false
+            binding.btnSignup.isClickable = false
+            binding.btnSignup.background = resources.getDrawable(R.drawable.disabled_button)
+        }
         WebAuthProvider.login(viewModel.auth0)
             .withScheme("demo")
             .withAudience(
@@ -87,11 +89,11 @@ class LoginActivity : AppCompatActivity() {
             )
             .start(this@LoginActivity, object : AuthCallback {
                 override fun onFailure(dialog: Dialog) {
-                    // Show error Dialog to user
-                    binding.btnSignup.isEnabled = true
-                    binding.btnSignup.isClickable = true
-                    binding.btnSignup.background = resources.getDrawable(R.drawable.custom_button_green)
                     runOnUiThread {
+                        // Show error Dialog to user
+                        binding.btnSignup.isEnabled = true
+                        binding.btnSignup.isClickable = true
+                        binding.btnSignup.background = resources.getDrawable(R.drawable.custom_button_green)
                         Toast.makeText(applicationContext, "Error Logging In.", Toast.LENGTH_SHORT)
                             .show()
                     }
