@@ -49,5 +49,3 @@ This is normal, since I'm using the free hosting platform of [Heroku](https://ww
 - [Backend](https://github.com/MoutPessemier/GameHub-Backend)
 - [Twitter](https://twitter.com/MoutPessemier)
 - [LinkedIn](https://www.linkedin.com/in/moutpessemier/)
-
-Copyright 2019 © by Mout Pessemier
